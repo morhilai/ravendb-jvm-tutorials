@@ -11,7 +11,7 @@ As a noSQL database, RavenDB is based on following properties:
 * Map/Reduce to process large sets of documents  
 * On top of this RavenDB is easy to administer and deploy  
 
-* [RavenDB community edition install](../ravendb-jvm-tutorials#ravendb-community-edition-install)
+* [RavenDB community edition install](../morhilai/ravendb-jvm-tutorials#ravendb-community-edition-install)
 * [How to run demo]()
 * [Domain Entity description]()
 * [Session and Unit of Work pattern]()
