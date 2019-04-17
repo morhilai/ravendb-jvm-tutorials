@@ -1,44 +1,45 @@
 # RavenDB Hospital tutorial
-RavenDB is an open-source NoSQL document store database. It is fully transactional,multi-platform and high availability distributed data store which support clients for a variety of programming languages including Java.
-The following sample Hospital Management app is built upon the dynamic document based structure that RavenDB represents.
-It uses RavenDB Java client to communicate with the document store.
+RavenDB is an open-source NoSQL document store database. It is a fully transactional, multi-platform and high availability distributed database which supports clients for a variety of programming languages, including Java.
+The following sample Hospital Management app is built upon RavenDB's dynamic document based structure.
+It uses the RavenDB Java client to communicate with the document store[server?].  
 
+As a noSQL database, RavenDB is based on following properties:  
+* Stores data in JSON-like documents that can have various structures  
+* Uses dynamic schemas, which means that we can create records without predefining anything  
+* The structure of a record can be changed simply by adding new fields or deleting existing ones  
+* Dynamically generated indexes to facilitate fast data retrieval  
+* Map/Reduce to process large sets of documents  
+* On top of this RavenDB is easy to administer and deploy  
 
-* RavenDB community edition install
-* How to run demo
-* Domain Entity description
-* Session and Unit of Work pattern
-* CRUD operations
-* Paging on large record sets
-* BLOB handling - attachments
-* Queries
+* [RavenDB community edition install](../ravendb-jvm-tutorials#ravendb-community-edition-install)
+* [How to run demo]()
+* [Domain Entity description]()
+* [Session and Unit of Work pattern]()
+* [CRUD operations]()
+* [Paging on large record sets]()
+* [BLOB handling - attachments]()
+* [Queries]()
 
 ## RavenDB community edition install
-Installing RavenDB is pretty straight forward:
+Installing RavenDB is pretty straightforward:
 1. Download the zip bundle from https://ravendb.net/download and unzip in a local drive folder
 2. Register a community edition free licence from https://ravendb.net/buy
-3. In powershell start either .\run.ps1 (console mode app) or .\setup-as-service.ps1 (service mode app) and follow the install instructions.
+3. In powershell, start either .\run.ps1 (console mode app) or .\setup-as-service.ps1 (service mode app) and follow the install instructions
 4. Once installed RavenDB Studio will show up in web browser, open "About" tab and register your license
 5. Create your first noSQL database.
 
-As noSQL database RavenDB is based on following properties
-* Stores data in JSON-like documents that can have various structures
-* Uses dynamic schemas, which means that we can create records without predefining anything
-* The structure of a record can be changed simply by adding new fields or deleting existing ones
-* Dynamically generated indexes to facilitate fast data retrieval
-* Map/Reduce to process large sets of documents
-* On top of this RavenDB is easy to administer and deploy
+
 
 ## How to run demo
 In order to run the project locally, once the RavenDB is installed a database should be created with the name `Hospital` in it. In the project root there is an import file `hospital.ravendbdump`, which should be imported in the newly created database. There is a well described import from external file procedure at the following link:
-https://ravendb.net/docs/article-page/4.1/java/studio/database/tasks/import-data/import-data-file
+https://ravendb.net/docs/article-page/4.1/java/studio/database/settings/import-data-file
 
 Project code sources must be fetched from github using git tool command
 ```
 $ git clone https://github.com/sergei-iliev/ravendb.git
 ```
 
-Once the database is created,default configuration data imported and sources available locally, the application could be brought to life by executing
+Once the database is created, the default configuration data is imported, and sources are available locally, start the application by executing
 ```
 $ mvn jetty:run
 ```
@@ -77,7 +78,7 @@ JSON representation of Patient document at RavenDB side
             "date": "2019-02-26T22:00:00.0000000Z",
             "doctorId": "doctors/1-A",
             "type": "HOUSE",
-            "visitSummery": "just a mainor pain",
+            "visitSummary": "just a mainor pain",
             "conditionId": "conditions/1-A",
             "doctorName": "Sergiz Ovesian"
         },
@@ -85,7 +86,7 @@ JSON representation of Patient document at RavenDB side
             "date": "2019-01-31T22:00:00.0000000Z",
             "doctorId": "doctors/2-A",
             "type": "EMERGENCYROOM",
-            "visitSummery": "never worry",
+            "visitSummary": "never worry",
             "conditionId": "conditions/2-A",
             "doctorName": "Megalo Karimov"
         }
@@ -103,7 +104,7 @@ public class Visit{
 	private Date date;
 	private String doctorId;	
 	private Type type;
-	private String visitSummery;
+	private String visitSummary;
 	private String conditionId;
 	private String doctorName;
 
@@ -311,7 +312,7 @@ public Pair<Collection<PatientAttachment>,Integer> getPatientsList(int offset, i
 }
 ```
 
-## BLOB handling - attachements
+## BLOB handling - attachments
 When binary data(images,documents,media) needs to be associated with the document, RavenDB provides the `Attachment API`.
 Attachments are completely decoupled from documents. They can be updated and changed separately from the document and do not 
 participate in transactions. Following POJO represents attachments on client side.
