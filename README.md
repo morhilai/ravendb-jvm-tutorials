@@ -7,7 +7,7 @@ As a noSQL database, RavenDB is based on following properties:
 * Stores data in JSON-like documents that can have various structures  
 * Uses dynamic schemas, which means that we can create records without predefining anything  
 * The structure of a record can be changed simply by adding new fields or deleting existing ones  
-* Dynamically generated indexes to facilitate fast data retrieval  
+* Dynamically generates indexes to facilitate fast data retrieval  
 * Map/Reduce to process large sets of documents  
 * On top of this RavenDB is easy to administer and deploy  
 
