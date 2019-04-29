@@ -26,7 +26,7 @@ Contents:
 5. Create your first database  
 
 ## How to run the demo  
-Once RavenDB is installed, start a server instance on port 18080 with this command:
+Once RavenDB is installed, start a server instance on port 18080 with this command:  
 ```
 ./Raven.Server.exe `
 --ServerUrl=http://127.0.0.1:18080
@@ -39,22 +39,21 @@ The project code sources can be fetched from GitHub using this git tool command:
 ```
 $ git clone https://github.com/sergei-iliev/ravendb.git
 ```
-
 Once the database is created, the default configuration data is imported, and the sources are available locally, start the application by executing:  
 ```
 $ mvn jetty:run
 ```
-The web app will now be available at http://127.0.0.1:8889/
+The web app will now be available at http://127.0.0.1:8889/  
 ![App Homepage](/screenshots/p_home.png)
 
 ## Entities, tables, collections, and documents
-To persist data, Java programmers tend to annotate Java POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database. 
-RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_.
+To persist data, Java programmers usually annotate Java POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database. 
+RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_ rather than tables.
 In RavenDB, every domain object is mapped to a single document. In this regard, there is no need for special class treatment other than having a default no-args constructor. 
-The sample model consists of 4 basic entities. One of these is embedded into another entity as an array to demonstrate the power of grouping and fetching queries in RavenDB.
+This sample model consists of 4 basic entities. To demonstrate the power of grouping and fetching queries in RavenDB, one of these entities is embedded as an array in another entity.
 
 ![UML Diagram](/screenshots/uml.png)
-1. Patient - stored as a separate collection
+1. Client-side Patient entity:
 ```java
 public class Patient {
     private String id;
@@ -65,10 +64,9 @@ public class Patient {
     private String email;
     private Address address;
     private List<Visit> visits;
-  
-  }
+}
 ```
-JSON representation of Patient document at RavenDB side
+Server-side JSON representation of a sample patient:
 ```JSON
 {
     "firstName": "Megi",
