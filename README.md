@@ -1,18 +1,17 @@
-# RavenDB Hospital tutorial
-RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and high availability. It supports clients for a variety of programming languages, including Java.
-The following sample Hospital Management app is built on RavenDB's dynamic document based structure.
-It uses the RavenDB Java client to communicate with the server.  
+# RavenDB Hospital Tutorial
+RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and high availability. It supports clients for a variety of programming languages, 
+including Java. The following sample hospital management app is built on RavenDB's dynamic document based structure. It uses the RavenDB Java client to communicate with the server.  
 
 As a NoSQL database, RavenDB is based on the following properties:  
 * Stores data in JSON documents  
-* Schemaless - the structure of a document can be changed simply by adding new fields or deleting existing ones  //merge these three bullets
+* Schemaless - the structure of a document can be changed by simply adding new fields or deleting existing ones  
 * Dynamically generates indexes to facilitate fast data retrieval  
-* Uses map-Reduce to process large sets of documents  
+* Uses map-reduce to process large sets of documents  
 
 On top of all this, RavenDB is easy to administer and deploy  
 
 Contents:
-* [RavenDB community edition install]()
+* [How to Install RavenDB Community Edition]()
 * [How to run the demo]()
 * [Domain Entity description]()
 * [Session and Unit of Work pattern]()
@@ -21,18 +20,17 @@ Contents:
 * [BLOB handling - attachments]()
 * [Queries]()
 
-## RavenDB community edition install
-Installing RavenDB is pretty straightforward:  
+## How to Install RavenDB Community Edition  
 1. Download the zip bundle from https://ravendb.net/download and unzip in a local drive folder  
 2. Register a community edition free license from https://ravendb.net/buy  
 3. In PowerShell, start either .\run.ps1 (console mode app) or .\setup-as-service.ps1 (service mode app) and follow the installation instructions  
-4. Once installed RavenDB Studio will show up in web browser, open "About" tab and register your license  ????
-5. Create your first NoSQL database.  
-
-
+4. Once installed, the RavenDB Studio will automatically launch in your default browser. Open the 'about' tab to register your license.  
+5. Create your first database.  
 
 ## How to run the demo  
-Once RavenDB is installed, create a database with the name `Hospital`. In the project root, there is an import file `hospital.ravendbdump`. Follow [these instructions](https://ravendb.net/docs/article-page/4.1/java/studio/database/settings/import-data-file) to import `hospital.ravendbdump` into 'Hospital'.  
+Once RavenDB is installed, run a server instance on port 18080. Type 'openbrowser' to launch the studio in your default browser. Use the studio to [create a database](https://ravendb.net/docs/article-page/4.2/csharp/studio/server/databases/create-new-database/general-flow) 
+with the name `Hospital`. In the project root, there is an import file `hospital.ravendbdump`. Follow [these instructions](https://ravendb.net/docs/article-page/4.1/java/studio/database/settings/import-data-file) 
+to import `hospital.ravendbdump` into 'Hospital'.  
 
 Project code sources must be fetched from GitHub using the following git tool command:  
 ```
@@ -45,9 +43,10 @@ $ mvn jetty:run
 ```
 
 ## Entities, tables, collections, and documents
-In order to persist data, Java programmers tend to annotate Java POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database. 
+To persist data, Java programmers tend to annotate Java POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database. 
 RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_.
-In RavenDB, every domain object is mapped to a single document. In this regard, there is no need for special class treatment other than having a default no-args constructor. The sample model consists of 4 basic entities. One of these is embedded into another entity as an array to demonstrate the power of grouping and fetching queries in RavenDB.
+In RavenDB, every domain object is mapped to a single document. In this regard, there is no need for special class treatment other than having a default no-args constructor. 
+The sample model consists of 4 basic entities. One of these is embedded into another entity as an array to demonstrate the power of grouping and fetching queries in RavenDB.
 
 ![UML Diagram](/screenshots/uml.png)
 1. Patient - stored as a separate collection
@@ -155,7 +154,7 @@ public class Doctor{
     }
 }
  ```
-Unless the entity already contains a field called `id`, RavenDB will automatically generate a unique document id on the client side. 
+If the entity doesn't already have an id (represented by a field called 'id'), RavenDB will automatically generate a unique document id on the client side. 
 By convention, entities get autogenerated ids in the following format: 'collection/[number tag]', so the programmer is not concerned with the uniqueness of each document within a collection.
 
 ## RavenDB Client API
@@ -191,7 +190,7 @@ public final class RavenDBDocumentStore {
 ```
 ## Session and Unit of Work pattern
 For any operation we want to perform on RavenDB, we start by obtaining a new _Session_ object from the Document Store. The Session contains everything we need to perform any operation necessary. Much like the Hibernate implementation of JPA, the RavenDB Session also implements the Unit of Work pattern. This has several implications in the context of a single session:
-* The Session batches requests to save expensive remote calls.
+* The Session batches requests to reduce the number of expensive remote calls.
 * A single document (identified by its ID) always resolves to the same instance.
 * The Session tracks changes for all the entities that it has either loaded or stored.
 
