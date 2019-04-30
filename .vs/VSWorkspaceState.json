@@ -8,9 +8,18 @@
     "\\src\\main\\java\\net",
     "\\src\\main\\java\\net\\ravendb",
     "\\src\\main\\java\\net\\ravendb\\demo",
+    "\\src\\main\\java\\net\\ravendb\\demo\\assets",
+    "\\src\\main\\java\\net\\ravendb\\demo\\command",
     "\\src\\main\\java\\net\\ravendb\\demo\\components",
-    "\\src\\main\\java\\net\\ravendb\\demo\\components\\editor"
+    "\\src\\main\\java\\net\\ravendb\\demo\\components\\grid",
+    "\\src\\main\\java\\net\\ravendb\\demo\\db",
+    "\\src\\main\\java\\net\\ravendb\\demo\\model",
+    "\\src\\main\\webapp",
+    "\\src\\main\\webapp\\frontend",
+    "\\src\\main\\webapp\\frontend\\images",
+    "\\src\\main\\webapp\\frontend\\src",
+    "\\src\\main\\webapp\\frontend\\styles"
   ],
-  "SelectedNode": "\\pom.xml",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
