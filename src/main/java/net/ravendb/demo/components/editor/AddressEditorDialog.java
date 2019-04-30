@@ -5,9 +5,11 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 
+import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Address;
 import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.presenters.PatientViewable.PatientViewListener;
@@ -75,7 +77,12 @@ public class AddressEditorDialog extends AbstractEditorDialog<Patient>{
 
 	@Override
 	protected void save(ClickEvent<Button> e) {
-		presenter.save(bean.getId(),addbinder.getBean());
+	    try {
+            presenter.save(bean.getId(), addbinder.getBean());
+        }
+        catch(ConcurrencyException ce) {
+            Notification.show("Document was updated by another user", 5000, Notification.Position.TOP_CENTER);
+        }
 		this.close();
 	}
 

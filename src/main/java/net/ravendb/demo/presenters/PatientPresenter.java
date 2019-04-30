@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,7 +81,8 @@ public class PatientPresenter implements PatientViewListener {
 	public Pair<Collection<PatientAttachment>,Integer>  searchPatientsList(int offset, int limit, String term, boolean order) {
 		
 		Reference<QueryStatistics> statsRef = new Reference<>();
-		
+		session.advanced().clear();
+
 		IDocumentQuery<Patient> query = session.query(Patient.class)
 				.whereStartsWith("firstName", term)
 				.skip(offset)
@@ -122,8 +124,12 @@ public class PatientPresenter implements PatientViewListener {
 	@Override
 	public Collection<String> getRegionsList() {
 
-		return Arrays.asList("Lovech", "Sofia olast", "Sofia", "Plovdiv", "Varna", "Burgas", "Kustendil",
-				"Veliko Tarnovo");
+		Configuration condition=session.query(Configuration.class).first();
+		if(condition!=null){
+			return condition.getRegions();
+		}else{
+			return Collections.EMPTY_LIST;
+		}
 	}
 
 	@Override
@@ -138,13 +144,11 @@ public class PatientPresenter implements PatientViewListener {
 		}
 		
 		session.saveChanges();
-		session.advanced().clear();
 	}
 
 	@Override
 	public void update(PatientAttachment patientAttachment) throws ConcurrencyException {
-		// enable oca
-		session.advanced().setUseOptimisticConcurrency(true);
+
 		Patient patient=patientAttachment.getPatient();
 		Attachment attachment=patientAttachment.getAttachment();
 		session.store(patient);
@@ -154,7 +158,6 @@ public class PatientPresenter implements PatientViewListener {
 		if (names.length > 0) {
 			session.advanced().attachments().delete(patient, names[0].getName());
 		}
-		session.saveChanges();
 
 		if (attachment != null) {
 			session.advanced().attachments().store(patient, attachment.getName(),
@@ -162,7 +165,6 @@ public class PatientPresenter implements PatientViewListener {
 		}
 		
 		session.saveChanges();
-		session.advanced().clear();
 	}
 
 	@Override
@@ -176,14 +178,16 @@ public class PatientPresenter implements PatientViewListener {
 
 	@Override
 	public void delete(PatientAttachment patient) {
-		session.delete(patient.getPatient().getId());
+		session.delete(patient.getPatient());
 		session.saveChanges();
 	}
 
 	@Override
 	public void openSession() {
 		if(session==null){
-			  session = RavenDBDocumentStore.getStore().openSession();
+			session = RavenDBDocumentStore.getStore().openSession();
+			// enable oca
+			session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
 

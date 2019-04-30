@@ -23,7 +23,6 @@ public class PatientVisitPresenter implements PatientVisitViewListener {
 
 	@Override
 	public Collection<PatientVisit> getVisistsList(String patientId,String term,boolean order) {
-			session.advanced().eagerly().executeAllPendingLazyOperations();
 			Patient patient=session.load(Patient.class, patientId);
 
 			IDocumentQuery<PatientVisit> visits = session.query(Patient.class).waitForNonStaleResults()							    		
@@ -50,41 +49,25 @@ public class PatientVisitPresenter implements PatientVisitViewListener {
 		    }else{
 		    	return visits.orderBy("date").toList();
 		    }
-			
-			
-			
-		 	
-
 	}
 
 	@Override
 	public void save(String patientId, Visit visit) {
-		
-
-			 Patient patient=session.load(Patient.class, patientId);			
-             patient.getVisits().add(visit);
-             session.store(patient);
-			 session.saveChanges();
-			 session.advanced().eagerly().executeAllPendingLazyOperations();
-			
-		
+		 Patient patient=session.load(Patient.class, patientId);
+		 patient.getVisits().add(visit);
+		 session.store(patient);
+		 session.saveChanges();
 	}
 
 	@Override
 	public Patient getPatientById(String id) {
-
-			Patient patient = session.load(Patient.class, id);
-			return patient;
-		
-
+		Patient patient = session.load(Patient.class, id);
+		return patient;
 	}
 
 	@Override
 	public Collection<Doctor> getDoctorsList() {
-
 			return session.query(Doctor.class).distinct().toList();
-		
-
 	}
 	@Override
 	public Collection<Condition> getConditionsList() {
@@ -103,6 +86,7 @@ public class PatientVisitPresenter implements PatientVisitViewListener {
 	public void openSession() {
 		if(session==null){
 			  session = RavenDBDocumentStore.getStore().openSession();
+			  session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
 

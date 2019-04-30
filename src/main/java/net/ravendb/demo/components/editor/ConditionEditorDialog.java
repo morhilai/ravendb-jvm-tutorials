@@ -4,8 +4,10 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 
+import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Condition;
 import net.ravendb.demo.presenters.ConditionViewable.ConditionViewListener;
 
@@ -35,8 +37,6 @@ public class ConditionEditorDialog extends AbstractEditorDialog<Condition>{
         TextField prescription=new TextField();
         binder.forField(prescription).bind(Condition::getSymptoms,Condition::setSymptoms);
         layout.addFormItem(prescription, "Symptoms");
-        
-
 
         TextField type=new TextField();        
         binder.forField(type).bind(Condition::getRecommendedTreatment,Condition::setRecommendedTreatment);
@@ -53,8 +53,13 @@ public class ConditionEditorDialog extends AbstractEditorDialog<Condition>{
 	}
 
 	@Override
-	protected void save(ClickEvent<Button> e) {		   
-		presenter.save(binder.getBean());	   
+	protected void save(ClickEvent<Button> e) {
+		try {
+			presenter.save(binder.getBean());
+		}
+		catch(ConcurrencyException ce){
+			Notification.show("Document was updated by another user",5000, Notification.Position.TOP_CENTER);
+		}
 		run.run();
 		this.close();
 	}

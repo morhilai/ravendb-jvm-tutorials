@@ -13,7 +13,7 @@ public class Visit{
 	private Date date;
 	private String doctorId;	
 	private String type;
-	private String visitSummery;
+	private String visitSummary;
 	private String conditionId;
 	private Doctor doctor;
 	private String doctorName;
@@ -44,11 +44,11 @@ public class Visit{
 	   }
 	}	
 
-	public String getVisitSummery() {
-		return visitSummery;
+	public String getvisitSummary() {
+		return visitSummary;
 	}
-	public void setVisitSummery(String visitSummery) {
-		this.visitSummery = visitSummery;
+	public void setvisitSummary(String visitSummary) {
+		this.visitSummary = visitSummary;
 	}
 	public String getConditionId() {
 		return conditionId;

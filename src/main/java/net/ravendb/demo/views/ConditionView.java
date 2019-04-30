@@ -145,6 +145,7 @@ public class ConditionView extends VerticalLayout implements ConditionViewable{
 	   grid.loadFirstPage();	
 	}
 	private Pair<Collection<Condition>, Integer> loadPage(int page, int pageSize) {
+
 			return presenter.getConditionsList(page * pageSize, pageSize, search.getValue());
 	}	
 }

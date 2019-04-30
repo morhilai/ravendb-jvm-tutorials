@@ -1,5 +1,7 @@
 package net.ravendb.demo.views;
 
+import com.vaadin.flow.component.notification.Notification;
+import net.ravendb.client.exceptions.ConcurrencyException;
 import org.claspina.confirmdialog.ButtonOption;
 import org.claspina.confirmdialog.ConfirmDialog;
 
@@ -82,8 +84,14 @@ public class DoctorView extends VerticalLayout implements DoctorViewable{
 				    .withCaption("System alert")
 				    .withMessage("Do you want to continue?")
 				    .withOkButton(() -> {
-				    	presenter.delete(grid.asSingleSelect().getValue());
-				    	load();
+				    	try {
+							presenter.delete(grid.asSingleSelect().getValue());
+						}
+				    	catch (ConcurrencyException ce){
+							Notification.show("Document was updated by another user", 5000, Notification.Position.TOP_CENTER);
+						}
+
+						load();
 				    }, ButtonOption.focus(), ButtonOption.caption("YES"))
 				    .withCancelButton(ButtonOption.caption("NO"))			    
 				    .open();			 

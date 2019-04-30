@@ -9,8 +9,10 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextArea;
 
+import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.command.ComboValue;
 import net.ravendb.demo.model.Visit;
 import net.ravendb.demo.presenters.PatientVisitViewable.PatientVisitViewListener;
@@ -71,8 +73,8 @@ public class PatientVisitEditorDialog extends AbstractEditorDialog<Visit>{
         
         TextArea summery=new TextArea();
         
-        binder.forField(summery).bind(Visit::getVisitSummery,Visit::setVisitSummery);
-        layout.addFormItem(summery, "Visit Summery");
+        binder.forField(summery).bind(Visit::getvisitSummary,Visit::setvisitSummary);
+        layout.addFormItem(summery, "Visit Summary");
         layout.setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 1)
               );
@@ -80,8 +82,13 @@ public class PatientVisitEditorDialog extends AbstractEditorDialog<Visit>{
 	}
 
 	@Override
-	protected void save(ClickEvent<Button> e) {		   
-		presenter.save(patientId,binder.getBean());	   
+	protected void save(ClickEvent<Button> e) {
+		try {
+			presenter.save(patientId, binder.getBean());
+		}
+		catch(ConcurrencyException ce) {
+			Notification.show("Document was updated by another user", 5000, Notification.Position.TOP_CENTER);
+		}
 		run.run();
 		this.close();
 	}

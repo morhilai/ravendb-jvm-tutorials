@@ -9,7 +9,15 @@ public class Configuration {
 	
 	private List<String> departments=new ArrayList<>();
 
-	
+	private List<String> regions = new ArrayList();
+
+	public List<String> getRegions(){
+		return regions;
+	}
+
+	public void setRegions(List<String> locations) {
+		this.locations = locations;
+	}
 	
 	public List<String> getLocations() {
 		return locations;
