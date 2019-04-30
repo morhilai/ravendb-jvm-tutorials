@@ -26,8 +26,8 @@ public class VisitsPresenter implements VisitsViewListener {
 
 	@Override
 	public Pair<Collection<PatientVisit>,Integer> getVisistsList(int offset, int limit, boolean order) {
+		session.advanced().clear();
 		Reference<QueryStatistics> statsRef = new Reference<>();
-
 		IDocumentQuery<PatientVisit> visits = session.query(Patient.class)
 				.groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummery")
 				.selectKey("visits[].doctorName", "doctorName").selectKey("visits[].date", "date")
@@ -56,8 +56,8 @@ public class VisitsPresenter implements VisitsViewListener {
 
 	@Override
 	public Pair<Collection<PatientVisit>,Integer> searchVisitsList(int offset, int limit, String term, boolean order) {
+		session.advanced().clear();
 		Reference<QueryStatistics> statsRef = new Reference<>();
-		
 		IDocumentQuery<PatientVisit> visits = session.advanced().documentQuery(Patient.class)
 				.groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummery")
 				.selectKey("visits[].doctorName", "doctorName").selectKey("visits[].date", "date")
@@ -86,7 +86,8 @@ public class VisitsPresenter implements VisitsViewListener {
 	@Override
 	public void openSession() {
 		if(session==null){
-			  session = RavenDBDocumentStore.getStore().openSession();
+			session = RavenDBDocumentStore.getStore().openSession();
+			session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
 

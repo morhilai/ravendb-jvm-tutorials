@@ -24,14 +24,13 @@ public class ConditionPresenter implements ConditionViewListener {
 
 	@Override
 	public void delete(Condition condition) {
-		session.delete(condition.getId());
+		session.delete(condition);
 		session.saveChanges();
 
 	}
 
 	@Override
 	public Patient getPatientById(String id) {
-
 		Patient patient = session.load(Patient.class, id);
 		return patient;
 
@@ -39,9 +38,6 @@ public class ConditionPresenter implements ConditionViewListener {
 
 	@Override
 	public void save(Condition condition) {
-
-		// clear the session
-		session.advanced().clear();
 		session.store(condition);
 		session.saveChanges();
 
@@ -54,6 +50,7 @@ public class ConditionPresenter implements ConditionViewListener {
 
 	@Override
 	public Pair<Collection<Condition>, Integer> getConditionsList(int offset, int limit, String term) {
+		session.advanced().clear();
 		Reference<QueryStatistics> statsRef = new Reference<>();
 		IDocumentQuery<Condition> conditions = session.query(Condition.class)
 				.skip(offset)
@@ -75,6 +72,7 @@ public class ConditionPresenter implements ConditionViewListener {
 	public void openSession() {
 		if (session == null) {
 			session = RavenDBDocumentStore.getStore().openSession();
+			session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
 

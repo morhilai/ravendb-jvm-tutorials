@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.vaadin.flow.component.notification.Notification;
+import net.ravendb.client.exceptions.ConcurrencyException;
 import org.apache.commons.lang3.tuple.Pair;
 import org.claspina.confirmdialog.ButtonOption;
 import org.claspina.confirmdialog.ConfirmDialog;
@@ -106,7 +108,13 @@ public class PatientView extends VerticalLayout implements PatientViewable {
 		delete = new Button("Delete", e -> {
 			ConfirmDialog.createQuestion().withCaption("System alert").withMessage("Do you want to delete?")
 					.withOkButton(() -> {
-						presenter.delete(grid.getGrid().asSingleSelect().getValue());
+						try {
+							presenter.delete(grid.getGrid().asSingleSelect().getValue());
+						}
+						catch(ConcurrencyException ce) {
+							Notification.show("Document was updated by another user", 5000, Notification.Position.TOP_CENTER);
+						}
+
 						load();
 					}, ButtonOption.focus(), ButtonOption.caption("YES")).withCancelButton(ButtonOption.caption("NO"))
 					.open();

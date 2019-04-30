@@ -48,10 +48,8 @@ public class DoctorPresenter implements DoctorViewListener {
 
 	@Override
 	public void delete(Doctor doctor) {
-
-		session.delete(doctor.getId());
+		session.delete(doctor);
 		session.saveChanges();
-
 	}
 
 	@Override
@@ -82,6 +80,7 @@ public class DoctorPresenter implements DoctorViewListener {
 	public void openSession() {
 		if(session==null){
 			  session = RavenDBDocumentStore.getStore().openSession();
+				session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
 
