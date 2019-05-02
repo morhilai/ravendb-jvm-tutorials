@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="52b53430-c0bf-4c38-97aa-733bb0ef859f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/p_paging.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" afterDir="false" />
-    </list>
+    <list default="true" id="52b53430-c0bf-4c38-97aa-733bb0ef859f" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,7 +44,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="1844">
               <caret line="376" column="195" selection-start-line="376" selection-start-column="195" selection-end-line="376" selection-end-column="195" />
             </state>
           </provider>
@@ -411,7 +396,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1913646" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1913646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -419,7 +404,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.30985916" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -697,9 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/p_paging.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/screenshots/p_home.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -836,9 +818,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/screenshots/p_paging.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
+        <state relative-caret-position="1844">
           <caret line="376" column="195" selection-start-line="376" selection-start-column="195" selection-end-line="376" selection-end-column="195" />
         </state>
       </provider>
