@@ -1,6 +1,6 @@
 # RavenDB Hospital Tutorial
 RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and high availability. It supports clients for a variety of programming languages, 
-including Java. RavenDB is very easy to administer and deploy. The following is an example hospital management app that uses the RavenDB Java client to communicate with the server.  
+including Java. RavenDB is very easy to administer and deploy. The following is a demo hospital management app that uses the RavenDB Java client to communicate with the server.
 
 As a NoSQL database, RavenDB manages data in these ways:  
 * Stores data in JSON documents  
@@ -25,7 +25,7 @@ Contents:
 4. Once installed, the RavenDB Studio will automatically launch in your default browser. Open the 'about' tab to register your license  
 5. Create your first database  
 
-## How to run the demo  
+## How to run the demo
 Once RavenDB is installed, start a server instance on port 18080 with this command:  
 ```
 ./Raven.Server.exe `
@@ -47,13 +47,13 @@ The web app will now be available at http://127.0.0.1:8889/
 ![App Homepage](/screenshots/p_home.png)
 
 ## Entities, tables, collections, and documents
-To persist data, Java programmers usually annotate Java POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database. 
-RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_ rather than tables.
-In RavenDB, every domain object is mapped to a single document. In this regard, there is no need for special class treatment other than having a default no-args constructor. 
-This sample model consists of 4 basic entities. To demonstrate the power of grouping and fetching queries in RavenDB, one of these entities is embedded as an array in another entity.
+To persist data, Java programmers usually annotate POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database.
+RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_.
+In RavenDB, every domain object is mapped to a single document. In this regard, there is no need for special class treatment other than having a no-args constructor.
+The model for this demo consists of 4 basic entities. To demonstrate the power of grouping and fetching queries in RavenDB, one of these entities is embedded as an array in another entity.
 
 ![UML Diagram](/screenshots/uml.png)
-1. Client-side Patient entity:  
+1. Client-side representation of the Patient entity:
 ```java
 public class Patient {
     private String id;
@@ -102,7 +102,7 @@ Server-side JSON representation of a sample Patient (containing an array of Visi
     }
 }
 ```
-2. Client-side Visit entity:
+2. Visit entity:
 ```java
 public class Visit {
     private Date date;
@@ -113,8 +113,7 @@ public class Visit {
     private String doctorName;
 }
 ```
-
-3. Condition - list of available conditions
+3. Condition entity:
 ```java
 public class Condition {
     private String id;
@@ -124,7 +123,7 @@ public class Condition {
 
 }
 ```
-Server-side JSON representation of a sample Condition
+JSON sample Condition:
 ```JSON
 {
     "name": "Diabetes",
@@ -136,7 +135,7 @@ Server-side JSON representation of a sample Condition
     }
 }
 ```
-4. Doctor - stored in a separate collection
+4. Doctor entity:
 ```java
 public class Doctor{
         private String id;
@@ -145,7 +144,7 @@ public class Doctor{
        private int age; 
  }
  ```
- JSON representation of Doctor document at RavenDB side
+ JSON sample Doctor:
  ```JSON
  {
     "name": "Sergiz Ovesian",
@@ -172,7 +171,7 @@ The Java Client API is added as a dependency to pom.xml.
 </dependency>
 ```
 It provides the main API object, the _Document Store_, which sets up the connection with the Server and downloads various configuration metadata. The Document Store is capable of
-working with multiple databases; it is recommended that you create only one instance of it per application by implementing the [singleton pattern]() as demonstrated below:
+working with multiple databases. It is recommended that you create only one instance of it per application by implementing the [singleton pattern]() as demonstrated below:
 ```java
 public final class RavenDBDocumentStore {
     
@@ -195,12 +194,12 @@ public final class RavenDBDocumentStore {
 ```
 ## Session and Unit of Work pattern
 For any operation we want to perform on RavenDB, we start by obtaining a new _Session_ object from the Document Store.
-Much like the Hibernate implementation of JPA, the RavenDB Session also implements the Unit of Work pattern. This has several implications in the context of a single session:
+Much like the Hibernate implementation of JPA, the RavenDB Session implements the Unit of Work pattern. This has several implications in the context of a single session:
 * The Session tracks changes for all the entities that it has either loaded or stored  
 * The Session batches requests to reduce the number of expensive remote calls  
 * A single document (identified by its ID) always resolves to the same instance  
 
-In contrast to a Document Store, a Session is a lightweight object and can be created more frequently. This demo application uses page attach/detach events to demarcate the Session's
+In contrast to a Document Store, a Session is a lightweight object and can be created more frequently. This demo uses page attach/detach events to demarcate the Session's
 creation and release. The session stays open for the duration of page activity. For the purposes of this demo, we will use optimistic concurrency control.
 ```java
 public void openSession() {
@@ -220,7 +219,7 @@ An example patient entity:
 ![Patient CRUD](/screenshots/p_edit.png)
 
 The create operation inserts a new document. Each document contains a unique ID that identifies it, data, and adjacent metadata - all stored in JSON format. The metadata contains information 
-describing the document, e.g. the last modification date (`@last-modified` property) or the collection  it belongs to (`@collection` property). As already mentioned, we will use RavenDB's  
+describing the document, e.g. the last modification date (`@last-modified` property) or the collection  it belongs to (`@collection` property). We will use RavenDB's
 default algorithm to generate a unique ID for our entities.  
 
 ```java
@@ -237,7 +236,7 @@ public void create(PatientAttachment patientAttachment) {
     session.saveChanges();
 }
 ```
-Update operation. The method also handles attachments as a 1:1 relationship with each patient.
+Update operation. This method ensures there is at most one portrait per Patient.
 
 ```java
 public void update(PatientAttachment patientAttachment) throws ConcurrencyException {
@@ -259,7 +258,7 @@ public void update(PatientAttachment patientAttachment) throws ConcurrencyExcept
     session.saveChanges();
 }
 ```
-
+Delete operation:
 ```java
 public void delete(Patient patient) {
     session.delete(patient.getId());
@@ -335,7 +334,7 @@ public class Attachment {
 (Getters and setters are omitted for brevity)
 
 In the Patient entity, a portrait of the patient is attached to the document using the `Session.Advanced.Attachments.Store` method.
-Attachments, just like documents, are tracked by the session and will be only saved to the Server when `Session.SaveChanges` is executed.
+Attachments, just like documents, are tracked by the session and will only be saved to the Server when `Session.SaveChanges` is called.
 Changes to attachments and changes to documents made in the context of the same session will be executed as part of one ACID transaction.
 
 ```java
@@ -362,17 +361,18 @@ try(CloseableAttachmentResult result= session.advanced().attachments().get(patie
 ```
 
 ## Queries
-RavenDB uses indexes to execute queries, but they don't work the same way as relational database indexes. The main difference is that RavenDB's indexes are schema-less and documented oriented.
-RavenDB requires an index to solve a query. The great think is that a programmer is not required to manually create indexes - RavenDB can deduct and create
-required index dynamically, by analyzing query at run time. All query samples that follow are based on dynamic indexes, generated by RavenDB's search engine. 
-The provided Patient type as the generic type parameter does not only define the type of returned results, but it also indicates that the queried collection will be Patients.  
+RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's indexes are schema-less and documented oriented.
+RavenDB requires indexes to execute queries, but the programmer is not required to manually create them - RavenDB can automatically create the
+required index by analyzing query at runtime. In the following query, the parameter `Patient.class` defines the type of returned results, and also indicates
+that the queried collection will be Patients.
 ```java
         
     Patient patient = session.load(Patient.class, id);
     return patient;
         
 ```
-When there is a 'relationship' between documents, those documents can be loaded in a single request call using the `Include + Load` methods. The following code snippet shows how to obtain Patient visit data and the associated Doctor document with a single request.
+When one document contains the id of another document, both of them can be loaded in a single request call using the `Include + Load` methods.
+The following code snippet shows how to obtain Patient visit data and the associated Doctor documents with a single request.
 When the Doctors documents are requested they are fetched from the local session cache thus avoiding a second round trip to the server.
 The query transforms the Patients visits data into a custom class of type `DoctorVisit` by using projection `ofType`. This is a powerful technique to construct any result type of the queried data.
 ```java
