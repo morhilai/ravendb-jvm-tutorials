@@ -79,8 +79,8 @@ public class DoctorPresenter implements DoctorViewListener {
 	@Override
 	public void openSession() {
 		if(session==null){
-			  session = RavenDBDocumentStore.getStore().openSession();
-				session.advanced().setUseOptimisticConcurrency(true);
+			session = RavenDBDocumentStore.getStore().openSession();
+			session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
 

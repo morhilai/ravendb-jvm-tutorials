@@ -9,7 +9,7 @@ import net.ravendb.demo.command.PatientVisit;
 public interface VisitsViewable {
 
 	public interface VisitsViewListener{
-		Pair<Collection<PatientVisit>,Integer>	getVisistsList(int offset,int limit,boolean order);
+		Pair<Collection<PatientVisit>,Integer> getVisitsList(int offset, int limit, boolean order);
 		  
 		Pair<Collection<PatientVisit>,Integer> searchVisitsList(int offset,int limit,String term,boolean order);
 		  

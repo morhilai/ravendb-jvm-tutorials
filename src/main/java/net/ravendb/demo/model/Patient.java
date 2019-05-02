@@ -94,8 +94,8 @@ public class Patient{
 	}
 	
 	@JsonIgnore 
-	public static Visit getVisit(Collection<Visit> visists,Date date){
-		for(Visit v:visists){
+	public static Visit getVisit(Collection<Visit> visits,Date date){
+		for(Visit v:visits){
 			if(v.getDate().equals(date)){
 				return v;
 			}

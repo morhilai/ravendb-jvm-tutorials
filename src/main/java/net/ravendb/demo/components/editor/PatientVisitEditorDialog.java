@@ -71,10 +71,10 @@ public class PatientVisitEditorDialog extends AbstractEditorDialog<Visit>{
         binder.forField(condition).bind(Visit::getConditionValue,Visit::setConditionValue);
         layout.addFormItem(condition, "Condition");
         
-        TextArea summery=new TextArea();
+        TextArea summary=new TextArea();
         
-        binder.forField(summery).bind(Visit::getvisitSummary,Visit::setvisitSummary);
-        layout.addFormItem(summery, "Visit Summary");
+        binder.forField(summary).bind(Visit::getvisitSummary,Visit::setvisitSummary);
+        layout.addFormItem(summary, "Visit Summary");
         layout.setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 1)
               );

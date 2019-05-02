@@ -1,11 +1,8 @@
 package net.ravendb.demo.views;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Base64;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -36,7 +33,6 @@ import net.ravendb.demo.command.PatientVisit;
 import net.ravendb.demo.components.editor.PatientVisitEditorDialog;
 import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.model.Visit;
-import net.ravendb.demo.presenters.PatientPresenter;
 import net.ravendb.demo.presenters.PatientVisitPresenter;
 import net.ravendb.demo.presenters.PatientVisitViewable;
 
@@ -148,7 +144,7 @@ public class PatientVisitView extends VerticalLayout implements  PatientVisitVie
 		   		   
 
 		   grid.addColumn(v->v.getType()).setHeader("Type");
-		   grid.addColumn(v->v.getVisitSummery()).setHeader("Visit Summery");
+		   grid.addColumn(v->v.getVisitSummary()).setHeader("Visit Summary");
 			
 		   return grid;
 		}	
@@ -159,7 +155,7 @@ public class PatientVisitView extends VerticalLayout implements  PatientVisitVie
 	}
 
 	private void load(String term,boolean order) {
-		grid.setItems(presenter.getVisistsList(patientId,term,order));
+		grid.setItems(presenter.getVisitsList(patientId,term,order));
 	}
 
 

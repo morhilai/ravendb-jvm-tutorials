@@ -22,14 +22,14 @@ public class PatientVisitPresenter implements PatientVisitViewListener {
 	}
 
 	@Override
-	public Collection<PatientVisit> getVisistsList(String patientId,String term,boolean order) {
+	public Collection<PatientVisit> getVisitsList(String patientId, String term, boolean order) {
 			Patient patient=session.load(Patient.class, patientId);
 
 			IDocumentQuery<PatientVisit> visits = session.query(Patient.class).waitForNonStaleResults()							    		
-					.groupBy("visits[].doctorName","visits[].date","visits[].type","visits[].conditionId","firstName","lastName","visits[].visitSummery")
+					.groupBy("visits[].doctorName","visits[].date","visits[].type","visits[].conditionId","firstName","lastName","visits[].visitSummary")
 		    		.selectKey("visits[].doctorName", "doctorName")
 		    		.selectKey("visits[].date", "date")
-		    		.selectKey("visits[].visitSummery","visitSummery")
+		    		.selectKey("visits[].visitSummary","visitSummary")
 		    		.selectKey("firstName", "firstName")
 		    		.selectKey("lastName", "lastName")	
 		    		.selectKey("visits[].type", "type")

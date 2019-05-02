@@ -15,7 +15,7 @@ public class PatientVisit {
 	private String firstName,lastName;
 	private Date date;
 	private String doctorName;
-	private String visitSummery;
+	private String visitSummary;
 	private String type;
 	private String conditionId;
 	
@@ -33,11 +33,11 @@ public class PatientVisit {
 		this.id = id;
 	}
 
-	public String getVisitSummery() {
-		return visitSummery;
+	public String getVisitSummary() {
+		return visitSummary;
 	}
-	public void setVisitSummery(String visitSummery) {
-		this.visitSummery = visitSummery;
+	public void setVisitSummary(String visitSummary) {
+		this.visitSummary = visitSummary;
 	}
 	public String getFirstName() {
 		return firstName;

@@ -16,7 +16,7 @@ public interface PatientVisitViewable {
 
 	public interface PatientVisitViewListener{
 	  
-	  Collection<PatientVisit>	getVisistsList(String patientId,String term,boolean order);	  
+	  Collection<PatientVisit> getVisitsList(String patientId, String term, boolean order);
 	  
 	  Condition getConditionById(String conditionId);
 	  

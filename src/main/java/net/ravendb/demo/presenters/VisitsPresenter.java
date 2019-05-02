@@ -25,13 +25,13 @@ public class VisitsPresenter implements VisitsViewListener {
 
 
 	@Override
-	public Pair<Collection<PatientVisit>,Integer> getVisistsList(int offset, int limit, boolean order) {
+	public Pair<Collection<PatientVisit>,Integer> getVisitsList(int offset, int limit, boolean order) {
 		session.advanced().clear();
 		Reference<QueryStatistics> statsRef = new Reference<>();
 		IDocumentQuery<PatientVisit> visits = session.query(Patient.class)
-				.groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummery")
+				.groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummary")
 				.selectKey("visits[].doctorName", "doctorName").selectKey("visits[].date", "date")
-				.selectKey("visits[].visitSummery", "visitSummery").selectKey("firstName", "firstName")
+				.selectKey("visits[].visitSummary", "visitSummary").selectKey("firstName", "firstName")
 				.selectKey("lastName", "lastName")
 				.selectCount()
 				.ofType(PatientVisit.class)
@@ -59,9 +59,9 @@ public class VisitsPresenter implements VisitsViewListener {
 		session.advanced().clear();
 		Reference<QueryStatistics> statsRef = new Reference<>();
 		IDocumentQuery<PatientVisit> visits = session.advanced().documentQuery(Patient.class)
-				.groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummery")
+				.groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummary")
 				.selectKey("visits[].doctorName", "doctorName").selectKey("visits[].date", "date")
-				.selectKey("visits[].visitSummery", "visitSummery").selectKey("firstName", "firstName")
+				.selectKey("visits[].visitSummary", "visitSummary").selectKey("firstName", "firstName")
 				.selectKey("lastName", "lastName")
 				.selectCount()
 				.ofType(PatientVisit.class)

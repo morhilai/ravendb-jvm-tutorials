@@ -12,7 +12,6 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.KeyDownEvent;
 import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.Grid.SelectionMode;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.H5;
@@ -22,7 +21,6 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.renderer.LocalDateRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -30,7 +28,6 @@ import com.vaadin.flow.router.Route;
 import net.ravendb.demo.RavenDBApp;
 import net.ravendb.demo.command.PatientVisit;
 import net.ravendb.demo.components.grid.PageableGrid;
-import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.presenters.VisitsPresenter;
 import net.ravendb.demo.presenters.VisitsViewable;
 
@@ -115,7 +112,7 @@ public class VisitsView extends VerticalLayout implements  VisitsViewable{
 		   
 		   grid.getGrid().addColumn(v->v.getFirstName()).setHeader("First Name");
 		   grid.getGrid().addColumn(v->v.getLastName()).setHeader("Last Name");
-		   grid.getGrid().addColumn(v->v.getVisitSummery()).setHeader("Visit Summery");	
+		   grid.getGrid().addColumn(v->v.getVisitSummary()).setHeader("Visit Summary");
 		   return grid;
 	}
 	private void load() {
@@ -126,7 +123,7 @@ public class VisitsView extends VerticalLayout implements  VisitsViewable{
 		if (search.getValue().length() > 1) {
 			return presenter.searchVisitsList(page * pageSize, pageSize, search.getValue(), order.getValue());
 		} else {
-			return presenter.getVisistsList(page * pageSize, pageSize, order.getValue());
+			return presenter.getVisitsList(page * pageSize, pageSize, order.getValue());
 		}
 	}
 

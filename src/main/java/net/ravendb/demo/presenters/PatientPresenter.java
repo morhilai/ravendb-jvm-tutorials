@@ -33,16 +33,11 @@ public class PatientPresenter implements PatientViewListener {
 	 
 	private IDocumentSession session;
 
-	public PatientPresenter() {
-
-	}
+	public PatientPresenter(){}
 
 	@Override
 	public Pair<Collection<PatientAttachment>,Integer> getPatientsList(int offset, int limit, boolean order) {
-
-		
 		Reference<QueryStatistics> statsRef = new Reference<>();
-
 		IDocumentQuery<Patient> query = session.query(Patient.class)
 				.skip(offset)
 				.take(limit)
@@ -54,9 +49,9 @@ public class PatientPresenter implements PatientViewListener {
 		Collection<Patient> list = query.toList();		
 		int totalResults = statsRef.value.getTotalResults();
 		
-        Collection<PatientAttachment> patientAttachments=new ArrayList<>();
+        Collection<PatientAttachment> patientAttachments = new ArrayList<>();
 		for (Patient patient : list) {
-			PatientAttachment patientAttachment=new PatientAttachment(patient);
+			PatientAttachment patientAttachment = new PatientAttachment(patient);
 			AttachmentName[] names = session.advanced().attachments().getNames(patient);
 			if (names.length > 0) {
 				try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,
@@ -70,9 +65,8 @@ public class PatientPresenter implements PatientViewListener {
 				} catch (IOException e) {
 					logger.log(Level.SEVERE,"", e);
 				}
-
 			}
-		  patientAttachments.add(patientAttachment);
+		  	patientAttachments.add(patientAttachment);
 		}
 		return new ImmutablePair<Collection<PatientAttachment>, Integer>(patientAttachments, totalResults);
 	}
@@ -91,7 +85,6 @@ public class PatientPresenter implements PatientViewListener {
 
 		if (order) {
 			query.orderBy("birthDate");
-
 		}
 		
 		Collection<Patient> list = query.toList();	
@@ -118,7 +111,6 @@ public class PatientPresenter implements PatientViewListener {
 			  patientAttachments.add(patientAttachment);
 		}
 		return new ImmutablePair<Collection<PatientAttachment>,Integer>(patientAttachments, totalResults);
-
 	}
 
 	@Override
@@ -148,7 +140,6 @@ public class PatientPresenter implements PatientViewListener {
 
 	@Override
 	public void update(PatientAttachment patientAttachment) throws ConcurrencyException {
-
 		Patient patient=patientAttachment.getPatient();
 		Attachment attachment=patientAttachment.getAttachment();
 		session.store(patient);
@@ -173,7 +164,6 @@ public class PatientPresenter implements PatientViewListener {
 		patient.setAddress(address);
 		session.store(patient);
 		session.saveChanges();
-
 	}
 
 	@Override
@@ -186,7 +176,7 @@ public class PatientPresenter implements PatientViewListener {
 	public void openSession() {
 		if(session==null){
 			session = RavenDBDocumentStore.getStore().openSession();
-			// enable oca
+			// enable optimistic concurrency
 			session.advanced().setUseOptimisticConcurrency(true);
 		}
 	}
@@ -195,5 +185,4 @@ public class PatientPresenter implements PatientViewListener {
 	public void releaseSession() {
 		session.close();
 	}
-
 }
