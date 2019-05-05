@@ -9,7 +9,7 @@ As a NoSQL database, RavenDB manages data in these ways:
 * Uses map-reduce to process large sets of documents  
 
 Contents:  
-* [How to Install RavenDB Community Edition]()  
+* [How to Install RavenDB Community Edition](./ravendb-jvm-tutorials#how-to-install-ravendb-community-edition)
 * [How to run the demo]()  
 * [Domain Entity description]()  
 * [Session and Unit of Work pattern]()  
@@ -22,7 +22,7 @@ Contents:
 1. Download the zip bundle from https://ravendb.net/download and unzip in a local drive folder  
 2. Register a free community license from https://ravendb.net/buy
 3. In PowerShell, run either .\run.ps1 (console mode app) or .\setup-as-service.ps1 (service mode app) and follow the installation instructions  
-4. Once installed, the RavenDB Studio will automatically launch in your default browser. Open the 'about' tab to activate your license
+4. Once installed, the RavenDB Studio will automatically launch in your default browser. Open the 'about' tab to register your license
 5. Create your first database  
 
 ## How to run the demo
@@ -268,7 +268,7 @@ public void delete(Patient patient) {
 }
 ```
 
-## Paging on large record sets
+## Paging Through Large Record Sets
 Paging through large amounts of data is one of the most common operations in RavenDB. A typical scenario is the need to display results in batches in a lazy loading or pageable grid. In this app, the grid
 is configured to first obtain the total amount of records to show and then to lazily obtain records by batches of 10 as the user navigates from page to page. There is a convenient method, `statistics`, to
 obtain the total count of the documents querying at the same time thus making a one-time remote request only! For the patients grid, the corresponding attachments are also obtained and
