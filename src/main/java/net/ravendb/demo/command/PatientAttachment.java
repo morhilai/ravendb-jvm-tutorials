@@ -3,14 +3,16 @@ package net.ravendb.demo.command;
 import net.ravendb.demo.model.Patient;
 
 public class PatientAttachment {
+
 	private Patient patient;
 	private Attachment attachment;
 	
 	public PatientAttachment() {
-		this.patient=new Patient(); 
+		this.patient = new Patient();
 	}
+
 	public PatientAttachment(Patient patient) {
-		this.patient=patient;
+		this.patient = patient;
 	}
 
 	public Patient getPatient() {
@@ -28,6 +30,5 @@ public class PatientAttachment {
 	public void setAttachment(Attachment attachment) {
 		this.attachment = attachment;
 	}
-	
-	
+
 }

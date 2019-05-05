@@ -14,29 +14,34 @@ public class Attachment {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getMimeType() {
 		return mimeType;
 	}
+
 	public void setMimeType(String mimeType) {
 		this.mimeType = mimeType;
 	}
 	
-	public byte[] getBytes(){
+	public byte[] getBytes() {
 		return bytes;
 	}
 	
 	public void setBytes(byte[] bytes) {
 		this.bytes = bytes;
 	}
-	public InputStream getInputStream(){
+
+	public InputStream getInputStream() {
 		return new ByteArrayInputStream(bytes);
 	}
-	public StreamResource getStreamResource(){
-	  ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-	  return new StreamResource(name, () -> bis);
+
+	public StreamResource getStreamResource() {
+	    ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+	    return new StreamResource(name, () -> bis);
 	}
-	
+
 }

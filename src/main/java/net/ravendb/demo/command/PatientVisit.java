@@ -7,8 +7,6 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
 public class PatientVisit {
 
 	private String id;
@@ -19,16 +17,18 @@ public class PatientVisit {
 	private String type;
 	private String conditionId;
 	
-	
 	public String getConditionId() {
 		return conditionId;
 	}
+
 	public void setConditionId(String conditionId) {
 		this.conditionId = conditionId;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -36,30 +36,39 @@ public class PatientVisit {
 	public String getVisitSummary() {
 		return visitSummary;
 	}
+
 	public void setVisitSummary(String visitSummary) {
 		this.visitSummary = visitSummary;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public String getDoctorName() {
 		return doctorName;
 	}
+
 	public void setDoctorName(String doctorName) {
 		this.doctorName = doctorName;
 	}
@@ -67,15 +76,18 @@ public class PatientVisit {
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	@JsonIgnore
 	public LocalDate getLocalDate() {
-		 if(date!=null)
-		  return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-		 else
-		  return null;	 
+
+        if (date != null)
+            return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        else
+            return null;
 	}
-	
+
 }
