@@ -11,57 +11,58 @@ import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Condition;
 import net.ravendb.demo.presenters.ConditionViewable.ConditionViewListener;
 
-public class ConditionEditorDialog extends AbstractEditorDialog<Condition>{
+public class ConditionEditorDialog extends AbstractEditorDialog<Condition> {
 
-	private ConditionViewListener presenter;
-	private Runnable run;
-	
-	public ConditionEditorDialog(String title,Condition condition,ConditionViewListener presenter,Runnable run) {
-		super(title,condition);
-		this.run=run;
-		this.presenter=presenter;
+    private ConditionViewListener presenter;
+    private Runnable run;
 
-	}
-	protected void fetch(){
-		load();
-	    super.fetch();
-	}
-	@Override
-	protected Component buildFormContent() {
-		FormLayout layout=new FormLayout();		
-      
-        TextField description=new TextField();
-        binder.forField(description).bind(Condition::getName,Condition::setName);
+    public ConditionEditorDialog(String title, Condition condition, ConditionViewListener presenter, Runnable run) {
+        super(title, condition);
+        this.run = run;
+        this.presenter = presenter;
+
+    }
+
+    protected void fetch() {
+        load();
+        super.fetch();
+    }
+
+    @Override
+    protected Component buildFormContent() {
+        FormLayout layout = new FormLayout();
+
+        TextField description = new TextField();
+        binder.forField(description).bind(Condition::getName, Condition::setName);
         layout.addFormItem(description, "Name");
-        
-        TextField prescription=new TextField();
-        binder.forField(prescription).bind(Condition::getSymptoms,Condition::setSymptoms);
+
+        TextField prescription = new TextField();
+        binder.forField(prescription).bind(Condition::getSymptoms, Condition::setSymptoms);
         layout.addFormItem(prescription, "Symptoms");
 
-        TextField type=new TextField();        
-        binder.forField(type).bind(Condition::getRecommendedTreatment,Condition::setRecommendedTreatment);
+        TextField type = new TextField();
+        binder.forField(type).bind(Condition::getRecommendedTreatment, Condition::setRecommendedTreatment);
         layout.addFormItem(type, "Recommended Treatment");
-        
-        
+
+
         layout.setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 1)
-              );
-		return layout;
-	}
-	private void load(){
+        );
+        return layout;
+    }
 
-	}
+    private void load() {
+    }
 
-	@Override
-	protected void save(ClickEvent<Button> e) {
-		try {
-			presenter.save(binder.getBean());
-		}
-		catch(ConcurrencyException ce){
-			Notification.show("Document was updated by another user",5000, Notification.Position.TOP_CENTER);
-		}
-		run.run();
-		this.close();
-	}
+    @Override
+    protected void save(ClickEvent<Button> e) {
+        try {
+            presenter.save(binder.getBean());
+        } catch (ConcurrencyException ce) {
+            Notification.show("Document was updated by another user", 5000, Notification.Position.TOP_CENTER);
+        }
+        run.run();
+        this.close();
+    }
 
 }

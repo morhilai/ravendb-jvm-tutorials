@@ -6,9 +6,40 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,171 +55,121 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="425">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#461#462#0" expanded="true" />
+                <element signature="e#3126#3127#0" expanded="true" />
+                <element signature="e#3148#3149#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="931">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#250#251#0" expanded="true" />
-                <element signature="e#268#269#0" expanded="true" />
-                <element signature="e#304#305#0" expanded="true" />
-                <element signature="e#327#328#0" expanded="true" />
-                <element signature="e#358#359#0" expanded="true" />
-                <element signature="e#380#381#0" expanded="true" />
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#455#456#0" expanded="true" />
-                <element signature="e#507#508#0" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#568#569#0" expanded="true" />
-                <element signature="e#657#658#0" expanded="true" />
+                <element signature="e#6976#6977#0" expanded="true" />
+                <element signature="e#7003#7004#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="207" column="15" selection-start-line="207" selection-start-column="15" selection-end-line="207" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="578">
+              <caret line="68" column="58" lean-forward="true" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
               <folding>
-                <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
-                <element signature="e#450#451#0" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#517#518#0" expanded="true" />
-                <element signature="e#545#546#0" expanded="true" />
-                <element signature="e#590#591#0" expanded="true" />
-                <element signature="e#622#623#0" expanded="true" />
-                <element signature="e#677#678#0" expanded="true" />
-                <element signature="e#729#730#0" expanded="true" />
-                <element signature="e#1083#1084#0" expanded="true" />
-                <element signature="e#1115#1116#0" expanded="true" />
+                <element signature="e#2466#2467#0" expanded="true" />
+                <element signature="e#2529#2530#0" expanded="true" />
+                <element signature="e#4771#4772#0" expanded="true" />
+                <element signature="e#4838#4839#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="731">
+              <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
               <folding>
-                <element signature="e#161#162#0" expanded="true" />
-                <element signature="e#180#181#0" expanded="true" />
-                <element signature="e#216#217#0" expanded="true" />
-                <element signature="e#241#242#0" expanded="true" />
-                <element signature="e#273#274#0" expanded="true" />
-                <element signature="e#295#296#0" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#371#372#0" expanded="true" />
-                <element signature="e#405#406#0" expanded="true" />
-                <element signature="e#429#430#0" expanded="true" />
-                <element signature="e#478#479#0" expanded="true" />
-                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#3550#3551#0" expanded="true" />
+                <element signature="e#3577#3578#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="68">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="557">
+              <caret line="130" selection-start-line="130" selection-end-line="130" />
               <folding>
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#230#231#0" expanded="true" />
-                <element signature="e#279#280#0" expanded="true" />
-                <element signature="e#307#308#0" expanded="true" />
-                <element signature="e#334#335#0" expanded="true" />
-                <element signature="e#355#356#0" expanded="true" />
-                <element signature="e#399#400#0" expanded="true" />
-                <element signature="e#428#429#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#578#579#0" expanded="true" />
+                <element signature="e#4345#4346#0" expanded="true" />
+                <element signature="e#4375#4376#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="91" selection-start-line="91" selection-end-line="91" />
+            <state relative-caret-position="387">
+              <caret line="154" selection-start-line="154" selection-end-line="154" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="438">
+              <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#443#444#0" expanded="true" />
-                <element signature="e#468#469#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#555#556#0" expanded="true" />
-                <element signature="e#580#581#0" expanded="true" />
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#628#629#0" expanded="true" />
-                <element signature="e#647#648#0" expanded="true" />
-                <element signature="e#683#684#0" expanded="true" />
-                <element signature="e#709#710#0" expanded="true" />
-                <element signature="e#761#762#0" expanded="true" />
-                <element signature="e#800#801#0" expanded="true" />
-                <element signature="e#832#833#0" expanded="true" />
-                <element signature="e#855#856#0" expanded="true" />
-                <element signature="e#901#902#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
-                <element signature="e#965#966#0" expanded="true" />
-                <element signature="e#987#988#0" expanded="true" />
-                <element signature="e#1031#1032#0" expanded="true" />
-                <element signature="e#1062#1063#0" expanded="true" />
-                <element signature="e#1087#1088#0" expanded="true" />
-                <element signature="e#1105#1106#0" expanded="true" />
-                <element signature="e#1139#1140#0" expanded="true" />
-                <element signature="e#1162#1163#0" expanded="true" />
-                <element signature="e#1195#1196#0" expanded="true" />
-                <element signature="e#1219#1220#0" expanded="true" />
-                <element signature="e#1267#1268#0" expanded="true" />
-                <element signature="e#1302#1303#0" expanded="true" />
-                <element signature="e#1331#1332#0" expanded="true" />
-                <element signature="e#1349#1350#0" expanded="true" />
-                <element signature="e#1385#1386#0" expanded="true" />
-                <element signature="e#1408#1409#0" expanded="true" />
+                <element signature="e#1251#1252#0" expanded="true" />
+                <element signature="e#1295#1296#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state relative-caret-position="102">
+              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#426#427#0" expanded="true" />
+                <element signature="e#446#447#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -224,31 +205,44 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" />
-        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Address.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Condition.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" />
       </list>
     </option>
   </component>
@@ -455,6 +449,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -571,159 +566,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/frontend/src/README">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/frontend/styles/README">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="86" column="27" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#330#331#0" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-            <element signature="e#285#286#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="96" column="57" selection-start-line="96" selection-start-column="57" selection-end-line="96" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="63" column="63" selection-start-line="63" selection-start-column="63" selection-end-line="63" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="114" column="82" selection-start-line="114" selection-start-column="82" selection-end-line="114" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/9.4.11.v20180605/jetty-util-9.4.11.v20180605.jar!/org/eclipse/jetty/util/thread/strategy/EatWhatYouKill.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-          <folding>
-            <element signature="e#2693#2694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-icons-flow/1.0.3/vaadin-icons-flow-1.0.3.jar!/com/vaadin/flow/component/icon/VaadinIcon.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3094">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="64" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/flow-server/1.0.9/flow-server-1.0.9.jar!/com/vaadin/flow/component/Component.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2856">
-          <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-ordered-layout-flow/1.0.3/vaadin-ordered-layout-flow-1.0.3.jar!/com/vaadin/flow/component/orderedlayout/VerticalLayout.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/nega/negapaginator/1.0.2/negapaginator-1.0.2.jar!/com/nega/NegaPaginator.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-308">
@@ -744,30 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1435">
-          <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -822,61 +640,17 @@
     <entry file="file://$PROJECT_DIR$/screenshots/p_paging.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="134" column="31" selection-start-line="134" selection-start-column="31" selection-end-line="134" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
-          <folding>
-            <element signature="e#761#762#0" expanded="true" />
-            <element signature="e#811#812#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="141" column="44" selection-start-line="141" selection-start-column="44" selection-end-line="141" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="89" column="43" lean-forward="true" selection-start-line="89" selection-start-column="43" selection-end-line="89" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="232" selection-start-line="232" selection-end-line="232" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6976#6977#0" expanded="true" />
-            <element signature="e#7003#7004#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="234">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="e#394#395#0" expanded="true" />
             <element signature="e#419#420#0" expanded="true" />
@@ -894,9 +668,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#304#305#0" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#380#381#0" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+            <element signature="e#746#747#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+          <folding>
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#180#181#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
+            <element signature="e#241#242#0" expanded="true" />
+            <element signature="e#273#274#0" expanded="true" />
+            <element signature="e#295#296#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
+        <state relative-caret-position="544">
           <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#196#197#0" expanded="true" />
@@ -915,10 +756,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="397" selection-start-line="397" selection-end-line="397" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1047#1048#0" expanded="true" />
+            <element signature="e#1075#1076#0" expanded="true" />
+            <element signature="e#1463#1464#0" expanded="true" />
+            <element signature="e#1502#1503#0" expanded="true" />
+            <element signature="e#2027#2028#0" expanded="true" />
+            <element signature="e#2189#2190#0" expanded="true" />
+            <element signature="e#2217#2218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
+        <state relative-caret-position="880">
+          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#443#444#0" expanded="true" />
@@ -957,80 +822,411 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        <state relative-caret-position="986">
+          <caret line="69" column="30" lean-forward="true" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="93" column="30" lean-forward="true" selection-start-line="93" selection-start-column="30" selection-end-line="93" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1566#1567#0" expanded="true" />
+            <element signature="e#1589#1590#0" expanded="true" />
+            <element signature="e#1629#1630#0" expanded="true" />
+            <element signature="e#1657#1658#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#451#452#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#657#658#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Address.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="207" column="15" selection-start-line="207" selection-start-column="15" selection-end-line="207" selection-end-column="15" />
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#217#218#0" expanded="true" />
+            <element signature="e#235#236#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#285#286#0" expanded="true" />
+            <element signature="e#317#318#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#419#420#0" expanded="true" />
+            <element signature="e#442#443#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#613#614#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding>
+            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#715#716#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" selection-start-column="31" selection-end-column="31" />
+          <folding>
+            <element signature="e#209#210#0" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#257#258#0" expanded="true" />
+            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#380#381#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#437#438#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#520#521#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#612#613#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#674#675#0" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#780#781#0" expanded="true" />
+            <element signature="e#826#827#0" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#987#988#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
+            <element signature="e#1084#1085#0" expanded="true" />
+            <element signature="e#1117#1118#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1166#1167#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1233#1234#0" expanded="true" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1285#1286#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1778#1779#0" expanded="true" />
+            <element signature="e#1814#1815#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1483">
+          <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#508#509#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+            <element signature="e#788#789#0" expanded="true" />
+            <element signature="e#987#988#0" expanded="true" />
+            <element signature="e#1013#1014#0" expanded="true" />
+            <element signature="e#1065#1066#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1213#1214#0" expanded="true" />
+            <element signature="e#1250#1251#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1295#1296#0" expanded="true" />
+            <element signature="e#1331#1332#0" expanded="true" />
+            <element signature="e#1354#1355#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1415#1416#0" expanded="true" />
+            <element signature="e#1463#1464#0" expanded="true" />
+            <element signature="e#1498#1499#0" expanded="true" />
+            <element signature="e#1552#1553#0" expanded="true" />
+            <element signature="e#1599#1600#0" expanded="true" />
+            <element signature="e#1665#1666#0" expanded="true" />
+            <element signature="e#1706#1707#0" expanded="true" />
+            <element signature="e#1755#1756#0" expanded="true" />
+            <element signature="e#1778#1779#0" expanded="true" />
+            <element signature="e#1840#1841#0" expanded="true" />
+            <element signature="e#1873#1874#0" expanded="true" />
+            <element signature="e#2286#2287#0" expanded="true" />
+            <element signature="e#2306#2307#0" expanded="true" />
+            <element signature="e#2359#2360#0" expanded="true" />
+            <element signature="e#2386#2387#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
+            <element signature="e#2051#2052#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#811#812#0" expanded="true" />
+            <element signature="e#2256#2257#0" expanded="true" />
+            <element signature="e#2278#2279#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding>
+            <element signature="e#6230#6231#0" expanded="true" />
+            <element signature="e#6252#6253#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2370#2371#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
+            <element signature="e#2927#2928#0" expanded="true" />
+            <element signature="e#2949#2950#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
           <folding>
-            <element signature="e#161#162#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#216#217#0" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#3126#3127#0" expanded="true" />
+            <element signature="e#3148#3149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
+          <folding>
+            <element signature="e#4345#4346#0" expanded="true" />
+            <element signature="e#4375#4376#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="154" selection-start-line="154" selection-end-line="154" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+          <folding>
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1295#1296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding>
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6976#6977#0" expanded="true" />
+            <element signature="e#7003#7004#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="68" column="58" lean-forward="true" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
+          <folding>
+            <element signature="e#2466#2467#0" expanded="true" />
+            <element signature="e#2529#2530#0" expanded="true" />
+            <element signature="e#4771#4772#0" expanded="true" />
+            <element signature="e#4838#4839#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+          <folding>
+            <element signature="e#3550#3551#0" expanded="true" />
+            <element signature="e#3577#3578#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -10,17 +10,20 @@ import net.ravendb.demo.model.Patient;
 
 public interface ConditionViewable {
 
-	public interface ConditionViewListener{
-		public Condition getConditionById(String id);
-		public Patient getPatientById(String id) ;
-	    public void save(Condition condition);
-	    public void delete(Condition condition);
-	    
-	    Pair<Collection<Condition>,Integer> getConditionsList(int offset,int limit,String term);
-	    
-		  void openSession();
-		  void releaseSession();
-	}
-	
-	
+    public interface ConditionViewListener {
+        public Condition getConditionById(String id);
+
+        public Patient getPatientById(String id);
+
+        public void save(Condition condition);
+
+        public void delete(Condition condition);
+
+        Pair<Collection<Condition>, Integer> getConditionsList(int offset, int limit, String term);
+
+        void openSession();
+
+        void releaseSession();
+    }
+
 }

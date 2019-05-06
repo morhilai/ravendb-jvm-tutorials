@@ -31,101 +31,101 @@ import net.ravendb.demo.components.grid.PageableGrid;
 import net.ravendb.demo.presenters.VisitsPresenter;
 import net.ravendb.demo.presenters.VisitsViewable;
 
-@Route(value="visits",layout=RavenDBApp.class)
+@Route(value = "visits", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class VisitsView extends VerticalLayout implements  VisitsViewable{
-	
+public class VisitsView extends VerticalLayout implements VisitsViewable {
 
-	private H5 name;
-	private VisitsViewListener presenter;
-	private PageableGrid<PatientVisit> grid;
-	private Checkbox order;
-	private TextField search;
-	
-	public VisitsView() {
-	   presenter=new VisitsPresenter();  
-	   init();	
-	}
-	@Override
-	protected void onAttach(AttachEvent attachEvent) {
-		presenter.openSession();
-		load();
-	}
 
-	@Override
-	protected void onDetach(DetachEvent detachEvent) {
-		presenter.releaseSession();
-		super.onDetach(detachEvent);
-	}
+    private H5 name;
+    private VisitsViewListener presenter;
+    private PageableGrid<PatientVisit> grid;
+    private Checkbox order;
+    private TextField search;
 
-	private void init(){
-		this.setWidth("100%");
-		H4 title = new H4("Visits");	
-		add(title);
-	    
-		name=new H5();
-		name.setClassName("name");
-		add(name);
-		
-		add(createHeader());
-		add(createSearchBox());
-		add(createGrid());
-		
-	}
-	private Component createSearchBox() {
-		HorizontalLayout layout = new HorizontalLayout();
-		Span span = new Span();
+    public VisitsView() {
+        presenter = new VisitsPresenter();
+        init();
+    }
 
-	    search = new TextField();
-		search.setPlaceholder("Search");
-		search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
-				(ComponentEventListener<KeyDownEvent>) keyDownEvent -> {					
-						load();				
-				});
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        presenter.openSession();
+        load();
+    }
 
-		order = new Checkbox("Order by visit date");
-		order.addValueChangeListener(e -> {
-				load();
-		});
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        presenter.releaseSession();
+        super.onDetach(detachEvent);
+    }
 
-		span.add(new Icon(VaadinIcon.SEARCH), search, order);
+    private void init() {
+        this.setWidth("100%");
+        H4 title = new H4("Visits");
+        add(title);
 
-		layout.add(span);
-		return layout;
-	}	
-	private Component createHeader(){
-		 HorizontalLayout header=new HorizontalLayout();
-		 
+        name = new H5();
+        name.setClassName("name");
+        add(name);
 
-		 
-		 return header;
-				     	
-	}
-	private Component createGrid(){
-		   grid=new PageableGrid<>(this::loadPage);
-		   grid.getGrid().setSelectionMode(SelectionMode.SINGLE);
-		   grid.setWidth("100%");
+        add(createHeader());
+        add(createSearchBox());
+        add(createGrid());
+    }
 
-		   grid.getGrid().addColumn(v->v.getDoctorName()).setHeader("Doctor");
-		   grid.getGrid().addColumn(new LocalDateRenderer<>(PatientVisit::getLocalDate,
-			        DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))).setHeader("Visit Date");
-		   
-		   grid.getGrid().addColumn(v->v.getFirstName()).setHeader("First Name");
-		   grid.getGrid().addColumn(v->v.getLastName()).setHeader("Last Name");
-		   grid.getGrid().addColumn(v->v.getVisitSummary()).setHeader("Visit Summary");
-		   return grid;
-	}
-	private void load() {
-		grid.loadFirstPage();
-	}
-	
-	private Pair<Collection<PatientVisit>, Integer> loadPage(int page, int pageSize) {
-		if (search.getValue().length() > 1) {
-			return presenter.searchVisitsList(page * pageSize, pageSize, search.getValue(), order.getValue());
-		} else {
-			return presenter.getVisitsList(page * pageSize, pageSize, order.getValue());
-		}
-	}
+    private Component createSearchBox() {
+        HorizontalLayout layout = new HorizontalLayout();
+        Span span = new Span();
 
+        search = new TextField();
+        search.setPlaceholder("Search");
+        search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
+                (ComponentEventListener<KeyDownEvent>) keyDownEvent -> {
+                    load();
+                });
+
+        order = new Checkbox("Order by visit date");
+        order.addValueChangeListener(e -> {
+            load();
+        });
+
+        span.add(new Icon(VaadinIcon.SEARCH), search, order);
+
+        layout.add(span);
+        return layout;
+    }
+
+    private Component createHeader() {
+        HorizontalLayout header = new HorizontalLayout();
+
+        return header;
+    }
+
+    private Component createGrid() {
+        grid = new PageableGrid<>(this::loadPage);
+        grid.getGrid().setSelectionMode(SelectionMode.SINGLE);
+        grid.setWidth("100%");
+
+        grid.getGrid().addColumn(v -> v.getDoctorName()).setHeader("Doctor");
+        grid.getGrid().addColumn(new LocalDateRenderer<>(PatientVisit::getLocalDate,
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))).setHeader("Visit Date");
+
+        grid.getGrid().addColumn(v -> v.getFirstName()).setHeader("First Name");
+        grid.getGrid().addColumn(v -> v.getLastName()).setHeader("Last Name");
+        grid.getGrid().addColumn(v -> v.getVisitSummary()).setHeader("Visit Summary");
+        return grid;
+    }
+
+    private void load() {
+        grid.loadFirstPage();
+    }
+
+    private Pair<Collection<PatientVisit>, Integer> loadPage(int page, int pageSize) {
+        if (search.getValue().length() > 1) {
+            return presenter.searchVisitsList(page * pageSize, pageSize, search.getValue(), order.getValue());
+        } else {
+            return presenter.getVisitsList(page * pageSize, pageSize, order.getValue());
+        }
+    }
 
 }

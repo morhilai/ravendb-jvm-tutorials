@@ -5,36 +5,34 @@ import java.util.List;
 
 public class Configuration {
 
-	private List<String> locations=new ArrayList<>();
-	
-	private List<String> departments=new ArrayList<>();
+    private List<String> locations = new ArrayList<>();
 
-	private List<String> regions = new ArrayList<>();
+    private List<String> departments = new ArrayList<>();
 
-	public List<String> getRegions(){
-		return regions;
-	}
+    private List<String> regions = new ArrayList<>();
 
-	public void setRegions(List<String> regions) {
-		this.regions = regions;
-	}
-	
-	public List<String> getLocations() {
-		return locations;
-	}
+    public List<String> getRegions() {
+        return regions;
+    }
 
-	public void setLocations(List<String> locations) {
-		this.locations = locations;
-	}
+    public void setRegions(List<String> regions) {
+        this.regions = regions;
+    }
 
-	public List<String> getDepartments() {
-		return departments;
-	}
+    public List<String> getLocations() {
+        return locations;
+    }
 
-	public void setDepartments(List<String> departments) {
-		this.departments = departments;
-	}
-	
-	
-	
+    public void setLocations(List<String> locations) {
+        this.locations = locations;
+    }
+
+    public List<String> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<String> departments) {
+        this.departments = departments;
+    }
+
 }

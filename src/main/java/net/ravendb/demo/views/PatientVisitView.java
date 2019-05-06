@@ -36,127 +36,131 @@ import net.ravendb.demo.model.Visit;
 import net.ravendb.demo.presenters.PatientVisitPresenter;
 import net.ravendb.demo.presenters.PatientVisitViewable;
 
-@Route(value="patient/patientvisit",layout=RavenDBApp.class)
+@Route(value = "patient/patientvisit", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class PatientVisitView extends VerticalLayout implements  PatientVisitViewable,HasUrlParameter<String>{
-	private static Logger logger = Logger.getLogger(PatientVisitView.class.getSimpleName());
+public class PatientVisitView extends VerticalLayout implements PatientVisitViewable, HasUrlParameter<String> {
+    private static Logger logger = Logger.getLogger(PatientVisitView.class.getSimpleName());
 
-	private H5 name;
-	private PatientVisitViewListener presenter;
-	private Patient patient;
-	private Grid<PatientVisit> grid;
-	private String patientId;
-	private Checkbox order;
-	
-	public PatientVisitView() {
-	   presenter=new PatientVisitPresenter();  
-	   init();	
-	}
-	@Override
-	protected void onAttach(AttachEvent attachEvent) {
-		presenter.openSession();
-		load(patientId);
-	}
+    private H5 name;
+    private PatientVisitViewListener presenter;
+    private Patient patient;
+    private Grid<PatientVisit> grid;
+    private String patientId;
+    private Checkbox order;
 
-	@Override
-	protected void onDetach(DetachEvent detachEvent) {
-		presenter.releaseSession();
-		super.onDetach(detachEvent);
-	}
-	
-	@Override
-	public void setParameter(BeforeEvent event, String id) {
-		patientId=new String(Base64.getDecoder().decode(id));				
-	}
-	
-	private void init(){
-		this.setWidth("100%");
-		H4 title = new H4("Patient visit");	
-		add(title);
-	    
-		name=new H5();
-		name.setClassName("name");
-		add(name);
-		
-		add(createHeader());
-		add(createSearchBox());
-		add(createGrid());
-		
-	}
-	private Component createSearchBox() {
-		HorizontalLayout layout = new HorizontalLayout();
-		Span span = new Span();
+    public PatientVisitView() {
+        presenter = new PatientVisitPresenter();
+        init();
+    }
 
-		TextField search = new TextField();
-		search.setPlaceholder("Search");
-		search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
-				(ComponentEventListener<KeyDownEvent>) e -> {
-					if(!e.isFromClient()){
-						return; 
-					}
-					if (search.getValue().length() > 1) {
-						load(search.getValue(),order.getValue());						
-					} else {
-						load(null,order.getValue());
-					}
-				});
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        presenter.openSession();
+        load(patientId);
+    }
 
-		order = new Checkbox("Order by visit date");
-		order.addValueChangeListener(e -> {
-			if(!e.isFromClient()){
-				return; 
-			}
-			if (search.getValue().length()>1) {
-				load(search.getValue(),order.getValue());	
-			} else {
-				load(null,order.getValue());
-			}
-		});
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        presenter.releaseSession();
+        super.onDetach(detachEvent);
+    }
 
-		span.add(new Icon(VaadinIcon.SEARCH), search, order);
+    @Override
+    public void setParameter(BeforeEvent event, String id) {
+        patientId = new String(Base64.getDecoder().decode(id));
+    }
 
-		layout.add(span);
-		return layout;
-	}	
-	private Component createHeader(){
-		 HorizontalLayout header=new HorizontalLayout();
-		 
-		 Button add=new Button("Add",e->{
-			 
-			 PatientVisitEditorDialog d=new PatientVisitEditorDialog("Add",patientId, new Visit(),this.presenter,()->{	
-				 load(null,false);
-			 });
-			 d.open();			 
-		 });		 
-		 header.add(add);
-		 
-		 return header;
-				     	
-	}
-	private Component createGrid(){
-		   grid=new Grid<>();
-		   grid.setSelectionMode(SelectionMode.SINGLE);
-		   grid.setWidth("50%");
+    private void init() {
+        this.setWidth("100%");
+        H4 title = new H4("Patient visit");
+        add(title);
 
-		   grid.addColumn(v->v.getDoctorName()).setHeader("Doctor");
-		   grid.addColumn(new LocalDateRenderer<>(PatientVisit::getLocalDate,
-			        DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))).setHeader("Visit Date");
-		   		   
+        name = new H5();
+        name.setClassName("name");
+        add(name);
 
-		   grid.addColumn(v->v.getType()).setHeader("Type");
-		   grid.addColumn(v->v.getVisitSummary()).setHeader("Visit Summary");
-			
-		   return grid;
-		}	
-	private void load(String patientId){
-		patient=presenter.getPatientById(patientId);
-		name.setText(patient.getFirstName()+" "+patient.getLastName());
-		load(null,false);
-	}
+        add(createHeader());
+        add(createSearchBox());
+        add(createGrid());
 
-	private void load(String term,boolean order) {
-		grid.setItems(presenter.getVisitsList(patientId,term,order));
-	}
+    }
 
+    private Component createSearchBox() {
+        HorizontalLayout layout = new HorizontalLayout();
+        Span span = new Span();
+
+        TextField search = new TextField();
+        search.setPlaceholder("Search");
+        search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
+                                  (ComponentEventListener<KeyDownEvent>) e -> {
+                    if (!e.isFromClient()) {
+                        return;
+                    }
+                    if (search.getValue().length() > 1) {
+                        load(search.getValue(), order.getValue());
+                    } else {
+                        load(null, order.getValue());
+                    }
+                });
+
+        order = new Checkbox("Order by visit date");
+        order.addValueChangeListener(e -> {
+            if (!e.isFromClient()) {
+                return;
+            }
+            if (search.getValue().length() > 1) {
+                load(search.getValue(), order.getValue());
+            } else {
+                load(null, order.getValue());
+            }
+        });
+
+        span.add(new Icon(VaadinIcon.SEARCH), search, order);
+
+        layout.add(span);
+        return layout;
+    }
+
+    private Component createHeader() {
+        HorizontalLayout header = new HorizontalLayout();
+
+        Button add = new Button("Add", e -> {
+
+            PatientVisitEditorDialog d = new PatientVisitEditorDialog("Add", patientId, new Visit(), this.presenter, () -> {
+                load(null, false);
+            });
+
+            d.open();
+        });
+
+        header.add(add);
+
+        return header;
+    }
+
+    private Component createGrid() {
+        grid = new Grid<>();
+        grid.setSelectionMode(SelectionMode.SINGLE);
+        grid.setWidth("50%");
+
+        grid.addColumn(v -> v.getDoctorName()).setHeader("Doctor");
+        grid.addColumn(new LocalDateRenderer<>(PatientVisit::getLocalDate,
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))).setHeader("Visit Date");
+
+        grid.addColumn(v -> v.getType()).setHeader("Type");
+        grid.addColumn(v -> v.getVisitSummary()).setHeader("Visit Summary");
+
+        return grid;
+    }
+
+    private void load(String patientId) {
+        patient = presenter.getPatientById(patientId);
+        name.setText(patient.getFirstName() + " " + patient.getLastName());
+        load(null, false);
+    }
+
+    private void load(String term, boolean order) {
+        grid.setItems(presenter.getVisitsList(patientId, term, order));
+    }
 
 }

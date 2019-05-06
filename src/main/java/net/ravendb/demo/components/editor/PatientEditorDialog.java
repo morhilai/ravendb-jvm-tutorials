@@ -36,113 +36,119 @@ import net.ravendb.demo.command.PatientAttachment;
 import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.presenters.PatientViewable.PatientViewListener;
 
-public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment>{
+public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment> {
 
     private static Logger logger = Logger.getLogger(PatientEditorDialog.class.getSimpleName());
-    
-	private PatientViewListener presenter;
-	private Image image;
-	private Runnable run;
-	
-	public PatientEditorDialog(String title,PatientAttachment bean,PatientViewListener presenter,Runnable run) {
-		super(title,bean);
-		this.run=run;
-		this.presenter=presenter;
-	}
 
-	@Override
-	protected Component buildFormContent() {
-		FormLayout layout=new FormLayout();		
-		
-		HorizontalLayout photoLayout=new HorizontalLayout();
-		Attachment attachment= bean.getAttachment();
-		if(attachment==null){
-			image = new Image("/frontend/images/avatar.jpeg", "");
-			image.setWidth("60px");
-			image.setHeight("60px");
-			image.getStyle().set("borderRadius", "50%");
-		}else{
-			image = new Image(attachment.getStreamResource(),"");
-			image.setWidth("60px");
-			image.setHeight("60px");
-			image.getStyle().set("borderRadius", "50%");			
-		}
-		
-		photoLayout.add(image);
-		
-		MemoryBuffer fileBuffer = new MemoryBuffer();
-		Upload upload = new Upload(fileBuffer);
-		
-		upload.addSucceededListener(e->{
-			  this.processUpload(e,fileBuffer);
-              //presenter.onComponentEvent(e);
-		});
-		upload.setDropAllowed(false);
-		
-		
-		photoLayout.add(upload);
-		
-		layout.add(photoLayout);
-		
-        TextField firstname =
-                new TextField();
+    private PatientViewListener presenter;
+    private Image image;
+    private Runnable run;
+
+    public PatientEditorDialog(String title, PatientAttachment bean,
+                               PatientViewListener presenter, Runnable run) {
+        super(title, bean);
+        this.run = run;
+        this.presenter = presenter;
+    }
+
+    @Override
+    protected Component buildFormContent() {
+        FormLayout layout = new FormLayout();
+
+        HorizontalLayout photoLayout = new HorizontalLayout();
+        Attachment attachment = bean.getAttachment();
+        if (attachment == null) {
+            image = new Image("/frontend/images/avatar.jpeg", "");
+            image.setWidth("60px");
+            image.setHeight("60px");
+            image.getStyle().set("borderRadius", "50%");
+        } else {
+            image = new Image(attachment.getStreamResource(), "");
+            image.setWidth("60px");
+            image.setHeight("60px");
+            image.getStyle().set("borderRadius", "50%");
+        }
+
+        photoLayout.add(image);
+
+        MemoryBuffer fileBuffer = new MemoryBuffer();
+        Upload upload = new Upload(fileBuffer);
+
+        upload.addSucceededListener(e -> {
+            this.processUpload(e, fileBuffer);
+            //presenter.onComponentEvent(e);
+        });
+        upload.setDropAllowed(false);
+
+        photoLayout.add(upload);
+
+        layout.add(photoLayout);
+
+        TextField firstname = new TextField();
         firstname.setRequiredIndicatorVisible(true);
         binder.forField(firstname)
-                .asRequired()
-                .bind(p->p.getPatient().getFirstName(),(p,s)->p.getPatient().setFirstName(s));
+              .asRequired()
+              .bind(p -> p.getPatient().getFirstName(),
+                    (p, s) -> p.getPatient().setFirstName(s));
         layout.addFormItem(firstname, "First Name");
-        
-        TextField lastname =
-                new TextField();
+
+        TextField lastname = new TextField();
         lastname.setRequiredIndicatorVisible(true);
         binder.forField(lastname)
-                .asRequired()
-                .bind(p->p.getPatient().getLastName(), (p,s)->p.getPatient().setLastName(s));
+              .asRequired()
+              .bind(p -> p.getPatient().getLastName(),
+                    (p, s) -> p.getPatient().setLastName(s));
         layout.addFormItem(lastname, "Last Name");
-        
-        TextField email =
-                new TextField();
+
+        TextField email = new TextField();
         lastname.setRequiredIndicatorVisible(true);
         binder.forField(email)
-                .asRequired()
-                .bind(p->p.getPatient().getEmail(), (p,s)->p.getPatient().setEmail(s));
+              .asRequired()
+              .bind(p -> p.getPatient().getEmail(),
+                    (p, s) -> p.getPatient().setEmail(s));
         layout.addFormItem(email, "Email");
-        
-        ComboBox<Gender> gender=new ComboBox<>();
-        gender.setItems(Gender.values());
-        binder.forField(gender).bind(p->p.getPatient().getGender(),(p,s)->p.getPatient().setGender(s));
-        layout.addFormItem(gender, "Gender");
-        
-        DatePicker birth=new DatePicker();
-        birth.setWeekNumbersVisible(false);        
-        binder.forField(birth).bind(p->p.getPatient().getBirthLocalDate(), (p,s)->p.getPatient().setBirthLocalDate(s));
-        layout.addFormItem(birth,"Date of birth");
-        
-        layout.setResponsiveSteps(
-                new FormLayout.ResponsiveStep("0", 1)
-              );
-		return layout;
-	}
 
-	private void processUpload(SucceededEvent event,MemoryBuffer fileBuffer){
-		InputStream is=fileBuffer.getInputStream();
-		try{
+        ComboBox<Gender> gender = new ComboBox<>();
+        gender.setItems(Gender.values());
+        binder.forField(gender).bind(p -> p.getPatient().getGender(),
+                                     (p, s) -> p.getPatient().setGender(s));
+        layout.addFormItem(gender, "Gender");
+
+        DatePicker birth = new DatePicker();
+        birth.setWeekNumbersVisible(false);
+        binder.forField(birth).bind(p -> p.getPatient().getBirthLocalDate(),
+                                    (p, s) -> p.getPatient().setBirthLocalDate(s));
+        layout.addFormItem(birth, "Date of birth");
+
+        layout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1)
+        );
+
+        return layout;
+    }
+
+    private void processUpload(SucceededEvent event, MemoryBuffer fileBuffer) {
+        InputStream is = fileBuffer.getInputStream();
+
+        try {
             byte[] bytes = IOUtils.toByteArray(is);
             image.getElement().setAttribute("src", new StreamResource(
                     event.getFileName(), () -> new ByteArrayInputStream(bytes)));
+
             //create attachment
-            Attachment attachment=new Attachment();
+            Attachment attachment = new Attachment();
             attachment.setBytes(bytes);
             attachment.setName(event.getFileName());
             attachment.setMimeType(event.getMIMEType());
             binder.getBean().setAttachment(attachment);
-            
+
             try (ImageInputStream in = ImageIO.createImageInputStream(
-                    new ByteArrayInputStream(bytes))) {
+                                       new ByteArrayInputStream(bytes))) {
                 final Iterator<ImageReader> readers = ImageIO
                         .getImageReaders(in);
+
                 if (readers.hasNext()) {
                     ImageReader reader = readers.next();
+
                     try {
                         reader.setInput(in);
                         image.setWidth("60px");
@@ -151,24 +157,28 @@ public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment>
                         reader.dispose();
                     }
                 }
-            }		  
-		}catch(IOException e){
-			logger.log(Level.SEVERE,"", e);
-		}
-	}
-	@Override
-	protected void save(ClickEvent<Button> e) {		   
-		try{
-		  if(binder.getBean().getPatient().getId()!=null)	
-		    presenter.update(binder.getBean());
-		  else
-			presenter.create(binder.getBean());  
-		}catch(ConcurrencyException ce){
-			Notification.show("Document was updated by another user",5000, Notification.Position.TOP_CENTER);
-		}
-		 run.run();
-		 this.close();
+            }
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "", e);
+        }
+    }
 
-	}
+    @Override
+    protected void save(ClickEvent<Button> e) {
+        try {
+
+            if (binder.getBean().getPatient().getId() != null)
+                presenter.update(binder.getBean());
+            else
+                presenter.create(binder.getBean());
+
+        } catch (ConcurrencyException ce) {
+            Notification.show("Document was updated by another user",
+                              5000, Notification.Position.TOP_CENTER);
+        }
+
+        run.run();
+        this.close();
+    }
 
 }

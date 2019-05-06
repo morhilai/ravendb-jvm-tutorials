@@ -1,74 +1,76 @@
 # RavenDB Hospital Tutorial
-RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and high availability. It supports clients for a variety of programming languages, 
-including Java. RavenDB is very easy to administer and deploy. The following is a demo hospital management app that uses the RavenDB Java client to communicate with the server.
+RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and high availability. It supports  clients for a variety of programming languages, including Java. RavenDB is very easy to administer and deploy. The following is an introduction to RavenDB, and an overview of the Client API. As an example, we will be looking at a demo hospital management application built on the Java client.
 
-As a NoSQL database, RavenDB manages data in these ways:  
-* Stores data in JSON documents  
-* Schemaless - the structure of a document can be changed by simply adding new fields or deleting existing ones  
-* Dynamically generates indexes to facilitate fast data retrieval  
-* Uses map-reduce to process large sets of documents  
+Contents:
+* [How to Install RavenDB Community Edition](./README.md#how-to-install-ravendb-community-edition)
+* [How to run the demo](./README.md#how-to-run-the-demo)
+* [Entities, tables, collections, and documents](./README.md#entities-tables-collections-and-documents)
+* [RavenDB Client API](./README.md#ravendb-client-api)
+* [Session and Unit of Work pattern](./README.md#session-and-unit-of-work-pattern)
+* [CRUD operations](./README.md#crud-operations)
+* [Paging on large record sets](./README.md#paging-through-large-record-sets)
+* [BLOB handling - attachments](./README.md#blob-handling---attachments)
+* [Queries](./README.md#queries)
 
-Contents:  
-* [How to Install RavenDB Community Edition](./ravendb-jvm-tutorials#how-to-install-ravendb-community-edition)
-* [How to run the demo]()  
-* [Domain Entity description]()  
-* [Session and Unit of Work pattern]()  
-* [CRUD operations]()  
-* [Paging on large record sets]()  
-* [BLOB handling - attachments]()  
-* [Queries]()  
-
-## How to Install RavenDB Community Edition  
-1. Download the zip bundle from https://ravendb.net/download and unzip in a local drive folder  
+## How to Install RavenDB Community Edition
+1. Download the zip bundle from https://ravendb.net/download and unzip
 2. Register a free community license from https://ravendb.net/buy
-3. In PowerShell, run either .\run.ps1 (console mode app) or .\setup-as-service.ps1 (service mode app) and follow the installation instructions  
-4. Once installed, the RavenDB Studio will automatically launch in your default browser. Open the 'about' tab to register your license
-5. Create your first database  
+3. In PowerShell, run `.\run.ps1` (or `.\setup-as-service.ps1` to launch as a service)
+4. Once installed the management studio, called RavenDB Studio, will automatically launch in your default browser on port 8080
+5. Click the `about` tab in the bottom left to register your license
+6. [Create your first database](https://ravendb.net/docs/article-page/4.2/csharp/studio/server/databases/create-new-database/general-flow)
 
 ## How to run the demo
-Once RavenDB is installed, start a server instance on port 18080 with this command:  
+Once RavenDB is installed, start a server instance on port 18080 with this command:
 ```
 ./Raven.Server.exe `
 --ServerUrl=http://127.0.0.1:18080
 ```
-Type `openbrowser` to launch the studio in your default browser. [Create a database](https://ravendb.net/docs/article-page/4.2/csharp/studio/server/databases/create-new-database/general-flow) 
-with the name 'Hospital'. In the project root, there is an import file `hospital.ravendbdump`. Follow [these instructions](https://ravendb.net/docs/article-page/4.1/java/studio/database/settings/import-data-file)
-to import `hospital.ravendbdump` into 'Hospital'.  
+Type `openbrowser` to launch the studio in your default browser. [Create a database](https://ravendb.net/docs/article-page/4.2/csharp/studio/server/databases/create-new-database/general-flow)
+with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located in the project root called `hospital.ravendbdump` by following [these instructions](https://ravendb.net/docs/article-page/4.1/java/studio/database/settings/import-data-file).
 
-The project code sources can be fetched from GitHub using this git tool command:  
+Fetch the project code sources with:
 ```
 $ git clone https://github.com/sergei-iliev/ravendb.git
 ```
-Once the database is created, the default configuration data is imported, and the sources are available locally, start the application by executing:  
+Once the database is created, the default configuration data is imported, and the sources are available locally, start the application with:
 ```
 $ mvn jetty:run
 ```
-The web app will now be available at http://127.0.0.1:8889/  
+The demo web application will now be available at http://127.0.0.1:8889/. It should look like this:
 ![App Homepage](/screenshots/p_home.png)
 
 ## Entities, tables, collections, and documents
-To persist data, Java programmers usually annotate POJOs with @Entity so that the underlying JPA framework will treat the class as a domain object mapped to a row in a database.
-RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_.
+As a NoSQL database, RavenDB manages data in these ways:
+* Stores data in JSON documents
+* Schemaless - documents can have any structure
+* Dynamically generates indexes to facilitate fast data retrieval
+* Uses map-reduce to process large sets of documents
+
+Java programmers are used to persisting POJOs by annotating them with `@Entity`. This makes the underlying JPA framework treat the class as a domain object mapped to a row in a database. RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_.
 In RavenDB, every domain object is mapped to a single document. There is no need for special class treatment other than having a no-args constructor.
 The model for this demo consists of 4 entities. To demonstrate the power of grouping and fetching queries in RavenDB, one of these entities is embedded as an array in another entity.
 
 ![UML Diagram](/screenshots/uml.png)
-1. Client-side representation of the Patient entity:
+
+Here are the type definitions of these entities on the client side, accompanied by examples of JSON documents on the server side.
+Getters and setters are omitted for brevity.
+
+1. The Patient entity:
 ```java
 public class Patient {
     private String id;
     private String firstName,lastName;
     private Date birthDate;
     private Gender gender;
-    
+
     private String email;
     private Address address;
     private List<Visit> visits;
 }
 ```
-(Getters and setters are omitted for brevity)
 
-Server-side JSON representation of a sample Patient (containing an array of Visits):
+A document containing an example Patient, which contains an array of Visits:
 ```JSON
 {
     "firstName": "Megi",
@@ -113,7 +115,7 @@ public class Visit {
     private String doctorName;
 }
 ```
-This entity is embedded as an array within the Patient entity, see above.
+On the server side this entity is embedded as an array within the Patient documents, see above.
 
 3. Condition entity:
 ```java
@@ -122,10 +124,9 @@ public class Condition {
     private String name;
     private String symptoms;
     private String recommendedTreatment;
-
 }
 ```
-JSON sample Condition:
+Example Condition:
 ```JSON
 {
     "name": "Diabetes",
@@ -139,16 +140,16 @@ JSON sample Condition:
 ```
 4. Doctor entity:
 ```java
-public class Doctor{
-        private String id;
-        private String name;
-        private String department;
-       private int age; 
- }
- ```
- JSON sample Doctor:
- ```JSON
- {
+public class Doctor {
+    private String id;
+    private String name;
+    private String department;
+    private int age;
+}
+```
+Example Doctor:
+```JSON
+{
     "name": "Sergiz Ovesian",
     "department": "LV",
     "age": 45,
@@ -157,36 +158,33 @@ public class Doctor{
         "Raven-Java-Type": "net.ravendb.demo.model.Doctor"
     }
 }
- ```
+```
 
 If an entity doesn't already have an id field, RavenDB will automatically generate a unique document id on the client side.
-By convention, entities get autogenerated ids in the following format: 'collection/[number tag]'. This way, the programmer doesn't need to be concerned with the
-uniqueness of each document within the database.
+By default, entities get autogenerated ids in the following format: `collection/[number tag]`, which makes them human readable, and makes it simple to ensure they are unique database-wide.
 
 ## RavenDB Client API
-The Java client API is added as a dependency to `pom.xml`.
-```
+The Java Client API is added as a dependency to `pom.xml`.
+```xml
 <dependency>
-  <groupId>net.ravendb</groupId>
-  <artifactId>ravendb</artifactId>
-  <version>LATEST</version>
+    <groupId>net.ravendb</groupId>
+    <artifactId>ravendb</artifactId>
+    <version>LATEST</version>
 </dependency>
 ```
-The client API provides the main API object, the _Document Store_, which sets up the connection with the Server and downloads various configuration metadata. The Document Store is capable of
-working with multiple databases. It is recommended that you create only one Document Store instance per application by implementing the singleton pattern as demonstrated below:
+The Client API provides the main API object, the _Document Store_, which sets up the connection with the Server. It is recommended that you create only one Document Store instance per application by implementing the singleton pattern as demonstrated below:
 ```java
 public final class RavenDBDocumentStore {
-    
     private static IDocumentStore store;
 
     static {
-    store = new DocumentStore(new String[]{ 
-		"http://127.0.0.1:18080",
-		"http://127.0.0.1:18081",
-		"http://127.0.0.1:18082"},
-		"Hospital");
-            
-    store.initialize();
+    	store = new DocumentStore(new String[] {
+			"http://127.0.0.1:18080",
+			"http://127.0.0.1:18081",
+			"http://127.0.0.1:18082"},
+			"Hospital");
+
+    	store.initialize();
     }
 
     public static IDocumentStore getStore() {
@@ -197,15 +195,14 @@ public final class RavenDBDocumentStore {
 ## Session and Unit of Work Pattern
 For any operation we want to perform on RavenDB, we start by obtaining a new _Session_ object from the Document Store.
 Much like the Hibernate implementation of JPA, the RavenDB Session implements the Unit of Work pattern. This has several implications in the context of a single session:
-* The Session tracks changes for all the entities that it has either loaded or stored  
-* The Session batches requests to reduce the number of expensive remote calls  
+* The Session tracks changes for all the entities that it has either loaded or stored
+* The Session batches requests to reduce the number of expensive remote calls
 * A single document (identified by its id) always resolves to the same instance
 
-In contrast to a Document Store, a Session is a lightweight object and can be created more frequently. This demo uses page attach/detach events to demarcate the Session's
-creation and release. The session stays open for the duration of page activity. For the purposes of this demo, we will use optimistic concurrency control.
+In contrast to a Document Store, a Session is a lightweight object and can be created more frequently. This demo uses page attach/detach events to demarcate the Session's creation and release. The session stays open for the duration of page activity. For the purposes of this demo, we will enable optimistic concurrency control.
 ```java
 public void openSession() {
-    if(session==null){
+    if (session == null) {
         session = RavenDBDocumentStore.getStore().openSession();
         session.advanced().setUseOptimisticConcurrency(true);
     }
@@ -216,18 +213,14 @@ public void releaseSession() {
 }
 ```
 ## CRUD operations
-An example patient entity:
+Building on the Client API, this demo application implements the basic CRUD functions.
 
-![Patient CRUD](/screenshots/p_edit.png)
-
-The create operation inserts a new document. Each document contains a unique id, data, and adjacent metadata - all stored in JSON format. The metadata contains information
-describing the document, e.g. the last modification date (`@last-modified` property) or the collection  it belongs to (`@collection` property). We will use RavenDB's
-default algorithm to generate unique ids for our entities.
+The create operation inserts a new document. Each document contains a unique id, data, and adjacent metadata - all stored in JSON format. The metadata contains information describing the document, e.g. the last modification date (`@last-modified` property) or the collection  it belongs to (`@collection` property). We will use RavenDB's default algorithm to generate unique ids for our entities.
 
 ```java
 public void create(PatientAttachment patientAttachment) {
-    Patient patient=patientAttachment.getPatient();
-    Attachment attachment=patientAttachment.getAttachment();
+    Patient patient = patientAttachment.getPatient();
+    Attachment attachment = patientAttachment.getAttachment();
     session.store(patient);
 
     if (attachment != null) {
@@ -242,8 +235,8 @@ Update operation. This method ensures there is at most one portrait attachment p
 
 ```java
 public void update(PatientAttachment patientAttachment) throws ConcurrencyException {
-    Patient patient=patientAttachment.getPatient();
-    Attachment attachment=patientAttachment.getAttachment();
+    Patient patient = patientAttachment.getPatient();
+    Attachment attachment = patientAttachment.getAttachment();
     session.store(patient);
 
     // delete previous attachments
@@ -267,48 +260,52 @@ public void delete(Patient patient) {
     session.saveChanges();
 }
 ```
+To 'read' documents, we simply use `session.load(/*documentId*/)`
 
 ## Paging Through Large Record Sets
-Paging through large amounts of data is one of the most common operations in RavenDB. A typical scenario is the need to display results in batches in a lazy loading or pageable grid. In this app, the grid
-is configured to first obtain the total amount of records to show and then to lazily obtain records by batches of 10 as the user navigates from page to page. There is a convenient method, `statistics`, to
-obtain the total count of the documents querying at the same time thus making a one-time remote request only! For the patients grid, the corresponding attachments are also obtained and
-streamed into a convenient byte array to show in one of the grid columns.  
+Paging through large amounts of data is one of the most common operations in RavenDB. A typical scenario is the need to display results in batches in a lazy loading or pageable grid. In this app, the grid is configured to first obtain the total amount of records to show and then to lazily obtain records by batches of 10 as the user navigates from page to page. There is a convenient method, `statistics`, to obtain the total count of the documents querying at the same time thus making a one-time remote request only! For the patients grid, the corresponding attachments are also obtained and streamed into a convenient byte array to show in one of the grid columns.
 
 ![Patient CRUD](/screenshots/p_paging.png)
 
 ```java
 public Pair<Collection<PatientAttachment>,Integer> getPatientsList(int offset, int limit, boolean order) {
+
     Reference<QueryStatistics> statsRef = new Reference<>();
     IDocumentQuery<Patient> query = session.query(Patient.class)
-            .skip(offset)
-            .take(limit)
-            .statistics(statsRef);
+                                           .skip(offset)
+                                           .take(limit)
+                                           .statistics(statsRef);
+
     if (order) {
-            query.orderBy("birthDate");
+        query.orderBy("birthDate");
     }
 
-    Collection<Patient> list = query.toList();        
+    Collection<Patient> list = query.toList();
     int totalResults = statsRef.value.getTotalResults();
-        
-        Collection<PatientAttachment> patientAttachments=new ArrayList<>();
-        for (Patient patient : list) {
-            PatientAttachment patientAttachment=new PatientAttachment(patient);
-            AttachmentName[] names = session.advanced().attachments().getNames(patient);
-            if (names.length > 0) {
-                try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,
-                        names[0].getName())) {
-                    Attachment attachment = new Attachment();
-                    attachment.setName(names[0].getName());
-                    attachment.setMimeType(names[0].getContentType());
-                    byte[] bytes = IOUtils.toByteArray(result.getData());
-                    attachment.setBytes(bytes);
-                    patientAttachment.setAttachment(attachment);
-                } catch (IOException e) {
-                    logger.log(Level.SEVERE,"", e);
-                }
+
+    Collection<PatientAttachment> patientAttachments=new ArrayList<>();
+
+    for (Patient patient : list) {
+        PatientAttachment patientAttachment=new PatientAttachment(patient);
+        AttachmentName[] names = session.advanced().attachments().getNames(patient);
+
+        if (names.length > 0) {
+            try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,
+							                                names[0].getName())) {
+	            Attachment attachment = new Attachment();
+	            attachment.setName(names[0].getName());
+	            attachment.setMimeType(names[0].getContentType());
+
+                byte[] bytes = IOUtils.toByteArray(result.getData());
+                attachment.setBytes(bytes);
+                patientAttachment.setAttachment(attachment);
+	        } catch (IOException e) {
+	            logger.log(Level.SEVERE,"", e);
             }
-            patientAttachments.add(patientAttachment);
         }
+        patientAttachments.add(patientAttachment);
+    }
+
     return new ImmutablePair<Collection<PatientAttachment>, Integer>(patientAttachments, totalResults);
 }
 ```
@@ -324,10 +321,11 @@ public class Attachment {
     String mimeType;
     byte[] bytes;
 
-    public InputStream getInputStream(){
+    public InputStream getInputStream() {
         return new ByteArrayInputStream(bytes);
     }
-    public StreamResource getStreamResource(){
+
+    public StreamResource getStreamResource() {
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 		return new StreamResource(name, () -> bis);
     }
@@ -352,10 +350,11 @@ session.saveChanges();
 
 This operation gets an attachment from a patient document:
 ```java
-try(CloseableAttachmentResult result= session.advanced().attachments().get(patient,names[0].getName())){
+try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,names[0].getName())) {
     Attachment attachment = new Attachment();
     attachment.setName(names[0].getName());
     attachment.setMimeType(names[0].getContentType());
+
     byte[] bytes = IOUtils.toByteArray(result.getData());
     attachment.setBytes(bytes);
     patientAttachment.setAttachment(attachment);
@@ -363,42 +362,36 @@ try(CloseableAttachmentResult result= session.advanced().attachments().get(patie
 ```
 
 ## Queries
-RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's indexes are schema-less and documented oriented.
-RavenDB requires indexes to execute queries, but the programmer is not required to manually create them - RavenDB can automatically create the
-required index by analyzing query at runtime. In the following query, the parameter `Patient.class` defines the type of returned results, and also indicates
-that the queried collection will be Patients.
+RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's indexes are schema-less and documented oriented. RavenDB requires indexes to execute queries, but the programmer is not required to manually create them - RavenDB can automatically create the required index by analyzing query at runtime. In the following query, the parameter `Patient.class` defines the type of returned results, and also indicates that the queried collection will be Patients.
 ```java
-        
-    Patient patient = session.load(Patient.class, id);
-    return patient;
-        
+Patient patient = session.load(Patient.class, id);
+return patient;
 ```
-When one document contains the id of another document, both of them can be loaded in a single request call using the `Include + Load` methods.
-The following code snippet shows how to obtain Patient visit data and the associated Doctor documents with a single request.
-When the Doctors documents are requested they are fetched from the local session cache thus avoiding a second round trip to the server.
+When one document contains the id of another document, both of them can be loaded in a single request call using the 'Include + Load' methods. The following code snippet shows how to obtain Patient visit data and the associated Doctor documents with a single request.
+When the Doctors documents are requested they are fetched from the local session cache, avoiding a second round trip to the server.
 The query transforms the Patients visits data into a custom class of type `DoctorVisit` by using projection `ofType`. This is a powerful technique to construct any result type of the queried data.
 ```java
 public Collection<DoctorVisit> getDoctorVisitsList() {
     List<DoctorVisit> results = session.query(Patient.class)
-                .groupBy("visits[].doctorId")
-                .selectKey("visits[].doctorId", "doctorId")
-                .selectCount()
-                .whereNotEquals("doctorId", null)
-                .orderByDescending("count")
-                .ofType(DoctorVisit.class)
-                .include("visits[].doctorId")
-                .toList();
+                                        .groupBy("visits[].doctorId")
+                                        .selectKey("visits[].doctorId", "doctorId")
+                                        .selectCount()
+                                        .whereNotEquals("doctorId", null)
+                                        .orderByDescending("count")
+                                        .ofType(DoctorVisit.class)
+                                        .include("visits[].doctorId")
+                                        .toList();
     // fetch doctors by batch
+
     Set<String> doctorIds = results.stream().map(p -> p.getDoctorId()).collect(Collectors.toSet());
     Map<String, Doctor> map = session.load(Doctor.class, doctorIds);
 
     results.forEach(v -> {
         v.setDoctorName(map.get(v.getDoctorId()).getName());
     });
-        
+
     assert (session.advanced().getNumberOfRequests() == 1);
     return results;
-
 }
 ```
 

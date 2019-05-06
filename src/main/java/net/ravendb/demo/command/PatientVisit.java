@@ -9,85 +9,86 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class PatientVisit {
 
-	private String id;
-	private String firstName,lastName;
-	private Date date;
-	private String doctorName;
-	private String visitSummary;
-	private String type;
-	private String conditionId;
-	
-	public String getConditionId() {
-		return conditionId;
-	}
+    private String id;
+    private String firstName, lastName;
+    private Date date;
+    private String doctorName;
+    private String visitSummary;
+    private String type;
+    private String conditionId;
 
-	public void setConditionId(String conditionId) {
-		this.conditionId = conditionId;
-	}
+    public String getConditionId() {
+        return conditionId;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setConditionId(String conditionId) {
+        this.conditionId = conditionId;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getVisitSummary() {
-		return visitSummary;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setVisitSummary(String visitSummary) {
-		this.visitSummary = visitSummary;
-	}
+    public String getVisitSummary() {
+        return visitSummary;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setVisitSummary(String visitSummary) {
+        this.visitSummary = visitSummary;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public String getDoctorName() {
-		return doctorName;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public void setDoctorName(String doctorName) {
-		this.doctorName = doctorName;
-	}
-	
-	public String getType() {
-		return type;
-	}
+    public String getDoctorName() {
+        return doctorName;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
 
-	@JsonIgnore
-	public LocalDate getLocalDate() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @JsonIgnore
+    public LocalDate getLocalDate() {
 
         if (date != null)
-            return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+            return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault())
+                                                       .toLocalDate();
         else
             return null;
-	}
+    }
 
 }

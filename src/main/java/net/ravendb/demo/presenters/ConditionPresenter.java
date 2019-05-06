@@ -16,68 +16,65 @@ import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.presenters.ConditionViewable.ConditionViewListener;
 
 public class ConditionPresenter implements ConditionViewListener {
-	private IDocumentSession session;
+    private IDocumentSession session;
 
-	public ConditionPresenter() {
+    public ConditionPresenter() {}
 
-	}
+    @Override
+    public void delete(Condition condition) {
+        session.delete(condition);
+        session.saveChanges();
+    }
 
-	@Override
-	public void delete(Condition condition) {
-		session.delete(condition);
-		session.saveChanges();
+    @Override
+    public Patient getPatientById(String id) {
+        Patient patient = session.load(Patient.class, id);
+        return patient;
+    }
 
-	}
+    @Override
+    public void save(Condition condition) {
+        session.store(condition);
+        session.saveChanges();
+    }
 
-	@Override
-	public Patient getPatientById(String id) {
-		Patient patient = session.load(Patient.class, id);
-		return patient;
+    @Override
+    public Condition getConditionById(String id) {
+        return null;
+    }
 
-	}
+    @Override
+    public Pair<Collection<Condition>, Integer> getConditionsList(int offset, int limit, String term) {
+        session.advanced().clear();
+        Reference<QueryStatistics> statsRef = new Reference<>();
+        IDocumentQuery<Condition> conditions = session.query(Condition.class)
+                                                      .skip(offset)
+                                                      .take(limit)
+                                                      .statistics(statsRef);
 
-	@Override
-	public void save(Condition condition) {
-		session.store(condition);
-		session.saveChanges();
+        if (term != null && term.length() > 0) {
+            conditions.whereStartsWith("description", term);
+        }
 
-	}
+        List<Condition> list = conditions.toList();
+        int totalResults = statsRef.value.getTotalResults();
 
-	@Override
-	public Condition getConditionById(String id) {
-		return null;
-	}
+        return new ImmutablePair<Collection<Condition>, Integer>(list, totalResults);
 
-	@Override
-	public Pair<Collection<Condition>, Integer> getConditionsList(int offset, int limit, String term) {
-		session.advanced().clear();
-		Reference<QueryStatistics> statsRef = new Reference<>();
-		IDocumentQuery<Condition> conditions = session.query(Condition.class)
-				.skip(offset)
-				.take(limit)
-				.statistics(statsRef);
+    }
 
-		if (term != null&&term.length()>0) {
-			    conditions.whereStartsWith("description", term);
-		}
+    @Override
+    public void openSession() {
 
-		List<Condition> list = conditions.toList();
-		int totalResults = statsRef.value.getTotalResults();
+        if (session == null) {
+            session = RavenDBDocumentStore.getStore().openSession();
+            session.advanced().setUseOptimisticConcurrency(true);
+        }
+    }
 
-		return new ImmutablePair<Collection<Condition>, Integer>(list, totalResults);
+    @Override
+    public void releaseSession() {
+        session.close();
+    }
 
-	}
-
-	@Override
-	public void openSession() {
-		if (session == null) {
-			session = RavenDBDocumentStore.getStore().openSession();
-			session.advanced().setUseOptimisticConcurrency(true);
-		}
-	}
-
-	@Override
-	public void releaseSession() {
-		session.close();
-	}
 }

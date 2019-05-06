@@ -13,68 +13,64 @@ import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Doctor;
 import net.ravendb.demo.presenters.DoctorViewable.DoctorViewListener;
 
-public class DoctorEditorDialog extends AbstractEditorDialog<Doctor>{
+public class DoctorEditorDialog extends AbstractEditorDialog<Doctor> {
 
-	private DoctorViewListener presenter;
-	private Runnable run;
-	ComboBox<String> department;
-	
-	public DoctorEditorDialog(String title,Doctor bean,DoctorViewListener presenter,Runnable run) {
-		super(title,bean);
-		this.run=run;
-		this.presenter=presenter;
-		
-	}
-	protected void fetch(){
-      department.setItems(presenter.getDepartments());
-      super.fetch();
-	}
+    private DoctorViewListener presenter;
+    private Runnable run;
+    ComboBox<String> department;
 
-	@Override
-	protected Component buildFormContent() {
-		FormLayout layout=new FormLayout();		
-		
-		
-        TextField name =
-                new TextField();
+    public DoctorEditorDialog(String title, Doctor bean, DoctorViewListener presenter, Runnable run) {
+        super(title, bean);
+        this.run = run;
+        this.presenter = presenter;
+    }
+
+    protected void fetch() {
+        department.setItems(presenter.getDepartments());
+        super.fetch();
+    }
+
+    @Override
+    protected Component buildFormContent() {
+        FormLayout layout = new FormLayout();
+
+        TextField name = new TextField();
         name.setRequiredIndicatorVisible(true);
         binder.forField(name)
-                .asRequired()
-                .bind(Doctor::getName, Doctor::setName);
+              .asRequired()
+              .bind(Doctor::getName, Doctor::setName);
+
         layout.addFormItem(name, "Name");
-        
-        TextField age =
-                new TextField();        
+
+        TextField age = new TextField();
         binder.forField(age)
-        		.withConverter(new StringToIntegerConverter(""))
-                .asRequired()
-                .bind(Doctor::getAge, Doctor::setAge);
+              .withConverter(new StringToIntegerConverter(""))
+              .asRequired()
+              .bind(Doctor::getAge, Doctor::setAge);
+
         layout.addFormItem(age, "Age");
 
-        
-        department=new ComboBox<>(); 
-  
-        binder.forField(department).bind(Doctor::getDepartment,Doctor::setDepartment);
+        department = new ComboBox<>();
+
+        binder.forField(department).bind(Doctor::getDepartment, Doctor::setDepartment);
         layout.addFormItem(department, "Department");
 
-        
-        layout.setResponsiveSteps(
-                new FormLayout.ResponsiveStep("0", 1)
-              );
-		return layout;
-	}
+        layout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
 
-	@Override
-	protected void save(ClickEvent<Button> e) {
-		try {
-			presenter.save(binder.getBean());
-			run.run();
-		}
-		catch(ConcurrencyException ce){
-		Notification.show("Document was updated by another user",5000, Notification.Position.TOP_CENTER);
-	}
-		this.close();
+        return layout;
+    }
 
-	}
+    @Override
+    protected void save(ClickEvent<Button> e) {
+        try {
+            presenter.save(binder.getBean());
+            run.run();
+        } catch (ConcurrencyException ce) {
+            Notification.show("Document was updated by another user",
+                              5000, Notification.Position.TOP_CENTER);
+        }
+
+        this.close();
+    }
 
 }

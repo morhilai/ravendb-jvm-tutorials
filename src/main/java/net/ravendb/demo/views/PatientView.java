@@ -48,185 +48,197 @@ import net.ravendb.demo.presenters.PatientViewable;
 @Route(value = "patient", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
 public class PatientView extends VerticalLayout implements PatientViewable {
-	private static Logger logger = Logger.getLogger(PatientView.class.getSimpleName());
-	
-	private final PatientViewListener presenter;
-	private PageableGrid<PatientAttachment> grid;
-	private Button edit, delete, visits;
-	private Checkbox order;
-	private TextField search;
+    private static Logger logger = Logger.getLogger(PatientView.class.getSimpleName());
 
-	public PatientView() {
-		presenter = new PatientPresenter();
-		init();
-	}
+    private final PatientViewListener presenter;
+    private PageableGrid<PatientAttachment> grid;
+    private Button edit, delete, visits;
+    private Checkbox order;
+    private TextField search;
 
-	@Override
-	protected void onAttach(AttachEvent attachEvent) {
-		presenter.openSession();
-		load();
-	}
+    public PatientView() {
+        presenter = new PatientPresenter();
+        init();
+    }
 
-	@Override
-	protected void onDetach(DetachEvent detachEvent) {
-		presenter.releaseSession();
-		super.onDetach(detachEvent);
-	}
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        presenter.openSession();
+        load();
+    }
 
-	private void init() {
-		this.setWidth("100%");
-		H4 title = new H4("Patients");
-		add(title);
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        presenter.releaseSession();
+        super.onDetach(detachEvent);
+    }
 
-		add(createHeader());
-		add(createSearchBox());
-		add(createGrid());
+    private void init() {
+        this.setWidth("100%");
+        H4 title = new H4("Patients");
+        add(title);
 
-	}
+        add(createHeader());
+        add(createSearchBox());
+        add(createGrid());
+    }
 
-	private Component createHeader() {
-		HorizontalLayout header = new HorizontalLayout();
+    private Component createHeader() {
+        HorizontalLayout header = new HorizontalLayout();
 
-		Button add = new Button("Add", e -> {
-			PatientEditorDialog d = new PatientEditorDialog("Add", new PatientAttachment(), this.presenter, () -> {
-				load();
-			});
-			d.open();
-		});
-		header.add(add);
+        Button add = new Button("Add", e -> {
+            PatientEditorDialog d = new PatientEditorDialog("Add",
+                    new PatientAttachment(), this.presenter, () -> {
+                load();
+            });
 
-		edit = new Button("Edit", e -> {
-			PatientEditorDialog d = new PatientEditorDialog("Edit", this.grid.getGrid().asSingleSelect().getValue(),
-					this.presenter, () -> {
-						load();
-					});
-			d.open();
-		});
-		edit.setEnabled(false);
-		header.add(edit);
+            d.open();
+        });
 
-		delete = new Button("Delete", e -> {
-			ConfirmDialog.createQuestion().withCaption("System alert").withMessage("Do you want to delete?")
-					.withOkButton(() -> {
-						try {
-							presenter.delete(grid.getGrid().asSingleSelect().getValue());
-						}
-						catch(ConcurrencyException ce) {
-							Notification.show("Document was updated by another user", 5000, Notification.Position.TOP_CENTER);
-						}
+        header.add(add);
 
-						load();
-					}, ButtonOption.focus(), ButtonOption.caption("YES")).withCancelButton(ButtonOption.caption("NO"))
-					.open();
-		});
-		delete.setEnabled(false);
-		header.add(delete);
+        edit = new Button("Edit", e -> {
+            PatientEditorDialog d = new PatientEditorDialog("Edit",
+                    this.grid.getGrid().asSingleSelect().getValue(), this.presenter, () -> {
+                load();
+            });
 
-		visits = new Button("Manage Visits", e -> {
-			Map<String, String> map = new HashMap<>();
-			map.put("patientId", grid.getGrid().asSingleSelect().getValue().getPatient().getId());
-			
-				UI.getCurrent().navigate("patient/patientvisit/"
-						+ Base64.getEncoder().encodeToString((grid.getGrid().asSingleSelect().getValue().getPatient().getId()).getBytes()));
+            d.open();
+        });
 
-		});
-		visits.setEnabled(false);
-		header.add(visits);
+        edit.setEnabled(false);
+        header.add(edit);
 
-		return header;
+        delete = new Button("Delete", e -> {
+            ConfirmDialog.createQuestion().withCaption("System alert").withMessage("Do you want to delete?")
+                    .withOkButton(() -> {
+                        try {
+                            presenter.delete(grid.getGrid().asSingleSelect().getValue());
+                        } catch (ConcurrencyException ce) {
+                            Notification.show("Document was updated by another user",
+                                              5000, Notification.Position.TOP_CENTER);
+                        }
 
-	}
+                        load();
+                    }, ButtonOption.focus(), ButtonOption.caption("YES"))
+                                            .withCancelButton(ButtonOption.caption("NO"))
+                                            .open();
+        });
 
-	private Component createSearchBox() {
-		HorizontalLayout layout = new HorizontalLayout();
-		Span span = new Span();
+        delete.setEnabled(false);
+        header.add(delete);
 
-		search = new TextField();
-		search.setPlaceholder("Search");
-		search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
-				(ComponentEventListener<KeyDownEvent>) keyDownEvent -> {
-					load();
-				});
+        visits = new Button("Manage Visits", e -> {
+            Map<String, String> map = new HashMap<>();
+            map.put("patientId", grid.getGrid().asSingleSelect().getValue().getPatient().getId());
 
-		order = new Checkbox("Order by birth date");
-		order.addValueChangeListener(e -> {
-			load();
-		});
+            UI.getCurrent().navigate("patient/patientvisit/"
+                    + Base64.getEncoder().encodeToString((grid.getGrid()
+                    .asSingleSelect().getValue().getPatient().getId()).getBytes()));
+        });
 
-		span.add(new Icon(VaadinIcon.SEARCH), search, order);
+        visits.setEnabled(false);
+        header.add(visits);
 
-		layout.add(span);
-		return layout;
-	}
+        return header;
+    }
 
-	private Component createGrid() {
-		grid = new PageableGrid<>(this::loadPage);
-		grid.getGrid().setSelectionMode(SelectionMode.SINGLE);
-		grid.setWidth("100%");
+    private Component createSearchBox() {
+        HorizontalLayout layout = new HorizontalLayout();
+        Span span = new Span();
 
-		grid.getGrid().addComponentColumn(p -> {
-			if (p.getAttachment() == null) {
-				Image image = new Image("/frontend/images/avatar.jpeg", "");
-				image.setWidth("60px");
-				image.setHeight("60px");
-				image.getStyle().set("borderRadius", "50%");
-				return image;
-			} else {
-				Image image = new Image(p.getAttachment().getStreamResource(), "");
-				image.setWidth("60px");
-				image.setHeight("60px");
-				image.getStyle().set("borderRadius", "50%");
-				return image;
-			}
-		});
-		grid.getGrid().addColumn(p->p.getPatient().getFirstName()).setHeader("First Name");
-		grid.getGrid().addColumn(p->p.getPatient().getLastName()).setHeader("Last Name");
-		grid.getGrid().addColumn(p->p.getPatient().getEmail()).setHeader("Email");
-		grid.getGrid().addColumn(new ComponentRenderer<>(person -> {
-			if (person.getPatient().getGender() == Gender.MALE) {
-				return new Icon(VaadinIcon.MALE);
-			} else {
-				return new Icon(VaadinIcon.FEMALE);
-			}
-		})).setHeader("Gender");
-		grid.getGrid().addColumn(new LocalDateRenderer<>(p->p.getPatient().getBirthLocalDate(),
-				DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))).setHeader("Birth Date");
+        search = new TextField();
+        search.setPlaceholder("Search");
+        search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
+                (ComponentEventListener<KeyDownEvent>) keyDownEvent -> {
+                    load();
+                });
 
-		grid.getGrid().addComponentColumn(p -> {
-			Button address = new Button();
-			address.setIcon(new Icon(VaadinIcon.HOME));
-			address.addClickListener(e -> {
-				AddressEditorDialog d = new AddressEditorDialog("Address", p.getPatient(), this.presenter);
-				d.open();
-			});
-			return address;
-		}).setHeader("Address");
+        order = new Checkbox("Order by birth date");
+        order.addValueChangeListener(e -> {
+            load();
+        });
 
-		grid.getGrid().addSelectionListener(e -> {
-			if (grid.getGrid().getSelectedItems().size() > 0) {
-				edit.setEnabled(true);
-				delete.setEnabled(true);
-				visits.setEnabled(true);
-			} else {
-				edit.setEnabled(false);
-				delete.setEnabled(false);
-				visits.setEnabled(false);
-			}
-		});
+        span.add(new Icon(VaadinIcon.SEARCH), search, order);
 
-		return grid;
-	}
+        layout.add(span);
+        return layout;
+    }
 
-	private void load() {
-		grid.loadFirstPage();
-	}
+    private Component createGrid() {
+        grid = new PageableGrid<>(this::loadPage);
+        grid.getGrid().setSelectionMode(SelectionMode.SINGLE);
+        grid.setWidth("100%");
 
-	private Pair<Collection<PatientAttachment>, Integer> loadPage(int page, int pageSize) {
-		if (search.getValue().length() > 1) {
-			return presenter.searchPatientsList(page * pageSize, pageSize, search.getValue(), order.getValue());
-		} else {
-			return presenter.getPatientsList(page * pageSize, pageSize, order.getValue());
-		}
-	}
+        grid.getGrid().addComponentColumn(p -> {
+            if (p.getAttachment() == null) {
+                Image image = new Image("/frontend/images/avatar.jpeg", "");
+                image.setWidth("60px");
+                image.setHeight("60px");
+                image.getStyle().set("borderRadius", "50%");
+                return image;
+            } else {
+                Image image = new Image(p.getAttachment().getStreamResource(), "");
+                image.setWidth("60px");
+                image.setHeight("60px");
+                image.getStyle().set("borderRadius", "50%");
+                return image;
+            }
+        });
+
+        grid.getGrid().addColumn(p -> p.getPatient().getFirstName()).setHeader("First Name");
+        grid.getGrid().addColumn(p -> p.getPatient().getLastName()).setHeader("Last Name");
+        grid.getGrid().addColumn(p -> p.getPatient().getEmail()).setHeader("Email");
+
+        grid.getGrid().addColumn(new ComponentRenderer<>(person -> {
+            if (person.getPatient().getGender() == Gender.MALE) {
+                return new Icon(VaadinIcon.MALE);
+            } else {
+                return new Icon(VaadinIcon.FEMALE);
+            }
+        })).setHeader("Gender");
+
+        grid.getGrid().addColumn(new LocalDateRenderer<>(p -> p.getPatient().getBirthLocalDate(),
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))).setHeader("Birth Date");
+
+        grid.getGrid().addComponentColumn(p -> {
+            Button address = new Button();
+            address.setIcon(new Icon(VaadinIcon.HOME));
+            address.addClickListener(e -> {
+                AddressEditorDialog d = new AddressEditorDialog("Address",
+                        p.getPatient(), this.presenter);
+                d.open();
+            });
+
+            return address;
+        }).setHeader("Address");
+
+        grid.getGrid().addSelectionListener(e -> {
+            if (grid.getGrid().getSelectedItems().size() > 0) {
+                edit.setEnabled(true);
+                delete.setEnabled(true);
+                visits.setEnabled(true);
+            } else {
+                edit.setEnabled(false);
+                delete.setEnabled(false);
+                visits.setEnabled(false);
+            }
+        });
+
+        return grid;
+    }
+
+    private void load() {
+        grid.loadFirstPage();
+    }
+
+    private Pair<Collection<PatientAttachment>, Integer> loadPage(int page, int pageSize) {
+
+        if (search.getValue().length() > 1) {
+            return presenter.searchPatientsList(page * pageSize, pageSize, search.getValue(), order.getValue());
+        } else {
+            return presenter.getPatientsList(page * pageSize, pageSize, order.getValue());
+        }
+    }
 
 }

@@ -9,17 +9,17 @@ import java.util.Objects;
  */
 public class ComboValue {
 
-    private  String id;
-    private  String name;
+    private String id;
+    private String name;
 
     public ComboValue(String id, String name) {
         this.id = id;
         this.name = name;
     }
-    
-    public static ComboValue  NULL = new ComboValue(null,"");
-       
-    
+
+    public static ComboValue NULL = new ComboValue(null, "");
+
+
     public String getId() {
         return id;
     }
@@ -27,12 +27,12 @@ public class ComboValue {
     public String getName() {
         return name;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }
 
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,7 +40,7 @@ public class ComboValue {
 
     @Override
     public int hashCode() {
-        return 31 + (id == null?0:id.hashCode());
+        return 31 + (id == null ? 0 : id.hashCode());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ComboValue {
         if (!(obj instanceof ComboValue)) {
             return false;
         }
-        
+
         ComboValue that = (ComboValue) obj;
         return Objects.equals(this.id, that.id);
     }

@@ -2,32 +2,32 @@ package net.ravendb.demo.command;
 
 public class DoctorVisit {
 
-	private int count;
-	private String doctorId;
-	private String doctorName;
+    private int count;
+    private String doctorId;
+    private String doctorName;
 
-	public int getCount() {
-		return count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-	public String getDoctorId() {
-		return doctorId;
-	}
+    public String getDoctorId() {
+        return doctorId;
+    }
 
-	public void setDoctorId(String doctorId) {
-		this.doctorId = doctorId;
-	}
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
 
-	public String getDoctorName() {
-		return doctorName;
-	}
+    public String getDoctorName() {
+        return doctorName;
+    }
 
-	public void setDoctorName(String doctorName) {
-		this.doctorName = doctorName;
-	}
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
 
 }

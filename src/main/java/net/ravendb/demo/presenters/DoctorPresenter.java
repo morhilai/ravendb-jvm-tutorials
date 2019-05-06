@@ -18,74 +18,74 @@ import net.ravendb.demo.presenters.DoctorViewable.DoctorViewListener;
 
 public class DoctorPresenter implements DoctorViewListener {
 
-	private IDocumentSession session;
+    private IDocumentSession session;
 
-	public DoctorPresenter() {
+    public DoctorPresenter() {}
 
-	}
+    @Override
+    public Collection<Doctor> getDoctorsList() {
+        return session.query(Doctor.class).toList();
+    }
 
-	@Override
-	public Collection<Doctor> getDoctorsList() {
-		return session.query(Doctor.class).toList();
-	}
+    @Override
+    public Collection<String> getDepartments() {
+        Configuration condition = session.query(Configuration.class).first();
 
-	@Override
-	public Collection<String> getDepartments() {
-		Configuration condition=session.query(Configuration.class).first();
-        if(condition!=null){
-        	return condition.getDepartments();
-        }else{
-        	return Collections.EMPTY_LIST;
+        if (condition != null) {
+            return condition.getDepartments();
+        } else {
+            return Collections.EMPTY_LIST;
         }
-	}
+    }
 
-	@Override
-	public void save(Doctor doctor) {
-		session.store(doctor);
-		session.saveChanges();
+    @Override
+    public void save(Doctor doctor) {
+        session.store(doctor);
+        session.saveChanges();
 
-	}
+    }
 
-	@Override
-	public void delete(Doctor doctor) {
-		session.delete(doctor);
-		session.saveChanges();
-	}
+    @Override
+    public void delete(Doctor doctor) {
+        session.delete(doctor);
+        session.saveChanges();
+    }
 
-	@Override
-	public Collection<DoctorVisit> getDoctorVisitsList() {
-		List<DoctorVisit> results = session.query(Patient.class)
-				.groupBy("visits[].doctorId")
-				.selectKey("visits[].doctorId", "doctorId")
-				.selectCount()
-				.whereNotEquals("doctorId", null)
-				.orderByDescending("count")
-				.ofType(DoctorVisit.class)
-				.include("visits[].doctorId")
-				.toList();
-		// fetch doctors by batch
-		Set<String> doctorIds = results.stream().map(p -> p.getDoctorId()).collect(Collectors.toSet());
-		Map<String, Doctor> map = session.load(Doctor.class, doctorIds);
+    @Override
+    public Collection<DoctorVisit> getDoctorVisitsList() {
+        List<DoctorVisit> results = session.query(Patient.class)
+                                           .groupBy("visits[].doctorId")
+                                           .selectKey("visits[].doctorId", "doctorId")
+                                           .selectCount()
+                                           .whereNotEquals("doctorId", null)
+                                           .orderByDescending("count")
+                                           .ofType(DoctorVisit.class)
+                                           .include("visits[].doctorId")
+                                           .toList();
 
-		results.forEach(v -> {
-			v.setDoctorName(map.get(v.getDoctorId()).getName());
-		});
-		
-		assert (session.advanced().getNumberOfRequests() == 1);
-		return results;
+        // fetch doctors by batch
+        Set<String> doctorIds = results.stream().map(p -> p.getDoctorId()).collect(Collectors.toSet());
+        Map<String, Doctor> map = session.load(Doctor.class, doctorIds);
 
-	}
+        results.forEach(v -> {
+            v.setDoctorName(map.get(v.getDoctorId()).getName());
+        });
 
-	@Override
-	public void openSession() {
-		if(session==null){
-			session = RavenDBDocumentStore.getStore().openSession();
-			session.advanced().setUseOptimisticConcurrency(true);
-		}
-	}
+        assert (session.advanced().getNumberOfRequests() == 1);
+        return results;
 
-	@Override
-	public void releaseSession() {
-		session.close();
-	}
+    }
+
+    @Override
+    public void openSession() {
+        if (session == null) {
+            session = RavenDBDocumentStore.getStore().openSession();
+            session.advanced().setUseOptimisticConcurrency(true);
+        }
+    }
+
+    @Override
+    public void releaseSession() {
+        session.close();
+    }
 }

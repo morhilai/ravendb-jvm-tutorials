@@ -33,119 +33,125 @@ import net.ravendb.demo.model.Condition;
 import net.ravendb.demo.presenters.ConditionPresenter;
 import net.ravendb.demo.presenters.ConditionViewable;
 
-@Route(value="condition",layout=RavenDBApp.class)
+@Route(value = "condition", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class ConditionView extends VerticalLayout implements ConditionViewable{
-	private final ConditionViewListener presenter;
-	private PageableGrid<Condition> grid;
-	TextField search;
-	Button edit,delete;
-	
-	public ConditionView() {
-	   presenter=new ConditionPresenter();
-	   init();	
-	}
-	
-	@Override
-	protected void onAttach(AttachEvent attachEvent) {
-		presenter.openSession();
-		load();
-	}
+public class ConditionView extends VerticalLayout implements ConditionViewable {
+    private final ConditionViewListener presenter;
+    private PageableGrid<Condition> grid;
+    TextField search;
+    Button edit, delete;
 
-	@Override
-	protected void onDetach(DetachEvent detachEvent) {
-		presenter.releaseSession();
-		super.onDetach(detachEvent);
-	}
-	
-	
-	
-	private void init(){
-		H2 title = new H2("Condition");	
-		add(title);
-		add(createHeader());
-		add(createSearchBox());
-		add(createGrid());
-	}
-	private Component createHeader() {
-		HorizontalLayout header = new HorizontalLayout();
+    public ConditionView() {
+        presenter = new ConditionPresenter();
+        init();
+    }
 
-		Button add = new Button("Add", e -> {
-			ConditionEditorDialog d = new ConditionEditorDialog("Add", new Condition(), this.presenter, () -> {
-				load();
-			});
-			d.open();
-		});
-		header.add(add);
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        presenter.openSession();
+        load();
+    }
 
-		edit = new Button("Edit", e -> {
-			ConditionEditorDialog d = new ConditionEditorDialog("Edit", this.grid.getGrid().asSingleSelect().getValue(),
-					this.presenter, () -> {
-						load();
-					});
-			d.open();
-		});
-		edit.setEnabled(false);
-		header.add(edit);
-
-		delete = new Button("Delete", e -> {
-			ConfirmDialog.createQuestion().withCaption("System alert").withMessage("Do you want to delete?")
-					.withOkButton(() -> {
-						presenter.delete(grid.getGrid().asSingleSelect().getValue());
-						load();
-					}, ButtonOption.focus(), ButtonOption.caption("YES")).withCancelButton(ButtonOption.caption("NO"))
-					.open();
-		});
-		delete.setEnabled(false);
-		header.add(delete);
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        presenter.releaseSession();
+        super.onDetach(detachEvent);
+    }
 
 
-		return header;
+    private void init() {
+        H2 title = new H2("Condition");
+        add(title);
+        add(createHeader());
+        add(createSearchBox());
+        add(createGrid());
+    }
 
-	}	
-	private Component createSearchBox() {
-		HorizontalLayout layout = new HorizontalLayout();
-		Span span = new Span();
+    private Component createHeader() {
+        HorizontalLayout header = new HorizontalLayout();
 
-	    search = new TextField();
-		search.setPlaceholder("Search");
-		search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
-				(ComponentEventListener<KeyDownEvent>) keyDownEvent -> {
-						load();						
-				});
+        Button add = new Button("Add", e -> {
+            ConditionEditorDialog d = new ConditionEditorDialog(
+                                "Add", new Condition(), this.presenter, () -> { load();
+            });
 
-		span.add(new Icon(VaadinIcon.SEARCH), search);
+            d.open();
+        });
 
-		layout.add(span);
-		return layout;
-	}	
-	private Component createGrid() {
-		   grid=new PageableGrid<>(this::loadPage);
-		   grid.getGrid().setSelectionMode(SelectionMode.SINGLE);
-		   grid.setWidth("50%");
+        header.add(add);
 
+        edit = new Button("Edit", e -> {
+            ConditionEditorDialog d = new ConditionEditorDialog(
+                                 "Edit", this.grid.getGrid().asSingleSelect().getValue(),
+                                 this.presenter, () -> { load();
+            });
 
-		   grid.getGrid().addColumn(Condition::getName).setHeader("Name");
-		   grid.getGrid().addColumn(Condition::getSymptoms).setHeader("Symptoms");
-		   grid.getGrid().addColumn(Condition::getRecommendedTreatment).setHeader("Recommended Treatment");
-		   grid.getGrid().addSelectionListener(e -> {
-				if (grid.getGrid().getSelectedItems().size() > 0) {
-					edit.setEnabled(true);
-					delete.setEnabled(true);
+            d.open();
+        });
 
-				} else {
-					edit.setEnabled(false);
-					delete.setEnabled(false);
-				}
-			});
-		   return grid;
+        edit.setEnabled(false);
+        header.add(edit);
 
-	}
-	private void load() {
-	   grid.loadFirstPage();	
-	}
-	private Pair<Collection<Condition>, Integer> loadPage(int page, int pageSize) {
+        delete = new Button("Delete", e -> {
+            ConfirmDialog.createQuestion().withCaption("System alert").withMessage("Do you want to delete?")
+                    .withOkButton(() -> {
+                        presenter.delete(grid.getGrid().asSingleSelect().getValue());
+                        load();
+                    }, ButtonOption.focus(), ButtonOption.caption("YES")).withCancelButton(ButtonOption.caption("NO"))
+                    .open();
+        });
 
-			return presenter.getConditionsList(page * pageSize, pageSize, search.getValue());
-	}	
+        delete.setEnabled(false);
+        header.add(delete);
+
+        return header;
+    }
+
+    private Component createSearchBox() {
+        HorizontalLayout layout = new HorizontalLayout();
+        Span span = new Span();
+
+        search = new TextField();
+        search.setPlaceholder("Search");
+        search.addKeyDownListener(com.vaadin.flow.component.Key.ENTER,
+                (ComponentEventListener<KeyDownEvent>) keyDownEvent -> {
+                    load();
+                });
+
+        span.add(new Icon(VaadinIcon.SEARCH), search);
+
+        layout.add(span);
+        return layout;
+    }
+
+    private Component createGrid() {
+        grid = new PageableGrid<>(this::loadPage);
+        grid.getGrid().setSelectionMode(SelectionMode.SINGLE);
+        grid.setWidth("50%");
+
+        grid.getGrid().addColumn(Condition::getName).setHeader("Name");
+        grid.getGrid().addColumn(Condition::getSymptoms).setHeader("Symptoms");
+        grid.getGrid().addColumn(Condition::getRecommendedTreatment).setHeader("Recommended Treatment");
+        grid.getGrid().addSelectionListener(e -> {
+
+            if (grid.getGrid().getSelectedItems().size() > 0) {
+                edit.setEnabled(true);
+                delete.setEnabled(true);
+            } else {
+                edit.setEnabled(false);
+                delete.setEnabled(false);
+            }
+        });
+
+        return grid;
+    }
+
+    private void load() {
+        grid.loadFirstPage();
+    }
+
+    private Pair<Collection<Condition>, Integer> loadPage(int page, int pageSize) {
+        return presenter.getConditionsList(page * pageSize, pageSize, search.getValue());
+    }
+
 }
