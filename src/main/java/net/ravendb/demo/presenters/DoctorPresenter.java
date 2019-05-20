@@ -29,10 +29,11 @@ public class DoctorPresenter implements DoctorViewListener {
 
     @Override
     public Collection<String> getDepartments() {
-        Configuration condition = session.query(Configuration.class).first();
+        //Configuration condition = session.query(Configuration.class).first();
+        Configuration configuration = session.load(Configuration.class, "Configurations/Options");
 
-        if (condition != null) {
-            return condition.getDepartments();
+        if (configuration != null) {
+            return configuration.getDepartments();
         } else {
             return Collections.EMPTY_LIST;
         }

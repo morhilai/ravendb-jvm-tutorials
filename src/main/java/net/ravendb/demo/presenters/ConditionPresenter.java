@@ -82,7 +82,7 @@ public class ConditionPresenter implements ConditionViewListener {
 
     @Override
     public Pair<Collection<Condition>, Integer> getConditionsList(int offset, int limit, String term) {
-        session.advanced().clear();
+//        session.advanced().clear();
         Reference<QueryStatistics> statsRef = new Reference<>();
         IDocumentQuery<Condition> conditions = session.query(Condition.class)
                                                       .skip(offset)

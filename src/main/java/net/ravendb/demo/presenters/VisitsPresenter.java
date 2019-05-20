@@ -23,7 +23,7 @@ public class VisitsPresenter implements VisitsViewListener {
 
     @Override
     public Pair<Collection<PatientVisit>, Integer> getVisitsList(int offset, int limit, boolean order) {
-        session.advanced().clear();
+//        session.advanced().clear();
         Reference<QueryStatistics> statsRef = new Reference<>();
         IDocumentQuery<PatientVisit> visits = session.query(Patient.class)
                 .groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummary")
@@ -53,7 +53,7 @@ public class VisitsPresenter implements VisitsViewListener {
 
     @Override
     public Pair<Collection<PatientVisit>, Integer> searchVisitsList(int offset, int limit, String term, boolean order) {
-        session.advanced().clear();
+//        session.advanced().clear();
         Reference<QueryStatistics> statsRef = new Reference<>();
         IDocumentQuery<PatientVisit> visits = session.advanced().documentQuery(Patient.class)
                 .groupBy("visits[].doctorName", "visits[].date", "firstName", "lastName", "visits[].visitSummary")

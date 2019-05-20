@@ -99,10 +99,10 @@ public class PatientVisitPresenter implements PatientVisitViewListener {
 
     @Override
     public Collection<String> getLocationsList() {
-        //Configuration condition = session.query(Configuration.class).first();
-        Configuration condition = session.load(Configuration.class, "config/main");
-        if (condition != null) {
-            return condition.getLocations();
+        //Configuration configuration = session.query(Configuration.class).first();
+        Configuration configuration = session.load(Configuration.class, "Configurations/Options");
+        if (configuration != null) {
+            return configuration.getLocations();
         } else {
             return Collections.EMPTY_LIST;
         }

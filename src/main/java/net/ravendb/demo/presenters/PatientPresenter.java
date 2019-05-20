@@ -79,7 +79,7 @@ public class PatientPresenter implements PatientViewListener {
            int offset, int limit, String term, boolean order) {
 
         Reference<QueryStatistics> statsRef = new Reference<>();
-        session.advanced().clear();
+//        session.advanced().clear();
 
         IDocumentQuery<Patient> query = session.query(Patient.class)
                 .whereStartsWith("firstName", term)
@@ -127,10 +127,11 @@ public class PatientPresenter implements PatientViewListener {
     @Override
     public Collection<String> getRegionsList() {
 
-        Configuration condition = session.query(Configuration.class).first();
+        //Configuration condition = session.query(Configuration.class).first();
+        Configuration configuration = session.load(Configuration.class, "Configurations/Options");
 
-        if (condition != null) {
-            return condition.getRegions();
+        if (configuration != null) {
+            return configuration.getRegions();
         } else {
             return Collections.EMPTY_LIST;
         }
