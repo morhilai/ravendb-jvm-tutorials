@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import com.vaadin.flow.component.notification.Notification;
 import net.ravendb.client.exceptions.ConcurrencyException;
+import net.ravendb.demo.command.PatientWithPicture;
 import org.apache.commons.lang3.tuple.Pair;
 import org.claspina.confirmdialog.ButtonOption;
 import org.claspina.confirmdialog.ConfirmDialog;
@@ -38,7 +39,6 @@ import com.vaadin.flow.router.Route;
 
 import net.ravendb.demo.RavenDBApp;
 import net.ravendb.demo.assets.Gender;
-import net.ravendb.demo.command.PatientAttachment;
 import net.ravendb.demo.components.editor.AddressEditorDialog;
 import net.ravendb.demo.components.editor.PatientEditorDialog;
 import net.ravendb.demo.components.grid.PageableGrid;
@@ -51,7 +51,7 @@ public class PatientView extends VerticalLayout implements PatientViewable {
     private static Logger logger = Logger.getLogger(PatientView.class.getSimpleName());
 
     private final PatientViewListener presenter;
-    private PageableGrid<PatientAttachment> grid;
+    private PageableGrid<PatientWithPicture> grid;
     private Button edit, delete, visits;
     private Checkbox order;
     private TextField search;
@@ -88,7 +88,7 @@ public class PatientView extends VerticalLayout implements PatientViewable {
 
         Button add = new Button("Add", e -> {
             PatientEditorDialog d = new PatientEditorDialog("Add",
-                    new PatientAttachment(), this.presenter, () -> {
+                    new PatientWithPicture(), this.presenter, () -> {
                 load();
             });
 
@@ -171,14 +171,14 @@ public class PatientView extends VerticalLayout implements PatientViewable {
         grid.setWidth("100%");
 
         grid.getGrid().addComponentColumn(p -> {
-            if (p.getAttachment() == null) {
+            if (p.getProfilePicture() == null) {
                 Image image = new Image("/frontend/images/avatar.jpeg", "");
                 image.setWidth("60px");
                 image.setHeight("60px");
                 image.getStyle().set("borderRadius", "50%");
                 return image;
             } else {
-                Image image = new Image(p.getAttachment().getStreamResource(), "");
+                Image image = new Image(p.getProfilePicture().getStreamResource(), "");
                 image.setWidth("60px");
                 image.setHeight("60px");
                 image.getStyle().set("borderRadius", "50%");
@@ -232,7 +232,7 @@ public class PatientView extends VerticalLayout implements PatientViewable {
         grid.loadFirstPage();
     }
 
-    private Pair<Collection<PatientAttachment>, Integer> loadPage(int page, int pageSize) {
+    private Pair<Collection<PatientWithPicture>, Integer> loadPage(int page, int pageSize) {
 
         if (search.getValue().length() > 1) {
             return presenter.searchPatientsList(page * pageSize, pageSize, search.getValue(), order.getValue());

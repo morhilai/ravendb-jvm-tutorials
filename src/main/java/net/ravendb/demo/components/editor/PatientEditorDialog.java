@@ -7,11 +7,12 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.crypto.CipherInputStream;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+import net.ravendb.demo.command.PatientWithPicture;
+import net.ravendb.demo.command.ProfilePicture;
 import org.apache.commons.io.IOUtils;
 
 import com.vaadin.flow.component.ClickEvent;
@@ -31,12 +32,9 @@ import com.vaadin.flow.server.StreamResource;
 
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.assets.Gender;
-import net.ravendb.demo.command.Attachment;
-import net.ravendb.demo.command.PatientAttachment;
-import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.presenters.PatientViewable.PatientViewListener;
 
-public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment> {
+public class PatientEditorDialog extends AbstractEditorDialog<PatientWithPicture> {
 
     private static Logger logger = Logger.getLogger(PatientEditorDialog.class.getSimpleName());
 
@@ -44,7 +42,7 @@ public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment>
     private Image image;
     private Runnable run;
 
-    public PatientEditorDialog(String title, PatientAttachment bean,
+    public PatientEditorDialog(String title, PatientWithPicture bean,
                                PatientViewListener presenter, Runnable run) {
         super(title, bean);
         this.run = run;
@@ -56,14 +54,14 @@ public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment>
         FormLayout layout = new FormLayout();
 
         HorizontalLayout photoLayout = new HorizontalLayout();
-        Attachment attachment = bean.getAttachment();
-        if (attachment == null) {
+        ProfilePicture profilePicture = bean.getProfilePicture();
+        if (profilePicture == null) {
             image = new Image("/frontend/images/avatar.jpeg", "");
             image.setWidth("60px");
             image.setHeight("60px");
             image.getStyle().set("borderRadius", "50%");
         } else {
-            image = new Image(attachment.getStreamResource(), "");
+            image = new Image(profilePicture.getStreamResource(), "");
             image.setWidth("60px");
             image.setHeight("60px");
             image.getStyle().set("borderRadius", "50%");
@@ -134,12 +132,12 @@ public class PatientEditorDialog extends AbstractEditorDialog<PatientAttachment>
             image.getElement().setAttribute("src", new StreamResource(
                     event.getFileName(), () -> new ByteArrayInputStream(bytes)));
 
-            //create attachment
-            Attachment attachment = new Attachment();
-            attachment.setBytes(bytes);
-            attachment.setName(event.getFileName());
-            attachment.setMimeType(event.getMIMEType());
-            binder.getBean().setAttachment(attachment);
+            //create profilePicture
+            ProfilePicture profilePicture = new ProfilePicture();
+            profilePicture.setBytes(bytes);
+            profilePicture.setName(event.getFileName());
+            profilePicture.setMimeType(event.getMIMEType());
+            binder.getBean().setProfilePicture(profilePicture);
 
             try (ImageInputStream in = ImageIO.createImageInputStream(
                                        new ByteArrayInputStream(bytes))) {

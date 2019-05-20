@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import com.vaadin.flow.server.StreamResource;
 
-public class Attachment {
+public class ProfilePicture {
 
     String name;
     String mimeType;

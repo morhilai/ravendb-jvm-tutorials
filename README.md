@@ -218,25 +218,25 @@ Building on the Client API, this demo application implements the basic CRUD func
 The create operation inserts a new document. Each document contains a unique id, data, and adjacent metadata - all stored in JSON format. The metadata contains information describing the document, e.g. the last modification date (`@last-modified` property) or the collection  it belongs to (`@collection` property). We will use RavenDB's default algorithm to generate unique ids for our entities.
 
 ```java
-public void create(PatientAttachment patientAttachment) {
-    Patient patient = patientAttachment.getPatient();
-    Attachment attachment = patientAttachment.getAttachment();
+public void create(PatientAttachment patientWithPicture) {
+    Patient patient = patientWithPicture.getPatient();
+    Attachment profilePicture = patientWithPicture.getAttachment();
     session.store(patient);
 
-    if (attachment != null) {
-        session.advanced().attachments().store(patient, attachment.getName(),
-                attachment.getInputStream(), attachment.getMimeType());
+    if (profilePicture != null) {
+        session.advanced().attachments().store(patient, profilePicture.getName(),
+                profilePicture.getInputStream(), profilePicture.getMimeType());
     }
 
     session.saveChanges();
 }
 ```
-Update operation. This method ensures there is at most one portrait attachment per Patient.
+Update operation. This method ensures there is at most one portrait profilePicture per Patient.
 
 ```java
-public void update(PatientAttachment patientAttachment) throws ConcurrencyException {
-    Patient patient = patientAttachment.getPatient();
-    Attachment attachment = patientAttachment.getAttachment();
+public void update(PatientAttachment patientWithPicture) throws ConcurrencyException {
+    Patient patient = patientWithPicture.getPatient();
+    Attachment profilePicture = patientWithPicture.getAttachment();
     session.store(patient);
 
     // delete previous attachments
@@ -245,9 +245,9 @@ public void update(PatientAttachment patientAttachment) throws ConcurrencyExcept
         session.advanced().attachments().delete(patient, names[0].getName());
     }
 
-    if (attachment != null) {
-        session.advanced().attachments().store(patient, attachment.getName(),
-                attachment.getInputStream(), attachment.getMimeType());
+    if (profilePicture != null) {
+        session.advanced().attachments().store(patient, profilePicture.getName(),
+                profilePicture.getInputStream(), profilePicture.getMimeType());
     }
 
     session.saveChanges();
@@ -283,30 +283,30 @@ public Pair<Collection<PatientAttachment>,Integer> getPatientsList(int offset, i
     Collection<Patient> list = query.toList();
     int totalResults = statsRef.value.getTotalResults();
 
-    Collection<PatientAttachment> patientAttachments=new ArrayList<>();
+    Collection<PatientAttachment> patientWithPictures=new ArrayList<>();
 
     for (Patient patient : list) {
-        PatientAttachment patientAttachment=new PatientAttachment(patient);
+        PatientAttachment patientWithPicture=new PatientAttachment(patient);
         AttachmentName[] names = session.advanced().attachments().getNames(patient);
 
         if (names.length > 0) {
             try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,
 							                                names[0].getName())) {
-	            Attachment attachment = new Attachment();
-	            attachment.setName(names[0].getName());
-	            attachment.setMimeType(names[0].getContentType());
+	            Attachment profilePicture = new Attachment();
+	            profilePicture.setName(names[0].getName());
+	            profilePicture.setMimeType(names[0].getContentType());
 
                 byte[] bytes = IOUtils.toByteArray(result.getData());
-                attachment.setBytes(bytes);
-                patientAttachment.setAttachment(attachment);
+                profilePicture.setBytes(bytes);
+                patientWithPicture.setAttachment(profilePicture);
 	        } catch (IOException e) {
 	            logger.log(Level.SEVERE,"", e);
             }
         }
-        patientAttachments.add(patientAttachment);
+        patientWithPictures.add(patientWithPicture);
     }
 
-    return new ImmutablePair<Collection<PatientAttachment>, Integer>(patientAttachments, totalResults);
+    return new ImmutablePair<Collection<PatientAttachment>, Integer>(patientWithPictures, totalResults);
 }
 ```
 
@@ -338,30 +338,35 @@ Attachments, just like documents, are tracked by the session and will only be sa
 Changes to attachments and changes to documents made in the context of the same session will be executed as part of one ACID transaction.
 
 ```java
-Patient patient = patientAttachment.getPatient();
-Attachment attachment = patientAttachment.getAttachment();
+Patient patient = patientWithPicture.getPatient();
+Attachment profilePicture = patientWithPicture.getAttachment();
 
-InputStream inputStream = attachment.getInputStream();
-String name = attachment.getName();
-String mimeType = attachment.getMimeType();
+InputStream inputStream = profilePicture.getInputStream();
+String name = profilePicture.getName();
+String mimeType = profilePicture.getMimeType();
 session.advanced().attachments().store(patient,name,inputStream,mimeType);
 session.saveChanges();
 ```
 
-This operation gets an attachment from a patient document:
+This operation gets an profilePicture from a patient document:
 ```java
 try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,names[0].getName())) {
-    Attachment attachment = new Attachment();
-    attachment.setName(names[0].getName());
-    attachment.setMimeType(names[0].getContentType());
+    Attachment profilePicture = new Attachment();
+    profilePicture.setName(names[0].getName());
+    profilePicture.setMimeType(names[0].getContentType());
 
     byte[] bytes = IOUtils.toByteArray(result.getData());
-    attachment.setBytes(bytes);
-    patientAttachment.setAttachment(attachment);
+    profilePicture.setBytes(bytes);
+    patientWithPicture.setAttachment(profilePicture);
 }
 ```
 
 ## Queries
+from Doctors
+from Conditions
+from Patients where startsWith(firstName, $p0) or startsWith(lastName, $p1)
+from Patients group by visits[].doctorId where doctorId != $p0 order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
+
 RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's indexes are schema-less and documented oriented. RavenDB requires indexes to execute queries, but the programmer is not required to manually create them - RavenDB can automatically create the required index by analyzing query at runtime. In the following query, the parameter `Patient.class` defines the type of returned results, and also indicates that the queried collection will be Patients.
 ```java
 Patient patient = session.load(Patient.class, id);

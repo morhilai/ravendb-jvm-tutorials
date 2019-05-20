@@ -2,16 +2,16 @@ package net.ravendb.demo.command;
 
 import net.ravendb.demo.model.Patient;
 
-public class PatientAttachment {
+public class PatientWithPicture {
 
     private Patient patient;
-    private Attachment attachment;
+    private ProfilePicture profilePicture;
 
-    public PatientAttachment() {
+    public PatientWithPicture() {
         this.patient = new Patient();
     }
 
-    public PatientAttachment(Patient patient) {
+    public PatientWithPicture(Patient patient) {
         this.patient = patient;
     }
 
@@ -23,12 +23,12 @@ public class PatientAttachment {
         this.patient = patient;
     }
 
-    public Attachment getAttachment() {
-        return attachment;
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setAttachment(Attachment attachment) {
-        this.attachment = attachment;
+    public void setProfilePicture(ProfilePicture profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
 }

@@ -2,44 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52b53430-c0bf-4c38-97aa-733bb0ef859f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ProfilePicture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientWithPicture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/PatientVisitEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/grid/PageableGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/db/RavenDBDocumentStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,121 +27,68 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitViewable.java">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="247">
+              <caret line="367" column="165" selection-start-line="367" selection-start-column="165" selection-end-line="367" selection-end-column="165" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientWithPicture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
-              <folding>
-                <element signature="e#3126#3127#0" expanded="true" />
-                <element signature="e#3148#3149#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="931">
-              <caret line="96" selection-start-line="96" selection-end-line="96" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6976#6977#0" expanded="true" />
-                <element signature="e#7003#7004#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="68" column="58" lean-forward="true" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
-              <folding>
-                <element signature="e#2466#2467#0" expanded="true" />
-                <element signature="e#2529#2530#0" expanded="true" />
-                <element signature="e#4771#4772#0" expanded="true" />
-                <element signature="e#4838#4839#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ProfilePicture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+            <state relative-caret-position="391">
+              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
               <folding>
-                <element signature="e#3550#3551#0" expanded="true" />
-                <element signature="e#3577#3578#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#327#328#0" expanded="true" />
+                <element signature="e#359#360#0" expanded="true" />
+                <element signature="e#394#395#0" expanded="true" />
+                <element signature="e#425#426#0" expanded="true" />
+                <element signature="e#473#474#0" expanded="true" />
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#545#546#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
+                <element signature="e#746#747#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsViewable.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/RavenDBApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/ConditionView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="130" selection-start-line="130" selection-end-line="130" />
+            <state relative-caret-position="44">
+              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
               <folding>
-                <element signature="e#4345#4346#0" expanded="true" />
-                <element signature="e#4375#4376#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1629#1630#0" expanded="true" />
+                <element signature="e#1656#1657#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/DoctorView.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="154" selection-start-line="154" selection-end-line="154" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainHeader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+            <state relative-caret-position="555">
+              <caret line="57" column="4" selection-start-line="24" selection-start-column="33" selection-end-line="57" selection-end-column="4" />
               <folding>
-                <element signature="e#1251#1252#0" expanded="true" />
-                <element signature="e#1295#1296#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/MainMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-              <folding>
-                <element signature="e#426#427#0" expanded="true" />
-                <element signature="e#446#447#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2862#2863#0" expanded="true" />
+                <element signature="e#4012#4013#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -201,18 +120,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/assets/Gender.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ComboValue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/ConditionEditorDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AddressEditorDialog.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientVisit.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/AbstractEditorDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/components/editor/DoctorEditorDialog.java" />
@@ -226,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Doctor.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Patient.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/model/Visit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorViewable.java" />
@@ -243,6 +159,12 @@
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientView.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/PatientVisitView.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/views/VisitsView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientWithPicture.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ProfilePicture.java" />
       </list>
     </option>
   </component>
@@ -251,14 +173,6 @@
       <expand />
       <select />
     </treeState>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-      </list>
-    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="240" />
@@ -273,7 +187,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,7 +197,7 @@
             <path>
               <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
               <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="screenshots" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
@@ -311,15 +224,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
@@ -338,26 +242,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="grid" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
@@ -395,52 +279,11 @@
               <item name="demo" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hospital-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ravendb-jvm-tutorials" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -503,11 +346,20 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19349681" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16684435" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -516,8 +368,36 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30985916" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30985916" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.32995737" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.195629" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30985916" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -533,7 +413,47 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-    </layout>
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -566,13 +486,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/com/nega/negapaginator/1.0.2/negapaginator-1.0.2.jar!/com/nega/NegaPaginator.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/screenshots/p_home.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -682,28 +595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#250#251#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/DoctorVisit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -732,34 +623,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#469#470#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientAttachment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#334#335#0" expanded="true" />
-            <element signature="e#355#356#0" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="397" selection-start-line="397" selection-end-line="397" />
         </state>
       </provider>
     </entry>
@@ -1053,20 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1194#1195#0" expanded="true" />
-            <element signature="e#2051#2052#0" expanded="true" />
-            <element signature="e#2073#2074#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionViewable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
@@ -1227,6 +1076,64 @@
           <folding>
             <element signature="e#3550#3551#0" expanded="true" />
             <element signature="e#3577#3578#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/RavenDBApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1629#1630#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="57" column="4" selection-start-line="24" selection-start-column="33" selection-end-line="57" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2862#2863#0" expanded="true" />
+            <element signature="e#4012#4013#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="367" column="165" selection-start-line="367" selection-start-column="165" selection-end-line="367" selection-end-column="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientWithPicture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ProfilePicture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#425#426#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#545#546#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#746#747#0" expanded="true" />
           </folding>
         </state>
       </provider>
