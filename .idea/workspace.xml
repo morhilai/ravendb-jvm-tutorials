@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52b53430-c0bf-4c38-97aa-733bb0ef859f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="162" column="88" selection-start-line="162" selection-start-column="88" selection-end-line="162" selection-end-column="88" />
+            <state relative-caret-position="-1267">
+              <caret line="296" column="3" selection-start-line="296" selection-start-column="3" selection-end-line="296" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -85,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="333">
@@ -141,6 +136,7 @@
       <find>confi</find>
       <find>attac</find>
       <find>clear</find>
+      <find>clea</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,12 +180,12 @@
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/PatientWithPicture.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/Attachment.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/command/ProfilePicture.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientVisitPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/DoctorPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/ConditionPresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/VisitsPresenter.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -199,7 +195,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="240" />
     <option name="y" value="130" />
     <option name="width" value="1440" />
@@ -395,7 +391,7 @@
     </task>
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -408,7 +404,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16684435" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16684435" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -416,12 +412,12 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.30985916" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
@@ -1099,13 +1095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="162" column="88" selection-start-line="162" selection-start-column="88" selection-end-line="162" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/ravendb/demo/presenters/PatientViewable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1168,6 +1157,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="55" column="37" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1267">
+          <caret line="296" column="3" selection-start-line="296" selection-start-column="3" selection-end-line="296" selection-end-column="3" />
         </state>
       </provider>
     </entry>

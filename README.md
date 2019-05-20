@@ -378,7 +378,7 @@ try (CloseableAttachmentResult result = session.advanced().attachments().get(pat
 ```
 
 ## Queries
-todo
+todotodotodotodotodotodotodotodo
 
 from Doctors
 from Conditions
