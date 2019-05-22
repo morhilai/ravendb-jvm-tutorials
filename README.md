@@ -379,7 +379,7 @@ try (CloseableAttachmentResult result = session.advanced().attachments().get(pat
 
 ## Queries TODO
 In RavenDB, a query can only be satisfied by an index. If no appropriate index exists, RavenDB will automatically create
-one on the fly. The indexes are continuously optimized to satisfy all queries that the server received before. By default,
+one on the fly. The indexes are continuously optimized to satisfy all previous queries. By default,
 indexes are updated asynchronously so that they don't impact write speed. In most use cases, this improves performance,
 but you can always have a write operation wait for the index to update before returning using
 `session.advanced().waitForIndexesAfterSaveChanges();`.
@@ -387,53 +387,54 @@ but you can always have a write operation wait for the index to update before re
 Queries are created using `session.query()` and executed by calling `.toList()`. Before being sent to the server, every
 query is translated to [RQL (RavenDB Query Language)](https://ravendb.net/docs/article-page/4.2/java/indexes/querying/what-is-rql)
 - our SQL-like language. RQL was designed to expose RavenDB's query pipeline to the user. You can write your queries in RQL
-using `session.advanced().rawQuery([RQL_string])`. A query can be converted to RQL by calling `.toString()` before
-`.toList()`. Here are some example queries in java, accompanied by the equivalent RQL:
+using `session.advanced().rawQuery([RQL_string_here])`. A query can be converted to RQL by calling `.toString()` before
+`.toList()`. Here are some example queries constructed in java, accompanied by the equivalent RQL:
 
 ###1. Retrieve all documents from a collection
 ```java
 session.query(Doctor.class).toList();
 ```
 This is the simplest possible query, with no filtering, paging, or projection. The parameter `Doctor.class` indicates the
-type of the entities retrieved, and also that the collection that will be queried is `Doctors`.
+type of the entities retrieved, and also that the collection being queried is `Doctors`.
 
 Equivalent RQL:
 ```SQL
 from Doctors
 ```
 
-###2. Paging
+###2. Paging and query statistics
 ```java
-session.query(Condition.class)
-       .skip(20)
-       .take(10)
-       .statistics(statsRef)
-       .toList();
+Reference<QueryStatistics> myQueryStats = new Reference<>();
+IDocumentQuery<Patient> query = session.query(Patient.class)
+                                       .skip(20)
+                                       .take(10)
+                                       .statistics(myQueryStats)
+                                       .toList();
 ```
-In this query, `.take(10)` represents a page with 10 items, and `.skip(20)` indicates that the first two pages of results
-are skipped so that we retrieve page three of the results.
+The grid that displays our list of patients holds 10 patients per page. To display the third page, we tell
+our query to `.skip(20)` - skip the first two pages of patients - and `.take(10)` - send the next ten patients to our
+application.
 
-Some useful data, called the _query statistics_, are automatically sent along with the response to every query. We can
-access the query statistics by calling `.statistics(Reference<QueryStatistics> [query_Stats])` in the body of our query.
-For example, if we want to know the total number of results of the above query, we can access it at `statsRef.value.getTotalResults()`.
+We also need to know how many pages there are in total so we can render the page buttons. Some useful data, called the
+_query statistics_, are automatically sent to the client along with the response to each query. To access them we need to
+call `.statistics(myQueryStats)` on our query, and then we get the total number of results with `myQueryStats.value.getTotalResults()`.
 
 Equivalent RQL:
 ```SQL
-from Conditions limit 20,10
+from Patients limit 20,10
 ```
 The command `limit` takes the number of results to skip as its first argument, and the number of results to keep as its
-second. Since the query statistics are always retrieved regardless, no commands regarding query statistics need to be
-sent to the server. Query statistics can also be accessed with `session.advanced().rawQuery([RQL_string]).statistics([Reference<QueryStatistics>])`
+second. No request for query statistics needs to be sent to the server, they are sent automatically.
 
 ###3.Filtering
 ```java
-IDocumentQuery<Patient> query = session.query(Patient.class)
-        .whereEquals("firstName", "John")
-        .whereEquals("lastName", "Doe")
-        .statistics(statsRef)
-        .toList();
+session.query(Patient.class)
+       .whereEquals("firstName", "John")
+       .andAlso()
+       .whereEquals("lastName", "Doe")
+       .toList();
 ```
-This query retrieves patients from the `Patients` collection with the name 'John Doe'.
+This query retrieves patients from the `Patients` collection only if they have the name "John Doe".
 
 Equivalent RQL:
 ```SQL
@@ -444,7 +445,7 @@ from Patients where firstName = 'John' and lastName = 'Doe'
 ```java
 session.query(Patient.class)
        .groupBy("visits[].doctorId")
-       .selectKey("visits[].doctorId", "doctorId")
+       .select("visits[].doctorId")
        .selectCount()
        .whereNotEquals("doctorId", null)
        .orderByDescending("count")
@@ -454,7 +455,8 @@ session.query(Patient.class)
 ```
 
 
-from Patients group by visits[].doctorId where doctorId != $p0 order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
+```SQL
+from Patients group by visits[].doctorId where doctorId != null order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
 ```
 
 RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's
