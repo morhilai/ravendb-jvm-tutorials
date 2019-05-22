@@ -22,40 +22,7 @@ import net.ravendb.demo.presenters.ConditionViewable.ConditionViewListener;
 public class ConditionPresenter implements ConditionViewListener {
     private IDocumentSession session;
 
-    public ConditionPresenter() {
-        try{IDocumentStore store = new DocumentStore(new String[]{ "http://127.0.0.1:18080" },"Hospital").initialize();
-            IDocumentSession session = store.openSession();
-            Reference<QueryStatistics> statsRef = new Reference<>();
-
-            IDocumentQuery<Condition> conditions = session.query(Condition.class)
-                    .skip(5)
-                    .take(5)
-                    .statistics(statsRef);
-
-            IDocumentQuery<Patient> query = session.query(Patient.class)
-                    .whereStartsWith("firstName", "term")
-                    .orElse()
-                    .whereStartsWith("lastName", "term")
-                    .skip(5)
-                    .take(5)
-                    .statistics(statsRef);
-
-            IDocumentQuery<DoctorVisit> results = session.query(Patient.class)
-                    .groupBy("visits[].doctorId")
-                    .selectKey("visits[].doctorId", "doctorId")
-                    .selectCount()
-                    .whereNotEquals("doctorId", null)
-                    .orderByDescending("count")
-                    .ofType(DoctorVisit.class)
-                    .include("visits[].doctorId");
-
-            System.out.println(session.query(Doctor.class));
-            System.out.println(conditions);
-            System.out.println(query);
-            System.out.println(results);
-        }catch(Exception e){}
-
-    }
+    public ConditionPresenter() {}
 
     @Override
     public void delete(Condition condition) {

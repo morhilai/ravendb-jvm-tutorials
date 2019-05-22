@@ -377,19 +377,92 @@ try (CloseableAttachmentResult result = session.advanced().attachments().get(pat
 }
 ```
 
-## Queries
-todotodotodotodotodotodotodotodo
+## Queries TODO
+In RavenDB, a query can only be satisfied by an index. If no appropriate index exists, RavenDB will automatically create
+one on the fly. The indexes are continuously optimized to satisfy all queries that the server received before. By default,
+indexes are updated asynchronously so that they don't impact write speed. In most use cases, this improves performance,
+but you can always have a write operation wait for the index to update before returning using
+`session.advanced().waitForIndexesAfterSaveChanges();`.
 
-from Doctors
-from Conditions
-from Patients where startsWith(firstName, $p0) or startsWith(lastName, $p1)
-from Patients group by visits[].doctorId where doctorId != $p0 order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
+Queries are created using `session.query()` and executed by calling `.toList()`. Before being sent to the server, every
+query is translated to [RQL (RavenDB Query Language)](https://ravendb.net/docs/article-page/4.2/java/indexes/querying/what-is-rql)
+- our SQL-like language. RQL was designed to expose RavenDB's query pipeline to the user. You can write your queries in RQL
+using `session.advanced().rawQuery([RQL_string])`. A query can be converted to RQL by calling `.toString()` before
+`.toList()`. Here are some example queries in java, accompanied by the equivalent RQL:
 
-RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's indexes are schema-less and documented oriented. RavenDB requires indexes to execute queries, but the programmer is not required to manually create them - RavenDB can automatically create the required index by analyzing query at runtime. In the following query, the parameter `Patient.class` defines the type of returned results, and also indicates that the queried collection will be Patients.
+###1. Retrieve all documents from a collection
 ```java
-Patient patient = session.load(Patient.class, id);
-return patient;
+session.query(Doctor.class).toList();
 ```
+This is the simplest possible query, with no filtering, paging, or projection. The parameter `Doctor.class` indicates the
+type of the entities retrieved, and also that the collection that will be queried is `Doctors`.
+
+Equivalent RQL:
+```SQL
+from Doctors
+```
+
+###2. Paging
+```java
+session.query(Condition.class)
+       .skip(20)
+       .take(10)
+       .statistics(statsRef)
+       .toList();
+```
+In this query, `.take(10)` represents a page with 10 items, and `.skip(20)` indicates that the first two pages of results
+are skipped so that we retrieve page three of the results.
+
+Some useful data, called the _query statistics_, are automatically sent along with the response to every query. We can
+access the query statistics by calling `.statistics(Reference<QueryStatistics> [query_Stats])` in the body of our query.
+For example, if we want to know the total number of results of the above query, we can access it at `statsRef.value.getTotalResults()`.
+
+Equivalent RQL:
+```SQL
+from Conditions limit 20,10
+```
+The command `limit` takes the number of results to skip as its first argument, and the number of results to keep as its
+second. Since the query statistics are always retrieved regardless, no commands regarding query statistics need to be
+sent to the server. Query statistics can also be accessed with `session.advanced().rawQuery([RQL_string]).statistics([Reference<QueryStatistics>])`
+
+###3.Filtering
+```java
+IDocumentQuery<Patient> query = session.query(Patient.class)
+        .whereEquals("firstName", "John")
+        .whereEquals("lastName", "Doe")
+        .statistics(statsRef)
+        .toList();
+```
+This query retrieves patients from the `Patients` collection with the name 'John Doe'.
+
+Equivalent RQL:
+```SQL
+from Patients where firstName = 'John' and lastName = 'Doe'
+```
+
+###4. Projecting and including related documents
+```java
+session.query(Patient.class)
+       .groupBy("visits[].doctorId")
+       .selectKey("visits[].doctorId", "doctorId")
+       .selectCount()
+       .whereNotEquals("doctorId", null)
+       .orderByDescending("count")
+       .ofType(DoctorVisit.class)
+       .include("visits[].doctorId")
+       .toList();
+```
+
+
+from Patients group by visits[].doctorId where doctorId != $p0 order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
+```
+
+RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's
+indexes are schema-less and documented oriented. RavenDB requires indexes to execute queries, but the programmer is not
+required to manually create them - RavenDB can automatically create the required index by analyzing query at runtime. In
+the following query, the parameter `Patient.class` defines the type of returned results, and also indicates that the
+queried collection will be Patients.
+
 When one document contains the id of another document, both of them can be loaded in a single request call using the 'Include + Load' methods. The following code snippet shows how to obtain Patient visit data and the associated Doctor documents with a single request.
 When the Doctors documents are requested they are fetched from the local session cache, avoiding a second round trip to the server.
 The query transforms the Patients visits data into a custom class of type `DoctorVisit` by using projection `ofType`. This is a powerful technique to construct any result type of the queried data.
@@ -417,4 +490,35 @@ public Collection<DoctorVisit> getDoctorVisitsList() {
     return results;
 }
 ```
+        try{IDocumentStore store = new DocumentStore(new String[]{ "http://127.0.0.1:18080" },"Hospital").initialize();
+            IDocumentSession session = store.openSession();
+            Reference<QueryStatistics> statsRef = new Reference<>();
+
+            IDocumentQuery<Condition> conditions = session.query(Condition.class)
+                    .skip(5)
+                    .take(5)
+                    .statistics(statsRef);
+
+            IDocumentQuery<Patient> query = session.query(Patient.class)
+                    .whereStartsWith("firstName", "term")
+                    .orElse()
+                    .whereStartsWith("lastName", "term")
+                    .skip(5)
+                    .take(5)
+                    .statistics(statsRef);
+
+            IDocumentQuery<DoctorVisit> results = session.query(Patient.class)
+                    .groupBy("visits[].doctorId")
+                    .selectKey("visits[].doctorId", "doctorId")
+                    .selectCount()
+                    .whereNotEquals("doctorId", null)
+                    .orderByDescending("count")
+                    .ofType(DoctorVisit.class)
+                    .include("visits[].doctorId");
+
+            System.out.println();
+            System.out.println(conditions);
+            System.out.println(query);
+            System.out.println(results);
+        }catch(Exception e){}
 
