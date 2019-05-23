@@ -421,7 +421,8 @@ call `.statistics(myQueryStats)` on our query, and then we get the total number 
 
 Equivalent RQL:
 ```SQL
-from Patients limit 20,10
+from Patients
+limit 20,10
 ```
 The command `limit` takes the number of results to skip as its first argument, and the number of results to keep as its
 second. No request for query statistics needs to be sent to the server, they are sent automatically.
@@ -438,7 +439,8 @@ This query retrieves patients from the `Patients` collection only if their name 
 
 Equivalent RQL:
 ```SQL
-from Patients where firstName = 'John' and lastName = 'Doe'
+from Patients
+where firstName = 'John' and lastName = 'Doe'
 ```
 
 ### 4. Projecting, aggregating, and including related documents
@@ -454,66 +456,23 @@ session.query(Patient.class)
        .toList();
 ```
 In this example query from the demo, we want to rank doctors by the number of visits they have scheduled with patients.
-We perform a map-reduce operation on the `Patients` collection, grouping by the doctors referenced in their visits. However,
-we don't want _all_ the data in the patient documents, it would be a waste to send it over the network. We perform a projection
-which indicates which fields in the documents we're interested in. With the first argument in
-`.selectKey("visits[].doctorId", "doctorId")` we retrieve the doctorIds listed in the patients' visit arrays. With the second
-argument, we give the field a shorter, more readable name - `doctorId`.
+We perform a map-reduce operation on the `Patients` collection, grouping by doctors. However, since we don't want all the
+data in the patient documents, it would be a waste to send it over the network. With the first argument in
+`.selectKey("visits[].doctorId", "doctorId")` we retrieve only the doctorIds listed in the patients' visit arrays. With the second
+argument, we give the field a shorter, more readable name - `doctorId`. With `.selectCount()`, we retrieve the result of the
+map-reduce, the number of visits per doctor. With `.ofType(DoctorVisit.class)` we define the type of the resulting projection:
+a custom class that contains only a `doctorId`, `doctorName`, and `count`.
 
-This query also shows
+Finally, this query demonstrates how to load related documents. RavenDB doesn't support joins like SQL databases do, but
+if one document contains the id of another document, that document can be included in the query response without an additional
+request to the server.
+
+Equivalent RQL:
 ```SQL
-from Patients group by visits[].doctorId where doctorId != null order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
+from Patients
+group by visits[].doctorId
+where doctorId != null
+order by count desc
+select visits[].doctorId as doctorId, count() as count
+include 'visits[].doctorId'
 ```
-
-RavenDB uses indexes, but they don't work quite like relational database indexes. The main difference is that RavenDB's
-indexes are schema-less and documented oriented. RavenDB requires indexes to execute queries, but the programmer is not
-required to manually create them - RavenDB can automatically create the required index by analyzing query at runtime. In
-the following query, the parameter `Patient.class` defines the type of returned results, and also indicates that the
-queried collection will be Patients.
-
-When one document contains the id of another document, both of them can be loaded in a single request call using the 'Include + Load' methods. The following code snippet shows how to obtain Patient visit data and the associated Doctor documents with a single request.
-When the Doctors documents are requested they are fetched from the local session cache, avoiding a second round trip to the server.
-The query transforms the Patients visits data into a custom class of type `DoctorVisit` by using projection `ofType`. This is a powerful technique to construct any result type of the queried data.
-```java
-session.query(Patient.class)
-       .groupBy("visits[].doctorId")
-       .selectKey("visits[].doctorId", "doctorId")
-       .selectCount()
-       .whereNotEquals("doctorId", null)
-       .orderByDescending("count")
-       .ofType(DoctorVisit.class)
-       .include("visits[].doctorId")
-       .toList();
-```
-        try{IDocumentStore store = new DocumentStore(new String[]{ "http://127.0.0.1:18080" },"Hospital").initialize();
-            IDocumentSession session = store.openSession();
-            Reference<QueryStatistics> statsRef = new Reference<>();
-
-            IDocumentQuery<Condition> conditions = session.query(Condition.class)
-                    .skip(5)
-                    .take(5)
-                    .statistics(statsRef);
-
-            IDocumentQuery<Patient> query = session.query(Patient.class)
-                    .whereStartsWith("firstName", "term")
-                    .orElse()
-                    .whereStartsWith("lastName", "term")
-                    .skip(5)
-                    .take(5)
-                    .statistics(statsRef);
-
-            IDocumentQuery<DoctorVisit> results = session.query(Patient.class)
-                    .groupBy("visits[].doctorId")
-                    .selectKey("visits[].doctorId", "doctorId")
-                    .selectCount()
-                    .whereNotEquals("doctorId", null)
-                    .orderByDescending("count")
-                    .ofType(DoctorVisit.class)
-                    .include("visits[].doctorId");
-
-            System.out.println();
-            System.out.println(conditions);
-            System.out.println(query);
-            System.out.println(results);
-        }catch(Exception e){}
-
