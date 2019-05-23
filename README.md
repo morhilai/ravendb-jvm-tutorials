@@ -1,5 +1,11 @@
 # RavenDB Hospital Tutorial
-RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and high availability. It supports  clients for a variety of programming languages, including Java. RavenDB is very easy to administer and deploy. The following is an introduction to RavenDB, and an overview of the Client API. As an example, we will be looking at a demo hospital management application built on the Java client.
+RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and highly available.
+It supports clients for a variety of programming languages, including Java. RavenDB is very easy to administer and deploy.
+The following tutorial is an introduction to RavenDB and an overview of the Client API. We will be looking at a demo hospital
+management application built on the Java client.
+
+The front end of this application was built using [Vaadin](https://vaadin.com/), an open-source platform for building web
+applications in java.
 
 Contents:
 * [How to Install RavenDB Community Edition](./README.md#how-to-install-ravendb-community-edition)
@@ -13,22 +19,26 @@ Contents:
 * [Queries](./README.md#queries)
 
 ## How to Install RavenDB Community Edition
-1. Download the zip bundle from https://ravendb.net/download and unzip
+1. Download the zip bundle from https://ravendb.net/download and extract
 2. Register a free community license from https://ravendb.net/buy
-3. In PowerShell, run `.\run.ps1` (or `.\setup-as-service.ps1` to launch as a service)
-4. Once installed the management studio, called RavenDB Studio, will automatically launch in your default browser on port 8080
+3. In PowerShell, type `.\run.ps1` (or `.\setup-as-service.ps1` to launch as a service)
+4. Once installed, the [setup wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will automatically launch on your default browser
 5. Click the `about` tab in the bottom left to register your license
-6. [Create your first database](https://ravendb.net/docs/article-page/4.2/csharp/studio/server/databases/create-new-database/general-flow)
+6. [Create your first database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
+
+More detailed installation and setup instructions can be found in [RavenDB's online documentation](https://ravendb.net/docs/article-page/4.2/java/start/getting-started).
 
 ## How to run the demo
 Once RavenDB is installed, start a server instance on port 18080 with this command:
 ```
 ./Raven.Server.exe --ServerUrl=http://127.0.0.1:18080 --Setup.Mode=None --License.Eula.Accepted=true
 ```
-Type `openbrowser` to launch the studio in your default browser. [Create a database](https://ravendb.net/docs/article-page/4.2/csharp/studio/server/databases/create-new-database/general-flow)
-with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located in the project root called `hospital.ravendbdump` by following [these instructions](https://ravendb.net/docs/article-page/4.1/java/studio/database/settings/import-data-file).
+Type `openbrowser` to launch the studio in your default browser.
+[Create a database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
+with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located in the
+project root called `hospital.ravendbdump` by following [these instructions](https://ravendb.net/docs/article-page/4.2/java/studio/database/settings/import-data-file).
 
-Fetch the project code sources with:
+Fetch the code sources for this project with:
 ```
 $ git clone https://github.com/sergei-iliev/ravendb.git
 ```
