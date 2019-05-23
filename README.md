@@ -390,7 +390,7 @@ query is translated to [RQL (RavenDB Query Language)](https://ravendb.net/docs/a
 using `session.advanced().rawQuery([RQL_string_here])`. A query can be converted to RQL by calling `.toString()` before
 `.toList()`. Here are some example queries constructed in java, accompanied by the equivalent RQL:
 
-###1. Retrieve all documents from a collection
+### 1. Retrieve all documents from a collection
 ```java
 session.query(Doctor.class).toList();
 ```
@@ -402,7 +402,7 @@ Equivalent RQL:
 from Doctors
 ```
 
-###2. Paging and query statistics
+### 2. Paging and query statistics
 ```java
 Reference<QueryStatistics> myQueryStats = new Reference<>();
 IDocumentQuery<Patient> query = session.query(Patient.class)
@@ -426,7 +426,7 @@ from Patients limit 20,10
 The command `limit` takes the number of results to skip as its first argument, and the number of results to keep as its
 second. No request for query statistics needs to be sent to the server, they are sent automatically.
 
-###3.Filtering
+### 3.Filtering
 ```java
 session.query(Patient.class)
        .whereEquals("firstName", "John")
@@ -434,18 +434,18 @@ session.query(Patient.class)
        .whereEquals("lastName", "Doe")
        .toList();
 ```
-This query retrieves patients from the `Patients` collection only if they have the name "John Doe".
+This query retrieves patients from the `Patients` collection only if their name is "John Doe".
 
 Equivalent RQL:
 ```SQL
 from Patients where firstName = 'John' and lastName = 'Doe'
 ```
 
-###4. Projecting and including related documents
+### 4. Projecting, aggregating, and including related documents
 ```java
 session.query(Patient.class)
        .groupBy("visits[].doctorId")
-       .select("visits[].doctorId")
+       .selectKey("visits[].doctorId", "doctorId")
        .selectCount()
        .whereNotEquals("doctorId", null)
        .orderByDescending("count")
@@ -453,8 +453,14 @@ session.query(Patient.class)
        .include("visits[].doctorId")
        .toList();
 ```
+In this example query from the demo, we want to rank doctors by the number of visits they have scheduled with patients.
+We perform a map-reduce operation on the `Patients` collection, grouping by the doctors referenced in their visits. However,
+we don't want _all_ the data in the patient documents, it would be a waste to send it over the network. We perform a projection
+which indicates which fields in the documents we're interested in. With the first argument in
+`.selectKey("visits[].doctorId", "doctorId")` we retrieve the doctorIds listed in the patients' visit arrays. With the second
+argument, we give the field a shorter, more readable name - `doctorId`.
 
-
+This query also shows
 ```SQL
 from Patients group by visits[].doctorId where doctorId != null order by count desc select visits[].doctorId as doctorId, count() as count include 'visits[].doctorId'
 ```
@@ -469,28 +475,15 @@ When one document contains the id of another document, both of them can be loade
 When the Doctors documents are requested they are fetched from the local session cache, avoiding a second round trip to the server.
 The query transforms the Patients visits data into a custom class of type `DoctorVisit` by using projection `ofType`. This is a powerful technique to construct any result type of the queried data.
 ```java
-public Collection<DoctorVisit> getDoctorVisitsList() {
-    List<DoctorVisit> results = session.query(Patient.class)
-                                        .groupBy("visits[].doctorId")
-                                        .selectKey("visits[].doctorId", "doctorId")
-                                        .selectCount()
-                                        .whereNotEquals("doctorId", null)
-                                        .orderByDescending("count")
-                                        .ofType(DoctorVisit.class)
-                                        .include("visits[].doctorId")
-                                        .toList();
-    // fetch doctors by batch
-
-    Set<String> doctorIds = results.stream().map(p -> p.getDoctorId()).collect(Collectors.toSet());
-    Map<String, Doctor> map = session.load(Doctor.class, doctorIds);
-
-    results.forEach(v -> {
-        v.setDoctorName(map.get(v.getDoctorId()).getName());
-    });
-
-    assert (session.advanced().getNumberOfRequests() == 1);
-    return results;
-}
+session.query(Patient.class)
+       .groupBy("visits[].doctorId")
+       .selectKey("visits[].doctorId", "doctorId")
+       .selectCount()
+       .whereNotEquals("doctorId", null)
+       .orderByDescending("count")
+       .ofType(DoctorVisit.class)
+       .include("visits[].doctorId")
+       .toList();
 ```
         try{IDocumentStore store = new DocumentStore(new String[]{ "http://127.0.0.1:18080" },"Hospital").initialize();
             IDocumentSession session = store.openSession();
