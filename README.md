@@ -24,7 +24,7 @@ Contents:
 3. In PowerShell, type `.\run.ps1` (or `.\setup-as-service.ps1` to launch as a service)
 4. Once installed, the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will automatically launch on your default browser
 5. After setup, the [RavenDB Management Studio](https://ravendb.net/docs/article-page/4.2/java/studio/overview) will launch.
-Click the `about` tab in the bottom left to register your license
+Click the `about` tab to register your license:
 
 ![Register License](/screenshots/manage-license-1.png)
 
@@ -39,9 +39,11 @@ Once RavenDB is installed, start a server instance with this command:
 and license agreement prompt)
 
 Type `openbrowser` to launch the management studio in your default browser.
-[Create a database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow) todo
+[Create a new database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
 with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located in the
-project root called `hospital.ravendbdump` by following [these instructions](https://ravendb.net/docs/article-page/4.2/java/studio/database/tasks/import-data/import-data-file).todo
+project root called `hospital.ravendbdump` by going to Settings > Import Data:
+
+![Import Data](/screenshots/ravendbdump.png)
 
 Fetch the code sources for this project with:
 ```
