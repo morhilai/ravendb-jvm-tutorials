@@ -3,10 +3,6 @@ package net.ravendb.demo.presenters;
 import java.util.Collection;
 import java.util.List;
 
-import net.ravendb.client.documents.DocumentStore;
-import net.ravendb.client.documents.IDocumentStore;
-import net.ravendb.demo.command.DoctorVisit;
-import net.ravendb.demo.model.Doctor;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -49,7 +45,7 @@ public class ConditionPresenter implements ConditionViewListener {
 
     @Override
     public Pair<Collection<Condition>, Integer> getConditionsList(int offset, int limit, String term) {
-//        session.advanced().clear();
+        session.advanced().clear();
         Reference<QueryStatistics> statsRef = new Reference<>();
         IDocumentQuery<Condition> conditions = session.query(Condition.class)
                                                       .skip(offset)

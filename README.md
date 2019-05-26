@@ -4,7 +4,13 @@ It supports clients for a variety of programming languages, including Java. Rave
 The following tutorial is an introduction to RavenDB and an overview of the Client API. We will be looking at a demo hospital
 management app built on the Java client.
 
-The front end of this app was built using [Vaadin](https://vaadin.com/), an open-source platform for building web
+This app is implemented using the [Vaadin Flow](https://vaadin.com/flow) framework.
+This framework addressed both client and server side development of web applications, allowing to implement using java only. //todo: make it readable(sorry)
+This application implements the MVP pattern, which in combination of Vaadin's page state persistence is very convenient to demonstrate the Unit Of Work features of RavenDB.
+
+
+
+This is a platform, providin model-view-prensenter The front end of this app was built using , an open-source platform for building web
 applications in java.
 
 Contents:
@@ -22,7 +28,8 @@ Contents:
 1. Register a free community license from https://ravendb.net/buy
 2. Download the zip bundle from https://ravendb.net/download and extract
 3. In PowerShell, type `.\run.ps1` (or `.\setup-as-service.ps1` to launch as a service)
-4. Once installed, the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will automatically launch on your default browser
+4. Once installed, the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will
+automatically launch on your default browser
 5. After setup, the [RavenDB Management Studio](https://ravendb.net/docs/article-page/4.2/java/studio/overview) will launch.
 Click the `about` tab to register your license:
 
@@ -47,25 +54,23 @@ project root called `hospital.ravendbdump` by going to Settings > Import Data:
 
 Fetch the code sources for this project with:
 ```
-$ git clone https://github.com/sergei-iliev/ravendb.git
+$ git clone https://github.com/ravendb/ravendb-jvm-tutorials.git
 ```
-Once the database is created, the default configuration data is imported, and the sources are available locally, start the application with:
+Once the database is created, the default configuration data is imported, and the sources are available locally, start the
+application with:
 ```
-$ mvn jetty:run todo
+$ mvn jetty:run todo?
 ```
 The demo web application will now be available at http://127.0.0.1:8889/. It should look like this:
 ![App Homepage](/screenshots/p_home.png)
 
 ## Entities, tables, collections, and documents
-As a NoSQL database, RavenDB manages data in these ways:
-* Stores data in JSON documents
-* Schemaless - documents can have any structure
-* Dynamically generates indexes to facilitate fast data retrieval
-* Uses map-reduce to process large sets of documents
-
-Java programmers are used to persisting POJOs by annotating them with `@Entity`. This makes the underlying JPA framework treat the class as a domain object mapped to a row in a database. RavenDB doesn’t use tables. Instead, it represents objects as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_.
-In RavenDB, every domain object is mapped to a single document. There is no need for special class treatment other than having a no-args constructor.
-The model for this demo consists of 4 entities. To demonstrate the power of grouping and fetching queries in RavenDB, one of these entities is embedded as an array in another entity.
+Java programmers are used to persisting POJOs by annotating them with `@Entity`. This makes the underlying JPA framework
+treat the class as a domain object mapped to a row in a database. RavenDB doesn’t use tables. Instead, it represents objects
+as _documents_, with no constraints on their structure. Similar documents are grouped in _collections_. In RavenDB, every
+domain object maps to a single document. There is no need for special class treatment other than having a no-args constructor.
+The model for this demo consists of 4 entities. To demonstrate the power of grouping and fetching queries in RavenDB, one
+of these entities is embedded as an array in another entity.
 
 ![UML Diagram](/screenshots/uml.png)
 
@@ -85,8 +90,7 @@ public class Patient {
     private List<Visit> visits;
 }
 ```
-
-A document containing an example Patient, which contains an array of Visits:
+A JSON document containing an example Patient, which contains an array of Visits:
 ```JSON
 {
     "firstName": "Megi",
@@ -120,6 +124,7 @@ A document containing an example Patient, which contains an array of Visits:
     }
 }
 ```
+
 2. Visit entity:
 ```java
 public class Visit {
@@ -131,7 +136,7 @@ public class Visit {
     private String doctorName;
 }
 ```
-On the server side this entity is embedded as an array within the Patient documents, see above.
+On the server side this entity is embedded as an array within Patient documents, see above example Patient.
 
 3. Condition entity:
 ```java
@@ -154,6 +159,7 @@ Example Condition:
     }
 }
 ```
+
 4. Doctor entity:
 ```java
 public class Doctor {
@@ -177,10 +183,11 @@ Example Doctor:
 ```
 
 If an entity doesn't already have an id field, RavenDB will automatically generate a unique document id on the client side.
-By default, entities get autogenerated ids in the following format: `collection/[number_tag]`, which makes them human readable, and makes it simple to ensure they are unique database-wide.
+By default, ids are generated in the following format: `collection/[number_tag]`, which makes them human readable, and
+helps to ensure that they are unique database-wide.
 
 ## RavenDB Client API
-The Java Client API is added as a dependency to `pom.xml`.
+The Java Client is included as a dependency in `pom.xml`.
 ```xml
 <dependency>
     <groupId>net.ravendb</groupId>
@@ -188,19 +195,21 @@ The Java Client API is added as a dependency to `pom.xml`.
     <version>LATEST</version>
 </dependency>
 ```
-The Client API provides the main API object, the _Document Store_, which sets up the connection with the Server. It is recommended that you create only one Document Store instance per application by implementing the singleton pattern as demonstrated below:
+The Client API provides the main API object, the _Document Store_, which sets up the connection with the Server. It is
+recommended that you create only one Document Store instance per application by implementing the singleton pattern as
+demonstrated below:
 ```java
 public final class RavenDBDocumentStore {
     private static IDocumentStore store;
 
-    static {
-    	store = new DocumentStore(new String[] {
-			"http://127.0.0.1:18080",
-			"http://127.0.0.1:18081",
-			"http://127.0.0.1:18082"},
-			"Hospital");
+    static { //todo
+        store = new DocumentStore(new String[] {
+            "http://127.0.0.1:18080",
+            "http://127.0.0.1:18081",
+            "http://127.0.0.1:18082"},
+        "Hospital");
 
-    	store.initialize();
+        store.initialize();
     }
 
     public static IDocumentStore getStore() {
@@ -210,17 +219,22 @@ public final class RavenDBDocumentStore {
 ```
 ## Session and Unit of Work Pattern
 For any operation we want to perform on RavenDB, we start by obtaining a new _Session_ object from the Document Store.
-Much like the Hibernate implementation of JPA, the RavenDB Session implements the Unit of Work pattern. This has several implications in the context of a single session:
+Much like the Hibernate implementation of JPA, the RavenDB Session implements the Unit of Work pattern. This has several
+implications in the context of a single session:
 * The Session tracks changes for all the entities that it has either loaded or stored
 * The Session batches requests to reduce the number of expensive remote calls
 * A single document (identified by its id) always resolves to the same instance
 
-In contrast to a Document Store, a Session is a lightweight object and can be created more frequently. This demo uses page attach/detach events to demarcate the Session's creation and release. The session stays open for the duration of page activity. For the purposes of this demo, we will enable optimistic concurrency control.
+//todo: move somewhere else: In contrast to a Document Store, a Session is a lightweight object and can be created more frequently.
+
+This demo uses Vaadin infrastructure for //todo: explain what it uses, what is the boundaries of a page life, when onAttach and onDetach happens
+
+The session stays open for the duration of page activity. This demo uses page attach/detach events to demarcate the Session's creation and release. For the purposes of this demo, we will enable optimistic concurrency control.  todo
 ```java
 public void openSession() {
     if (session == null) {
         session = RavenDBDocumentStore.getStore().openSession();
-        session.advanced().setUseOptimisticConcurrency(true);
+        session.advanced().setUseOptimisticConcurrency(true); todo
     }
 }
 
@@ -229,12 +243,18 @@ public void releaseSession() {
 }
 ```
 ## CRUD operations
+
+// todo: start from explaining that we are going to show Patient crud, that is in the SO AND SO PRESETER that is being held in the so and so view.
 Building on the Client API, this demo application implements the basic CRUD functions.
 
-The create operation inserts a new document. Each document contains a unique id, data, and adjacent metadata - all stored in JSON format. The metadata contains information describing the document, e.g. the last modification date (`@last-modified` property) or the collection  it belongs to (`@collection` property). We will use RavenDB's default algorithm to generate unique ids for our entities.
+The **create** operation inserts a new document. Each document contains a unique id, data, and adjacent metadata - all stored
+in JSON format. The metadata contains information describing the document, such as the last modification date (`@last-modified`)
+or the collection it belongs to (`@collection`). We will use RavenDB's default algorithm to generate unique ids for our
+entities.
+
 
 ```java
-public void create(PatientWithPicture patientWithPicture) {
+public void create(PatientWithPicture patientWithPicture) { todo
     Patient patient = patientWithPicture.getPatient();
     ProfilePicture profilePicture = patientWithPicture.getProfilePicture();
     session.store(patient);
@@ -247,8 +267,8 @@ public void create(PatientWithPicture patientWithPicture) {
     session.saveChanges();
 }
 ```
-Update operation. This method ensures there is at most one portrait profilePicture per Patient.
-
+**Update** operation. This method ensures there is at most one profile picture per Patient.
+// todo: talk about entity tracking after creation etc.
 ```java
 public void update(PatientWithPicture patientWithPicture) throws ConcurrencyException {
     Patient patient = patientWithPicture.getPatient();
@@ -270,39 +290,28 @@ public void update(PatientWithPicture patientWithPicture) throws ConcurrencyExce
     session.saveChanges();
 }
 ```
-Delete operation:
+**Delete** operation:
+// todo: talk about entity tracking after creation etc.
 ```java
 public void delete(Patient patient) {
-    session.delete(patient.getId());
+    session.delete(patient.getPatient());
     session.saveChanges();
 }
 ```
-To 'read' documents, we simply use `session.load(/*documentId*/)`
+To **read** documents, we simply use `session.load([some_document_id])`
 
 ## Paging Through Large Record Sets
-Paging through large amounts of data is one of the most common operations in RavenDB. A typical scenario is the need to display results in batches in a lazy loading or pageable grid. In this app, the grid is configured to first obtain the total amount of records to show and then to lazily obtain records by batches of 10 as the user navigates from page to page. There is a convenient method, `statistics`, to obtain the total count of the documents querying at the same time thus making a one-time remote request only! For the patients grid, the corresponding attachments are also obtained and streamed into a convenient byte array to show in one of the grid columns.
+Paging through large amounts of data is one of the most common operations in RavenDB. For example, let's say we need to
+display results in batches in a lazy loading or pageable grid. In this app, the grid is configured to obtain the
+total amount of results to show and then to lazily load the results in batches of 10 as the user navigates from page to page.
+We can use `statistics()` to access useful data about the query, including the total number of results. For the patients
+grid, the corresponding attachments are also obtained and streamed into a byte array.
 
-![Patient CRUD](/screenshots/p_paging.png)
+![Patient Paging](/screenshots/p_paging.png)
 
+`getPatientsList()`, with error handling omitted for brevity:
 ```java
 public Pair<Collection<PatientWithPicture>, Integer> getPatientsList(int offset, int limit, boolean order) {
-        Reference<QueryStatistics> statsRef = new Reference<>();
-        IDocumentQuery<Patient> query = session.query(Patient.class)
-                .skip(offset)
-                .take(limit)
-                .statistics(statsRef);
-
-        if (order) {
-            query.orderBy("birthDate");
-        }
-
-        Collection<Patient> list = query.toList();
-        int totalResults = statsRef.value.getTotalResults();
-
-        Collection<PatientWithPicture> patientWithPictures = new ArrayList<>();
-todo
-public Pair<Collection<PatientAttachment>,Integer> getPatientsList(int offset, int limit, boolean order) {
-
     Reference<QueryStatistics> statsRef = new Reference<>();
     IDocumentQuery<Patient> query = session.query(Patient.class)
                                            .skip(offset)
@@ -316,37 +325,13 @@ public Pair<Collection<PatientAttachment>,Integer> getPatientsList(int offset, i
     Collection<Patient> list = query.toList();
     int totalResults = statsRef.value.getTotalResults();
 
-    Collection<PatientAttachment> patientWithPictures=new ArrayList<>();
-
-    for (Patient patient : list) {
-        PatientAttachment patientWithPicture=new PatientAttachment(patient);
-        AttachmentName[] names = session.advanced().attachments().getNames(patient);
-
-        if (names.length > 0) {
-            try (CloseableAttachmentResult result = session.advanced().attachments().get(patient,
-							                                names[0].getName())) {
-	            Attachment profilePicture = new Attachment();
-	            profilePicture.setName(names[0].getName());
-	            profilePicture.setMimeType(names[0].getContentType());
-
-                byte[] bytes = IOUtils.toByteArray(result.getData());
-                profilePicture.setBytes(bytes);
-                patientWithPicture.setAttachment(profilePicture);
-	        } catch (IOException e) {
-	            logger.log(Level.SEVERE,"", e);
-            }
-        }
-        patientWithPictures.add(patientWithPicture);
-    }
-
-    return new ImmutablePair<Collection<PatientAttachment>, Integer>(patientWithPictures, totalResults);
+    Collection<PatientWithPicture> patientWithPictures = new ArrayList<>();
 }
 ```
 
 ## BLOB Handling - Attachments
 Binary data that cannot be stored as JSON (such as images, audio, etc.) can be associated with a document as one or more _attachments_.
-Attachments can be loaded and edited separately from the document.
-This POJO represents attachments on the client side:
+Attachments can be loaded and edited separately from the document. This POJO represents attachments on the client side:
 ```java
 public class Attachment {
 
@@ -359,8 +344,8 @@ public class Attachment {
     }
 
     public StreamResource getStreamResource() {
-		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-		return new StreamResource(name, () -> bis);
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        return new StreamResource(name, () -> bis);
     }
 }
 ```

@@ -2,6 +2,7 @@ package net.ravendb.demo.db;
 
 import net.ravendb.client.documents.DocumentStore;
 import net.ravendb.client.documents.IDocumentStore;
+import net.ravendb.client.documents.conventions.DocumentConventions;
 
 public final class RavenDBDocumentStore {
 
@@ -12,6 +13,10 @@ public final class RavenDBDocumentStore {
                                                "http://127.0.0.1:18081",
                                                "http://127.0.0.1:18082"},
                                                "Hospital");
+
+        /*DocumentConventions conventions = store.getConventions();
+        conventions.setUseOptimisticConcurrency(true); todo*/
+
         store.initialize();
     }
 

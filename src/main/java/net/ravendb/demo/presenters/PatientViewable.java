@@ -14,9 +14,9 @@ public interface PatientViewable {
 
         Collection<String> getRegionsList();
 
-        void create(PatientWithPicture patient);
+        void create(PatientWithPicture patientWithPicture);
 
-        void update(PatientWithPicture patient);
+        void update(PatientWithPicture patientWithPicture);
 
         void save(String patientId, Address address);
 
