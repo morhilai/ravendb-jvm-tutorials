@@ -1,10 +1,10 @@
-# RavenDB Hospital Tutorial
+# RavenDB Java Client Tutorial
 RavenDB is an open-source NoSQL document store database. It is fully transactional, multi-platform, and highly available.
 It supports clients for a variety of programming languages, including Java. RavenDB is very easy to administer and deploy.
 The following tutorial is an introduction to RavenDB and an overview of the Client API. We will be looking at a demo hospital
-management application built on the Java client.
+management app built on the Java client.
 
-The front end of this application was built using [Vaadin](https://vaadin.com/), an open-source platform for building web
+The front end of this app was built using [Vaadin](https://vaadin.com/), an open-source platform for building web
 applications in java.
 
 Contents:
@@ -19,24 +19,29 @@ Contents:
 * [Queries](./README.md#queries)
 
 ## How to Install RavenDB Community Edition
-1. Download the zip bundle from https://ravendb.net/download and extract
-2. Register a free community license from https://ravendb.net/buy
+1. Register a free community license from https://ravendb.net/buy
+2. Download the zip bundle from https://ravendb.net/download and extract
 3. In PowerShell, type `.\run.ps1` (or `.\setup-as-service.ps1` to launch as a service)
-4. Once installed, the [setup wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will automatically launch on your default browser
-5. Click the `about` tab in the bottom left to register your license
-6. [Create your first database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
+4. Once installed, the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will automatically launch on your default browser
+5. After setup, the [RavenDB Management Studio](https://ravendb.net/docs/article-page/4.2/java/studio/overview) will launch.
+Click the `about` tab in the bottom left to register your license
+
+![Register License](/screenshots/manage-license-1.png)
 
 More detailed installation and setup instructions can be found in [RavenDB's online documentation](https://ravendb.net/docs/article-page/4.2/java/start/getting-started).
 
 ## How to run the demo
-Once RavenDB is installed, start a server instance on port 18080 with this command:
+Once RavenDB is installed, start a server instance with this command:
 ```
 ./Raven.Server.exe --ServerUrl=http://127.0.0.1:18080 --Setup.Mode=None --License.Eula.Accepted=true
 ```
-Type `openbrowser` to launch the studio in your default browser.
-[Create a database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
+(This will launch the server instance on port 18080 and skip the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard)
+and license agreement prompt)
+
+Type `openbrowser` to launch the management studio in your default browser.
+[Create a database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow) todo
 with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located in the
-project root called `hospital.ravendbdump` by following [these instructions](https://ravendb.net/docs/article-page/4.2/java/studio/database/settings/import-data-file).
+project root called `hospital.ravendbdump` by following [these instructions](https://ravendb.net/docs/article-page/4.2/java/studio/database/tasks/import-data/import-data-file).todo
 
 Fetch the code sources for this project with:
 ```
@@ -44,7 +49,7 @@ $ git clone https://github.com/sergei-iliev/ravendb.git
 ```
 Once the database is created, the default configuration data is imported, and the sources are available locally, start the application with:
 ```
-$ mvn jetty:run
+$ mvn jetty:run todo
 ```
 The demo web application will now be available at http://127.0.0.1:8889/. It should look like this:
 ![App Homepage](/screenshots/p_home.png)
