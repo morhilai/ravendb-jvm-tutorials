@@ -228,8 +228,6 @@ implications in the context of a single session:
 * The Session batches requests to reduce the number of expensive remote calls
 * A single document (identified by its id) always resolves to the same instance
 
-//todo: move somewhere else: In contrast to a Document Store, a Session is a lightweight object and can be created more frequently.
-
 This demo uses Vaadin infrastructure for //todo: explain what it uses, what is the boundaries of a page life, when onAttach and onDetach happens
 
 The session stays open for the duration of page activity. This demo uses page attach/detach events to demarcate the Session's
