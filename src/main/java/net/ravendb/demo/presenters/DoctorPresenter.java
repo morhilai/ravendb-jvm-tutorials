@@ -80,7 +80,6 @@ public class DoctorPresenter implements ViewListener.DoctorViewListener {
     public void openSession() {
         if (session == null) {
             session = RavenDBDocumentStore.getStore().openSession();
-            session.advanced().setUseOptimisticConcurrency(true);
         }
     }
 

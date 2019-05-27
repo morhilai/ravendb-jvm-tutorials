@@ -67,7 +67,6 @@ public class ConditionPresenter implements ViewListener.ConditionViewListener {
 
         if (session == null) {
             session = RavenDBDocumentStore.getStore().openSession();
-            session.advanced().setUseOptimisticConcurrency(true);
         }
     }
 

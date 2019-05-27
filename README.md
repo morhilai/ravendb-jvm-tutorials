@@ -35,10 +35,10 @@ More detailed installation and setup instructions can be found in [RavenDB's onl
 ## How to run the demo
 Once RavenDB is installed, start a server instance with this command:
 ```
-./Raven.Server.exe --ServerUrl=http://127.0.0.1:18080 --Setup.Mode=None --License.Eula.Accepted=true
+./Raven.Server.exe --ServerUrl=http://127.0.0.1:8080 --Setup.Mode=None --License.Eula.Accepted=true
 ```
-(This will launch the server instance on port 18080 and skip the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard)
-and license agreement prompt)
+This will launch the server instance on port 8080, skip the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard),
+and skip the license agreement prompt.
 
 Type `openbrowser` to launch the management studio in your default browser.
 [Create a new database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
@@ -190,26 +190,34 @@ The Java Client is included as a dependency in `pom.xml`.
     <version>LATEST</version>
 </dependency>
 ```
-The Client API provides the main API object, the _Document Store_, which sets up the connection with the Server. It is
-recommended that you create only one Document Store instance per application by implementing the singleton pattern as
+The Client API provides the main API object, the _Document Store_, which sets up the connection with the Server. The
+Document Store holds various configuration options, such as whether or not operations on the database use optimistic
+concurrency. Since this is just a demo, we'll want to enable optimistic concurrency to enhance our app's performance.
+It is recommended that you create just one Document Store instance per application by implementing the singleton pattern as
 demonstrated below:
 ```java
 public final class RavenDBDocumentStore {
     private static IDocumentStore store;
 
-    static { //todo
-        store = new DocumentStore(new String[] {
-            "http://127.0.0.1:18080",
-            "http://127.0.0.1:18081",
-            "http://127.0.0.1:18082"},
-        "Hospital");
+    static {
+
+        //Create new document store with a url to the RavenDB server
+        //and with Hospital set as the default database
+        store = new DocumentStore(new String[]{"http://127.0.0.1:8080"},
+                                               "Hospital");
+
+        //Edit the conventions to enable optimistic concurrency
+        DocumentConventions conventions = store.getConventions();
+        conventions.setUseOptimisticConcurrency(true);
 
         store.initialize();
     }
 
+    //return the single instance of document store
     public static IDocumentStore getStore() {
         return store;
     }
+
 }
 ```
 ## Session and Unit of Work Pattern
@@ -224,12 +232,12 @@ implications in the context of a single session:
 
 This demo uses Vaadin infrastructure for //todo: explain what it uses, what is the boundaries of a page life, when onAttach and onDetach happens
 
-The session stays open for the duration of page activity. This demo uses page attach/detach events to demarcate the Session's creation and release. For the purposes of this demo, we will enable optimistic concurrency control.  todo
+The session stays open for the duration of page activity. This demo uses page attach/detach events to demarcate the Session's
+creation and release.
 ```java
 public void openSession() {
     if (session == null) {
         session = RavenDBDocumentStore.getStore().openSession();
-        session.advanced().setUseOptimisticConcurrency(true); todo
     }
 }
 

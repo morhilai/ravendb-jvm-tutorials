@@ -84,7 +84,6 @@ public class VisitsPresenter implements ViewListener.VisitsViewListener {
 
         if (session == null) {
             session = RavenDBDocumentStore.getStore().openSession();
-            session.advanced().setUseOptimisticConcurrency(true);
         }
     }
 

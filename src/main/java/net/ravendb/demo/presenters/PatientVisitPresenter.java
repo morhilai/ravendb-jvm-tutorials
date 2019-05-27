@@ -87,7 +87,6 @@ public class PatientVisitPresenter implements ViewListener.PatientVisitViewListe
     public void openSession() {
         if (session == null) {
             session = RavenDBDocumentStore.getStore().openSession();
-            session.advanced().setUseOptimisticConcurrency(true);
         }
     }
 
@@ -98,7 +97,6 @@ public class PatientVisitPresenter implements ViewListener.PatientVisitViewListe
 
     @Override
     public Collection<String> getLocationsList() {
-        //Configuration configuration = session.query(Configuration.class).first();
         Configuration configuration = session.load(Configuration.class, "Configurations/Options");
         if (configuration != null) {
             return configuration.getLocations();

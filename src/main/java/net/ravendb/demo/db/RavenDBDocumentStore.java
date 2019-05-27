@@ -9,13 +9,13 @@ public final class RavenDBDocumentStore {
     private static IDocumentStore store;
 
     static {
-        store = new DocumentStore(new String[]{"http://127.0.0.1:18080",
-                                               "http://127.0.0.1:18081",
-                                               "http://127.0.0.1:18082"},
+
+        store = new DocumentStore(new String[]{"http://127.0.0.1:8080"},
                                                "Hospital");
 
-        /*DocumentConventions conventions = store.getConventions();
-        conventions.setUseOptimisticConcurrency(true); todo*/
+
+        DocumentConventions conventions = store.getConventions();
+        conventions.setUseOptimisticConcurrency(true);
 
         store.initialize();
     }

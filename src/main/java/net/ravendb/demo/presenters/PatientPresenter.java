@@ -189,8 +189,6 @@ public class PatientPresenter implements ViewListener.PatientViewListener {
     public void openSession() {
         if (session == null) {
             session = RavenDBDocumentStore.getStore().openSession();
-            // enable optimistic concurrency
-            session.advanced().setUseOptimisticConcurrency(true);
         }
     }
 
