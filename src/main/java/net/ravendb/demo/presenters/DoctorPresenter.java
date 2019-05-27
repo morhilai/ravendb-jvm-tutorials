@@ -14,9 +14,8 @@ import net.ravendb.demo.db.RavenDBDocumentStore;
 import net.ravendb.demo.model.Configuration;
 import net.ravendb.demo.model.Doctor;
 import net.ravendb.demo.model.Patient;
-import net.ravendb.demo.presenters.DoctorViewable.DoctorViewListener;
 
-public class DoctorPresenter implements DoctorViewListener {
+public class DoctorPresenter implements ViewListener.DoctorViewListener {
 
     private IDocumentSession session;
 

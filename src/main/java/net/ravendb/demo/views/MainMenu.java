@@ -15,7 +15,9 @@ public class MainMenu extends VerticalLayout {
     }
 
     private void init() {
+
         setWidth("20%");
+
         Button patientButton = new Button("Patients", new Icon(VaadinIcon.MALE), e -> {
             UI.getCurrent().navigate("patient");
         });
@@ -35,6 +37,7 @@ public class MainMenu extends VerticalLayout {
             UI.getCurrent().navigate("condition");
         });
         add(visitsButton);
+
     }
 
 }

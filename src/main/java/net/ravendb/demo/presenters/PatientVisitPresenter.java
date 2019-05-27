@@ -12,9 +12,8 @@ import net.ravendb.demo.model.Configuration;
 import net.ravendb.demo.model.Doctor;
 import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.model.Visit;
-import net.ravendb.demo.presenters.PatientVisitViewable.PatientVisitViewListener;
 
-public class PatientVisitPresenter implements PatientVisitViewListener {
+public class PatientVisitPresenter implements ViewListener.PatientVisitViewListener {
 
     private IDocumentSession session;
 

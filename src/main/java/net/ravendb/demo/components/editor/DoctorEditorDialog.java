@@ -11,15 +11,15 @@ import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Doctor;
-import net.ravendb.demo.presenters.DoctorViewable.DoctorViewListener;
+import net.ravendb.demo.presenters.ViewListener;
 
 public class DoctorEditorDialog extends AbstractEditorDialog<Doctor> {
 
-    private DoctorViewListener presenter;
+    private ViewListener.DoctorViewListener presenter;
     private Runnable run;
     ComboBox<String> department;
 
-    public DoctorEditorDialog(String title, Doctor bean, DoctorViewListener presenter, Runnable run) {
+    public DoctorEditorDialog(String title, Doctor bean, ViewListener.DoctorViewListener presenter, Runnable run) {
         super(title, bean);
         this.run = run;
         this.presenter = presenter;

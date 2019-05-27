@@ -8,11 +8,6 @@ This app is implemented using the [Vaadin Flow](https://vaadin.com/flow) framewo
 This framework addressed both client and server side development of web applications, allowing to implement using java only. //todo: make it readable(sorry)
 This application implements the MVP pattern, which in combination of Vaadin's page state persistence is very convenient to demonstrate the Unit Of Work features of RavenDB.
 
-
-
-This is a platform, providin model-view-prensenter The front end of this app was built using , an open-source platform for building web
-applications in java.
-
 Contents:
 * [How to Install RavenDB Community Edition](./README.md#how-to-install-ravendb-community-edition)
 * [How to run the demo](./README.md#how-to-run-the-demo)

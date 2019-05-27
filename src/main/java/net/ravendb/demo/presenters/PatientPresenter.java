@@ -24,9 +24,8 @@ import net.ravendb.demo.db.RavenDBDocumentStore;
 import net.ravendb.demo.model.Address;
 import net.ravendb.demo.model.Configuration;
 import net.ravendb.demo.model.Patient;
-import net.ravendb.demo.presenters.PatientViewable.PatientViewListener;
 
-public class PatientPresenter implements PatientViewListener {
+public class PatientPresenter implements ViewListener.PatientViewListener {
     private static Logger logger = Logger.getLogger(PatientPresenter.class.getSimpleName());
 
     private IDocumentSession session;

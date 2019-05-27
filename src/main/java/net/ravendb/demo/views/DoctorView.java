@@ -2,6 +2,7 @@ package net.ravendb.demo.views;
 
 import com.vaadin.flow.component.notification.Notification;
 import net.ravendb.client.exceptions.ConcurrencyException;
+import net.ravendb.demo.presenters.ViewListener;
 import org.claspina.confirmdialog.ButtonOption;
 import org.claspina.confirmdialog.ConfirmDialog;
 
@@ -22,13 +23,12 @@ import net.ravendb.demo.command.DoctorVisit;
 import net.ravendb.demo.components.editor.DoctorEditorDialog;
 import net.ravendb.demo.model.Doctor;
 import net.ravendb.demo.presenters.DoctorPresenter;
-import net.ravendb.demo.presenters.DoctorViewable;
 
 @Route(value = "doctor", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class DoctorView extends VerticalLayout implements DoctorViewable {
+public class DoctorView extends VerticalLayout {
 
-    private final DoctorViewListener presenter;
+    private final ViewListener.DoctorViewListener presenter;
     private Grid<Doctor> grid;
     private Grid<DoctorVisit> doctorVisitGrid;
     private Button edit, delete;

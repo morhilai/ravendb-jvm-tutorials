@@ -13,9 +13,8 @@ import net.ravendb.client.primitives.Reference;
 import net.ravendb.demo.db.RavenDBDocumentStore;
 import net.ravendb.demo.model.Condition;
 import net.ravendb.demo.model.Patient;
-import net.ravendb.demo.presenters.ConditionViewable.ConditionViewListener;
 
-public class ConditionPresenter implements ConditionViewListener {
+public class ConditionPresenter implements ViewListener.ConditionViewListener {
     private IDocumentSession session;
 
     public ConditionPresenter() {}

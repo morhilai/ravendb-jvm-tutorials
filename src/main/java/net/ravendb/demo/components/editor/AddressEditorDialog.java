@@ -12,16 +12,16 @@ import com.vaadin.flow.data.binder.Binder;
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Address;
 import net.ravendb.demo.model.Patient;
-import net.ravendb.demo.presenters.PatientViewable.PatientViewListener;
+import net.ravendb.demo.presenters.ViewListener;
 
 public class AddressEditorDialog extends AbstractEditorDialog<Patient> {
 
-    private PatientViewListener presenter;
+    private ViewListener.PatientViewListener presenter;
     private Binder<Address> addbinder;
     private Patient bean;
     private ComboBox<String> region;
 
-    public AddressEditorDialog(String title, Patient bean, PatientViewListener presenter) {
+    public AddressEditorDialog(String title, Patient bean, ViewListener.PatientViewListener presenter) {
         super(title, bean);
         this.presenter = presenter;
         this.bean = bean;

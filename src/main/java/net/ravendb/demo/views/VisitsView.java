@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Collection;
 
+import net.ravendb.demo.presenters.ViewListener;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -29,15 +30,14 @@ import net.ravendb.demo.RavenDBApp;
 import net.ravendb.demo.command.PatientVisit;
 import net.ravendb.demo.components.grid.PageableGrid;
 import net.ravendb.demo.presenters.VisitsPresenter;
-import net.ravendb.demo.presenters.VisitsViewable;
 
 @Route(value = "visits", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class VisitsView extends VerticalLayout implements VisitsViewable {
+public class VisitsView extends VerticalLayout {
 
 
     private H5 name;
-    private VisitsViewListener presenter;
+    private ViewListener.VisitsViewListener presenter;
     private PageableGrid<PatientVisit> grid;
     private Checkbox order;
     private TextField search;

@@ -34,15 +34,15 @@ import net.ravendb.demo.components.editor.PatientVisitEditorDialog;
 import net.ravendb.demo.model.Patient;
 import net.ravendb.demo.model.Visit;
 import net.ravendb.demo.presenters.PatientVisitPresenter;
-import net.ravendb.demo.presenters.PatientVisitViewable;
+import net.ravendb.demo.presenters.ViewListener;
 
 @Route(value = "patient/patientvisit", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class PatientVisitView extends VerticalLayout implements PatientVisitViewable, HasUrlParameter<String> {
+public class PatientVisitView extends VerticalLayout implements HasUrlParameter<String> {
     private static Logger logger = Logger.getLogger(PatientVisitView.class.getSimpleName());
 
     private H5 name;
-    private PatientVisitViewListener presenter;
+    private ViewListener.PatientVisitViewListener presenter;
     private Patient patient;
     private Grid<PatientVisit> grid;
     private String patientId;

@@ -15,11 +15,11 @@ import com.vaadin.flow.component.textfield.TextArea;
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.command.ComboValue;
 import net.ravendb.demo.model.Visit;
-import net.ravendb.demo.presenters.PatientVisitViewable.PatientVisitViewListener;
+import net.ravendb.demo.presenters.ViewListener;
 
 public class PatientVisitEditorDialog extends AbstractEditorDialog<Visit> {
 
-    private PatientVisitViewListener presenter;
+    private ViewListener.PatientVisitViewListener presenter;
     private Runnable run;
     private ComboBox<ComboValue> doctor;
     private String patientId;
@@ -27,7 +27,7 @@ public class PatientVisitEditorDialog extends AbstractEditorDialog<Visit> {
     ComboBox<String> location;
 
     public PatientVisitEditorDialog(String title, String patientId, Visit bean,
-                                    PatientVisitViewListener presenter, Runnable run) {
+                                    ViewListener.PatientVisitViewListener presenter, Runnable run) {
         super(title, bean);
         this.run = run;
         this.patientId = patientId;

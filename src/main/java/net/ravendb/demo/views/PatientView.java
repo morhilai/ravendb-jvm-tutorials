@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.vaadin.flow.component.notification.Notification;
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.command.PatientWithPicture;
+import net.ravendb.demo.presenters.ViewListener;
 import org.apache.commons.lang3.tuple.Pair;
 import org.claspina.confirmdialog.ButtonOption;
 import org.claspina.confirmdialog.ConfirmDialog;
@@ -43,14 +44,13 @@ import net.ravendb.demo.components.editor.AddressEditorDialog;
 import net.ravendb.demo.components.editor.PatientEditorDialog;
 import net.ravendb.demo.components.grid.PageableGrid;
 import net.ravendb.demo.presenters.PatientPresenter;
-import net.ravendb.demo.presenters.PatientViewable;
 
 @Route(value = "patient", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class PatientView extends VerticalLayout implements PatientViewable {
+public class PatientView extends VerticalLayout {
     private static Logger logger = Logger.getLogger(PatientView.class.getSimpleName());
 
-    private final PatientViewListener presenter;
+    private final ViewListener.PatientViewListener presenter;
     private PageableGrid<PatientWithPicture> grid;
     private Button edit, delete, visits;
     private Checkbox order;

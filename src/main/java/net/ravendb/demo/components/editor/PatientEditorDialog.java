@@ -13,6 +13,7 @@ import javax.imageio.stream.ImageInputStream;
 
 import net.ravendb.demo.command.PatientWithPicture;
 import net.ravendb.demo.command.ProfilePicture;
+import net.ravendb.demo.presenters.ViewListener;
 import org.apache.commons.io.IOUtils;
 
 import com.vaadin.flow.component.ClickEvent;
@@ -32,18 +33,17 @@ import com.vaadin.flow.server.StreamResource;
 
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.assets.Gender;
-import net.ravendb.demo.presenters.PatientViewable.PatientViewListener;
 
 public class PatientEditorDialog extends AbstractEditorDialog<PatientWithPicture> {
 
     private static Logger logger = Logger.getLogger(PatientEditorDialog.class.getSimpleName());
 
-    private PatientViewListener presenter;
+    private ViewListener.PatientViewListener presenter;
     private Image image;
     private Runnable run;
 
     public PatientEditorDialog(String title, PatientWithPicture bean,
-                               PatientViewListener presenter, Runnable run) {
+                               ViewListener.PatientViewListener presenter, Runnable run) {
         super(title, bean);
         this.run = run;
         this.presenter = presenter;

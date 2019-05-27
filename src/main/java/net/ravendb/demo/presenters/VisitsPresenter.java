@@ -13,9 +13,8 @@ import net.ravendb.client.primitives.Reference;
 import net.ravendb.demo.command.PatientVisit;
 import net.ravendb.demo.db.RavenDBDocumentStore;
 import net.ravendb.demo.model.Patient;
-import net.ravendb.demo.presenters.VisitsViewable.VisitsViewListener;
 
-public class VisitsPresenter implements VisitsViewListener {
+public class VisitsPresenter implements ViewListener.VisitsViewListener {
 
     private IDocumentSession session;
 

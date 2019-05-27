@@ -9,14 +9,14 @@ import com.vaadin.flow.component.textfield.TextField;
 
 import net.ravendb.client.exceptions.ConcurrencyException;
 import net.ravendb.demo.model.Condition;
-import net.ravendb.demo.presenters.ConditionViewable.ConditionViewListener;
+import net.ravendb.demo.presenters.ViewListener;
 
 public class ConditionEditorDialog extends AbstractEditorDialog<Condition> {
 
-    private ConditionViewListener presenter;
+    private ViewListener.ConditionViewListener presenter;
     private Runnable run;
 
-    public ConditionEditorDialog(String title, Condition condition, ConditionViewListener presenter, Runnable run) {
+    public ConditionEditorDialog(String title, Condition condition, ViewListener.ConditionViewListener presenter, Runnable run) {
         super(title, condition);
         this.run = run;
         this.presenter = presenter;

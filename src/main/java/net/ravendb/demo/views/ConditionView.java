@@ -2,6 +2,7 @@ package net.ravendb.demo.views;
 
 import java.util.Collection;
 
+import net.ravendb.demo.presenters.ViewListener;
 import org.apache.commons.lang3.tuple.Pair;
 import org.claspina.confirmdialog.ButtonOption;
 import org.claspina.confirmdialog.ConfirmDialog;
@@ -31,12 +32,11 @@ import net.ravendb.demo.components.editor.ConditionEditorDialog;
 import net.ravendb.demo.components.grid.PageableGrid;
 import net.ravendb.demo.model.Condition;
 import net.ravendb.demo.presenters.ConditionPresenter;
-import net.ravendb.demo.presenters.ConditionViewable;
 
 @Route(value = "condition", layout = RavenDBApp.class)
 @PageTitle(value = "Hospital Management")
-public class ConditionView extends VerticalLayout implements ConditionViewable {
-    private final ConditionViewListener presenter;
+public class ConditionView extends VerticalLayout {
+    private final ViewListener.ConditionViewListener presenter;
     private PageableGrid<Condition> grid;
     TextField search;
     Button edit, delete;
