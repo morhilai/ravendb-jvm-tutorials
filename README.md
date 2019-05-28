@@ -26,7 +26,7 @@ Contents:
 4. Once installed, the [Setup Wizard](https://ravendb.net/docs/article-page/4.2/java/start/installation/setup-wizard) will
 automatically launch on your default browser
 5. After setup, the [RavenDB Management Studio](https://ravendb.net/docs/article-page/4.2/java/studio/overview) will launch.
-Click the `about` tab to register your license:
+Open the `About` tab to register your license:
 
 ![Register License](/screenshots/manage-license-1.png)
 
@@ -34,27 +34,30 @@ More detailed installation and setup instructions can be found in [RavenDB's onl
 
 ## How to run the demo
 Once RavenDB is installed enter command line, navigate to the `Server` folder and start a server instance with this command:
-```
+```shell
 ./Raven.Server.exe --ServerUrl=http://127.0.0.1:8080 --Setup.Mode=None --License.Eula.Accepted=true
 ```
 This will launch the server on port 8080, skipping the Setup Wizard and the license agreement prompt.
 
-Type `openbrowser` to launch the management studio in your default browser.
-[Create a new database](https://ravendb.net/docs/article-page/4.2/java/studio/server/databases/create-new-database/general-flow)
-with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located in the
-project root called `hospital.ravendbdump` by going to `Settings` > `Import Data`:
+Type `openbrowser` to launch the management studio in your default browser. Open the `Database` tab and create a new
+database with the name `Hospital`. Next you'll need to import some configuration data into `Hospital` from a file located
+in the project root called `hospital.ravendbdump` by going to the `Settings` tab > `Import Data`:
 
 ![Import Data](/screenshots/ravendbdump.png)
 
 Fetch the code sources for this project with:
-```
+```sh
 $ git clone https://github.com/ravendb/ravendb-jvm-tutorials.git
 ```
 Once the database `Hospital` is created, the default configuration data is imported, and the sources are available locally,
 we can launch the actual demo application. For quick and easy testing, we recommend launching the app on a jetty server.
 The maven jetty plugin is already included in `pom.xml`. In your favorite Java IDE, create a new maven run configuration
-and set the goal as `jetty:run`. Alternatively, install maven locally, navigate to the project root in command line and
-execute `$ mvn jetty:run`.
+and set the goal as `jetty:run`.
+
+Alternatively, install maven locally, navigate to the project root in command line and execute:
+```bash
+$ mvn jetty:run
+```
 
 The demo web application will now be available at http://localhost:8889/. It should look like this:
 ![App Homepage](/screenshots/p_home.png)
